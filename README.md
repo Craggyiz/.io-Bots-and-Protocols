@@ -1,2 +1,2 @@
-# .io-Bots
-No longer works, use my open source code.
+# Cellsbox.io Bots
+Bots for cellsbox.io join the discord for more info.
