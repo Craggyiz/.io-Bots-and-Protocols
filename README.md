@@ -1,2 +1,2 @@
-# Cellsbox.io Bots
-Bots for cellsbox.io join the discord for more info.
+# Powerline.io Bots
+Bots for Powerline.io join the discord for more info.
