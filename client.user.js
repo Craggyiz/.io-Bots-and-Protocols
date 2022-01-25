@@ -39,7 +39,7 @@
 // @match        *.agars.live/*
 // @match        *.agar.live/*
 // @match        *.agario.tube/*
-// @run-at       document-start
+// @run-at       document-end
 // @icon         https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJNVczs2oU6qdgJBw2ZSSe4ibVAGjaZMgWosjYzjXZU1B6Lp9MHoQ27ARzAtofWYHxz3U&usqp=CAU
 // @grant        none
 // ==/UserScript==
