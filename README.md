@@ -1,2 +1,2 @@
-# Powerline.io Bots
-Bots for Powerline.io join the discord for more info.
+io Bots
+.io games join the discord for more info or if you'd like for me to add more games.
