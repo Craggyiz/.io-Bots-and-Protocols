@@ -10,3 +10,6 @@
 // @run-at       document-start
 // @grant        none
 // ==/UserScript==
+
+// E - Split Bots
+// R - Eject mass from Bots
