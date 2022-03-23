@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Xero-Bots
 // @namespace    https://discord.com/invite/bAstbAfem9
-// @version      1.0.2
+// @version      1.0.3
 // @description  Best bots for popular agar.io clone games.
 // @author       Tatsuya & Enes
 // @match        *.agma.io/*
