@@ -7,3 +7,5 @@ The bots I've made for games can also be found here. Feel free to edit any code 
 If you're having any issues contact me on my discord: Tatsuya#9737 or join my discord server: https://discord.com/invite/bAstbAfem9
 
 If you need any help in any games feel free to contact me there as well.
+
+Lmao: https://prnt.sc/O2xW-u6G-Z3s
