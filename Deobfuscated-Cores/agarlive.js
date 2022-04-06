@@ -1,1801 +1,1819 @@
-var Vector2 = function (breaun, ailena) {
-  this.x = breaun || 0;
-  this.y = ailena || 0;
-};
-Vector2.prototype = {reset: function (jerimia, suzane) {
-  return this.x = jerimia, this.y = suzane, this;
-}, toString: function (sharleez) {
-  sharleez = sharleez || 3;
-  var elodi = Math.pow(10, sharleez);
-  return "[" + Math.round(this.x * elodi) / elodi + ", " + Math.round(this.y * elodi) / elodi + "]";
-}, clone: function () {
-  return new Vector2(this.x, this.y);
-}, copyTo: function (jorge) {
-  jorge.x = this.x;
-  jorge.y = this.y;
-}, copyFrom: function (adylynn) {
-  this.x = adylynn.x;
-  this.y = adylynn.y;
-}, magnitude: function () {
-  return Math.sqrt(this.x * this.x + this.y * this.y);
-}, magnitudeSquared: function () {
-  return this.x * this.x + this.y * this.y;
-}, normalise: function () {
-  var parrie = this.magnitude();
-  return this.x = this.x / parrie, this.y = this.y / parrie, this;
-}, reverse: function () {
-  return this.x = -this.x, this.y = -this.y, this;
-}, plusEq: function (yamelin) {
-  return this.x += yamelin.x, this.y += yamelin.y, this;
-}, plusNew: function (naissa) {
-  return new Vector2(this.x + naissa.x, this.y + naissa.y);
-}, minusEq: function (keari) {
-  return this.x -= keari.x, this.y -= keari.y, this;
-}, minusNew: function (fran) {
-  return new Vector2(this.x - fran.x, this.y - fran.y);
-}, multiplyEq: function (karola) {
-  return this.x *= karola, this.y *= karola, this;
-}, multiplyNew: function (mayra) {
-  return this.clone().multiplyEq(mayra);
-}, divideEq: function (melinna) {
-  return this.x /= melinna, this.y /= melinna, this;
-}, divideNew: function (kelcy) {
-  return this.clone().divideEq(kelcy);
-}, dot: function (kysan) {
-  return this.x * kysan.x + this.y * kysan.y;
-}, angle: function (kinnick) {
-  return Math.atan2(this.y, this.x) * (kinnick ? 1 : Vector2Const.TO_DEGREES);
-}, rotate: function (rosamary, wykeem) {
-  var mihir = Math.cos(rosamary * (wykeem ? 1 : Vector2Const.TO_RADIANS)), buryl = Math.sin(rosamary * (wykeem ? 1 : Vector2Const.TO_RADIANS));
-  return Vector2Const.temp.copyFrom(this), this.x = Vector2Const.temp.x * mihir - Vector2Const.temp.y * buryl, this.y = Vector2Const.temp.x * buryl + Vector2Const.temp.y * mihir, this;
-}, equals: function (tejay) {
-  return this.x == tejay.x && this.y == tejay.x;
-}, isCloseTo: function (laurencio, nikki) {
-  return !!this.equals(laurencio) || (Vector2Const.temp.copyFrom(this), Vector2Const.temp.minusEq(laurencio), Vector2Const.temp.magnitudeSquared() < nikki * nikki);
-}, rotateAroundPoint: function (kahani, allexia, latitia) {
-  Vector2Const.temp.copyFrom(this);
-  Vector2Const.temp.minusEq(kahani);
-  Vector2Const.temp.rotate(allexia, latitia);
-  Vector2Const.temp.plusEq(kahani);
-  this.copyFrom(Vector2Const.temp);
-}, isMagLessThan: function (quentisha) {
-  return this.magnitudeSquared() < quentisha * quentisha;
-}, isMagGreaterThan: function (lucymarie) {
-  return this.magnitudeSquared() > lucymarie * lucymarie;
-}};
-Vector2Const = {TO_DEGREES: 180 / Math.PI, TO_RADIANS: Math.PI / 180, temp: new Vector2};
-var Pa = "#000000";
-var c_bildiri_ar = [];
-var c_bildiri_id = [];
-var Sfreeze = false;
-(function (phenious, sniyah) {
-  var clio = "ffa-1-public.iogames.icu:443";
-  var jaeleen = "./skins/";
-  function murdoch(lanor, ronson, olivio, dessia, shuntina, aidon) {
-    if (lanor <= shuntina && shuntina <= olivio && ronson <= aidon && aidon <= dessia) {
-      return true;
+var Vector2 = function (_0x47ddx2, _0x47ddx3) {
+    this.x = _0x47ddx2 || 0;
+    this.y = _0x47ddx3 || 0;
+  };
+  Vector2.prototype = {reset: function (_0x47ddx2, _0x47ddx3) {
+    return this.x = _0x47ddx2, this.y = _0x47ddx3, this;
+  }, toString: function (_0x47ddx2) {
+    _0x47ddx2 = _0x47ddx2 || 3;
+    var _0x47ddx3 = Math.pow(10, _0x47ddx2);
+    return "[" + Math.round(this.x * _0x47ddx3) / _0x47ddx3 + ", " + Math.round(this.y * _0x47ddx3) / _0x47ddx3 + "]";
+  }, clone: function () {
+    return new Vector2(this.x, this.y);
+  }, copyTo: function (_0x47ddx2) {
+    _0x47ddx2.x = this.x;
+    _0x47ddx2.y = this.y;
+  }, copyFrom: function (_0x47ddx2) {
+    this.x = _0x47ddx2.x;
+    this.y = _0x47ddx2.y;
+  }, magnitude: function () {
+    return Math.sqrt(this.x * this.x + this.y * this.y);
+  }, magnitudeSquared: function () {
+    return this.x * this.x + this.y * this.y;
+  }, normalise: function () {
+    var _0x47ddx2 = this.magnitude();
+    return this.x = this.x / _0x47ddx2, this.y = this.y / _0x47ddx2, this;
+  }, reverse: function () {
+    return this.x = -this.x, this.y = -this.y, this;
+  }, plusEq: function (_0x47ddx2) {
+    return this.x += _0x47ddx2.x, this.y += _0x47ddx2.y, this;
+  }, plusNew: function (_0x47ddx2) {
+    return new Vector2(this.x + _0x47ddx2.x, this.y + _0x47ddx2.y);
+  }, minusEq: function (_0x47ddx2) {
+    return this.x -= _0x47ddx2.x, this.y -= _0x47ddx2.y, this;
+  }, minusNew: function (_0x47ddx2) {
+    return new Vector2(this.x - _0x47ddx2.x, this.y - _0x47ddx2.y);
+  }, multiplyEq: function (_0x47ddx2) {
+    return this.x *= _0x47ddx2, this.y *= _0x47ddx2, this;
+  }, multiplyNew: function (_0x47ddx2) {
+    return this.clone().multiplyEq(_0x47ddx2);
+  }, divideEq: function (_0x47ddx2) {
+    return this.x /= _0x47ddx2, this.y /= _0x47ddx2, this;
+  }, divideNew: function (_0x47ddx2) {
+    return this.clone().divideEq(_0x47ddx2);
+  }, dot: function (_0x47ddx2) {
+    return this.x * _0x47ddx2.x + this.y * _0x47ddx2.y;
+  }, angle: function (_0x47ddx2) {
+    return Math.atan2(this.y, this.x) * (_0x47ddx2 ? 1 : Vector2Const.TO_DEGREES);
+  }, rotate: function (_0x47ddx2, _0x47ddx3) {
+    var _0x47ddx4 = Math.cos(_0x47ddx2 * (_0x47ddx3 ? 1 : Vector2Const.TO_RADIANS)), _0x47ddx5 = Math.sin(_0x47ddx2 * (_0x47ddx3 ? 1 : Vector2Const.TO_RADIANS));
+    return Vector2Const.temp.copyFrom(this), this.x = Vector2Const.temp.x * _0x47ddx4 - Vector2Const.temp.y * _0x47ddx5, this.y = Vector2Const.temp.x * _0x47ddx5 + Vector2Const.temp.y * _0x47ddx4, this;
+  }, equals: function (_0x47ddx2) {
+    return this.x == _0x47ddx2.x && this.y == _0x47ddx2.x;
+  }, isCloseTo: function (_0x47ddx2, _0x47ddx3) {
+    return !!this.equals(_0x47ddx2) || (Vector2Const.temp.copyFrom(this), Vector2Const.temp.minusEq(_0x47ddx2), Vector2Const.temp.magnitudeSquared() < _0x47ddx3 * _0x47ddx3);
+  }, rotateAroundPoint: function (_0x47ddx2, _0x47ddx3, _0x47ddx4) {
+    Vector2Const.temp.copyFrom(this);
+    Vector2Const.temp.minusEq(_0x47ddx2);
+    Vector2Const.temp.rotate(_0x47ddx3, _0x47ddx4);
+    Vector2Const.temp.plusEq(_0x47ddx2);
+    this.copyFrom(Vector2Const.temp);
+  }, isMagLessThan: function (_0x47ddx2) {
+    return this.magnitudeSquared() < _0x47ddx2 * _0x47ddx2;
+  }, isMagGreaterThan: function (_0x47ddx2) {
+    return this.magnitudeSquared() > _0x47ddx2 * _0x47ddx2;
+  }};
+  Vector2Const = {TO_DEGREES: 180 / Math.PI, TO_RADIANS: Math.PI / 180, temp: new Vector2};
+  var Pa = "#000000";
+  var c_bildiri_ar = [];
+  var c_bildiri_id = [];
+  var Sfreeze = false;
+  (function (_0x47ddxa, _0x47ddxb) {
+    var _0x47ddxc = "ffa-1-public.iogames.icu:443";
+    var _0x47ddxd = "./skins/";
+    function _0x47ddxe(_0x47ddxf, _0x47ddx10, _0x47ddx11, _0x47ddx12, _0x47ddx13, _0x47ddx14) {
+      if (_0x47ddxf <= _0x47ddx13 && _0x47ddx13 <= _0x47ddx11 && _0x47ddx10 <= _0x47ddx14 && _0x47ddx14 <= _0x47ddx12) {
+        return true;
+      }
+      return false;
     }
-    return false;
-  }
-  var kaeshon = "createTouch" in document, monti = [];
-  var dionel = -1, ameika = new Vector2(0, 0), mhina = new Vector2(0, 0), gertha = new Vector2(0, 0);
-  var soul = "ontouchstart" in self && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-  function jarissa() {
-    adilah = true;
-    document.getElementById("canvas").focus();
-    var gwanda = false;
-    var dinnie;
-    kaisa = giovannii = document.getElementById("canvas");
-    azuree = kaisa.getContext("2d");
-    kaisa.onmousemove = function (robie) {
-      celton = robie.clientX;
-      rochely = robie.clientY;
-      ivaniel();
-    };
-    if (kaeshon) {
-      kaisa.addEventListener("touchstart", keslyn, false);
-      kaisa.addEventListener("touchmove", trang, false);
-      kaisa.addEventListener("touchend", sharlane, false);
-    }
-    kaisa.onmouseup = function () {};
-    if (/firefox/i.test(navigator.userAgent)) {
-      document.addEventListener("DOMMouseScroll", tanikka, false);
-    } else {
-      document.body.onmousewheel = tanikka;
-    }
-    kaisa.onfocus = function () {
-      gwanda = false;
-    };
-    document.getElementById("chat_textbox").onblur = function () {
-      gwanda = false;
-    };
-    document.getElementById("chat_textbox").onfocus = function () {
-      gwanda = true;
-    };
-    var tyghe = false, deverie = false, johncarter = false;
-    phenious.onkeydown = function (jalasha) {
-      switch (jalasha.keyCode) {
-        case 32:
-          if (!tyghe && !gwanda) {
-            kealeigh();
-            zackorie(17);
-            tyghe = true;
-          }
-          break;
-        case 81:
-          if (!deverie && !gwanda) {
-            zackorie(18);
-            deverie = true;
-          }
-          break;
-        case 87:
-          if (!johncarter && !gwanda) {
-            kealeigh();
-            zackorie(21);
-            johncarter = true;
-          }
-          break;
-        case 70:
-          if (!gwanda) {
-            if (Sfreeze == false) {
-              Sfreeze = true;
-              rayvon("Game stopped.");
+    var _0x47ddx17 = "createTouch" in document, _0x47ddx18 = [];
+    var _0x47ddx19 = -1, _0x47ddx1a = new Vector2(0, 0), _0x47ddx1b = new Vector2(0, 0), _0x47ddx1c = new Vector2(0, 0);
+    var _0x47ddx1f = "ontouchstart" in self && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    function _0x47ddx20() {
+      _0x47ddxec = true;
+      document.getElementById("canvas").focus();
+      var _0x47ddx21 = false;
+      var _0x47ddx22;
+      _0x47ddxbb = _0x47ddxba = document.getElementById("canvas");
+      _0x47ddxa9 = _0x47ddxbb.getContext("2d");
+      _0x47ddxbb.onmousemove = function (_0x47ddx23) {
+        _0x47ddxcb = _0x47ddx23.clientX;
+        _0x47ddxcc = _0x47ddx23.clientY;
+        _0x47ddx3d();
+      };
+      if (_0x47ddx17) {
+        _0x47ddxbb.addEventListener("touchstart", _0x47ddx32, false);
+        _0x47ddxbb.addEventListener("touchmove", _0x47ddx34, false);
+        _0x47ddxbb.addEventListener("touchend", _0x47ddx35, false);
+      }
+      _0x47ddxbb.onmouseup = function () {};
+      if (/firefox/i.test(navigator.userAgent)) {
+        document.addEventListener("DOMMouseScroll", _0x47ddx36, false);
+      } else {
+        document.body.onmousewheel = _0x47ddx36;
+      }
+      _0x47ddxbb.onfocus = function () {
+        _0x47ddx21 = false;
+      };
+      document.getElementById("chat_textbox").onblur = function () {
+        _0x47ddx21 = false;
+      };
+      document.getElementById("chat_textbox").onfocus = function () {
+        _0x47ddx21 = true;
+      };
+      var _0x47ddx24 = false, _0x47ddx25 = false, _0x47ddx26 = false;
+      _0x47ddxa.onkeydown = function (_0x47ddx23) {
+        switch (_0x47ddx23.keyCode) {
+          case 32:
+            if (!_0x47ddx24 && !_0x47ddx21) {
+              _0x47ddx76();
+              _0x47ddx7c(17);
+              _0x47ddx24 = true;
+            }
+            break;
+          case 81:
+            if (!_0x47ddx25 && !_0x47ddx21) {
+              _0x47ddx7c(18);
+              _0x47ddx25 = true;
+            }
+            break;
+          case 87:
+            if (!_0x47ddx26 && !_0x47ddx21) {
+              _0x47ddx76();
+              _0x47ddx7c(21);
+              _0x47ddx26 = true;
+            }
+            break;
+          case 70:
+            if (!_0x47ddx21) {
+              if (Sfreeze == false) {
+                Sfreeze = true;
+                _0x47ddx28("Game stopped.");
+              } else {
+                Sfreeze = false;
+                _0x47ddx28("Game resumed.");
+              }
+            }
+            break;
+          case 67:
+            if (!_0x47ddx21) {
+              _0x47ddx79("psx2psx2");
+            }
+            break;
+          case 27:
+            _0x47ddx41(true, 0);
+            break;
+          case 13:
+            if (_0x47ddx21) {
+              _0x47ddx21 = false;
+              document.getElementById("chat_textbox").blur();
+              _0x47ddx22 = _0x47ddx2b(document.getElementById("chat_textbox").value);
+              if (_0x47ddx22.length > 0) {
+                _0x47ddx79(_0x47ddx22);
+              }
+              document.getElementById("chat_textbox").value = "";
             } else {
-              Sfreeze = false;
-              rayvon("Game resumed.");
+              if (!_0x47ddxed) {
+                document.getElementById("chat_textbox").focus();
+                _0x47ddx21 = true;
+              }
             }
-          }
-          break;
-        case 67:
-          if (!gwanda) {
-            krishawna("psx2psx2");
-          }
-          break;
-        case 27:
-          eriverto(true, 0);
-          break;
-        case 13:
-          if (gwanda) {
-            gwanda = false;
-            document.getElementById("chat_textbox").blur();
-            dinnie = document.getElementById("chat_textbox").value;
-            dinnie = dinnie.replace("www", "***");
-            dinnie = dinnie.replace(".com", "***");
-            dinnie = dinnie.replace(".biz", "***");
-            dinnie = dinnie.replace(".net", "***");
-            dinnie = dinnie.replace("agar.io", "");
-            dinnie = dinnie.replace(".org", "***");
-            dinnie = dinnie.replace("AGAR.İO", "***");
-            dinnie = dinnie.replace("AGARİO", "***");
-            dinnie = dinnie.replace(".co", "***");
-            dinnie = dinnie.replace("xyz", "***");
-            dinnie = dinnie.replace(".warball", "***");
-            dinnie = dinnie.replace(".gen.tr", "***");
-            dinnie = dinnie.replace(".com.tr", "***");
-            dinnie = dinnie.replace("agario", "***");
-            dinnie = dinnie.replace("pvp", "***");
-            dinnie = dinnie.replace("agar.yt", "***");
-            dinnie = dinnie.replace("Agar.yt!", "***");
-            dinnie = dinnie.replace("AGAR.YT", "***");
-            dinnie = dinnie.replace("AGAR.", "***");
-            dinnie = dinnie.replace("agar.", "***");
-            dinnie = dinnie.replace("agar", "***");
-            dinnie = dinnie.replace("Agar.", "***");
-            dinnie = dinnie.replace("Agar", "***");
-            dinnie = dinnie.replace(".YT", "***");
-            dinnie = dinnie.replace(".yt", "***");
-            dinnie = dinnie.replace(".Yt", "***");
-            dinnie = dinnie.replace("Agario.", "***");
-            dinnie = dinnie.replace("AGAR.YT", "***");
-            dinnie = dinnie.replace("AGAR.YT!", "***");
-            dinnie = dinnie.replace("piç", "kayısı");
-            dinnie = dinnie.replace("yarak", "tarak");
-            dinnie = dinnie.replace("amcık", "salça");
-            dinnie = dinnie.replace("sikerim", "uçarım");
-            dinnie = dinnie.replace("sikerler", "uçarlar");
-            dinnie = dinnie.replace("orospu", "gül");
-            dinnie = dinnie.replace("yarrak", "tarak");
-            dinnie = dinnie.replace("yarrağı", "tasımı");
-            dinnie = dinnie.replace("göt", "alet");
-            dinnie = dinnie.replace("fuck", "kiss");
-            dinnie = dinnie.replace("FUCK", "kiss");
-            dinnie = dinnie.replace("FUCK", "kiss");
-            dinnie = dinnie.replace("allah", "***");
-            dinnie = dinnie.replace("ALLAH", "***");
-            dinnie = dinnie.replace("HZ", "***");
-            dinnie = dinnie.replace("hz", "***");
-            dinnie = dinnie.replace("TAYYİP", "***");
-            dinnie = dinnie.replace("RTE", "***");
-            dinnie = dinnie.replace("RECEP", "***");
-            dinnie = dinnie.replace("rte", "***");
-            dinnie = dinnie.replace("tayyip", "***");
-            dinnie = dinnie.replace("tayyıp", "***");
-            dinnie = dinnie.replace("recep", "***");
-            dinnie = dinnie.replace("???????????????", "***");
-            dinnie = dinnie.replace("rec", "***");
-            dinnie = dinnie.replace("REC", "***");
-            dinnie = dinnie.replace("BOK", "pislik");
-            dinnie = dinnie.replace("bok", "pislik");
-            dinnie = dinnie.replace("Ass", "apple");
-            dinnie = dinnie.replace("Vagina", "apple");
-            dinnie = dinnie.replace("Bitch", "apple");
-            dinnie = dinnie.replace("Sucker", "apple");
-            dinnie = dinnie.replace("meme", "***");
-            dinnie = dinnie.replace("yarak", "ip");
-            dinnie = dinnie.replace("yarağı", "ip");
-            dinnie = dinnie.replace("sokam", "***");
-            dinnie = dinnie.replace("sikem", "***");
-            dinnie = dinnie.replace("sik", "***");
-            dinnie = dinnie.replace("oc", "kardeş");
-            dinnie = dinnie.replace("gay", "HANDSOME");
-            dinnie = dinnie.replace("oç", "kardeş");
-            dinnie = dinnie.replace("o.ç", "kardeş");
-            dinnie = dinnie.replace("o.çocuğu", "kardeş");
-            dinnie = dinnie.replace("aq", "LOVE");
-            dinnie = dinnie.replace("AQ", "LOVE");
-            dinnie = dinnie.replace("baba", "***");
-            dinnie = dinnie.replace("kız", "***");
-            dinnie = dinnie.replace("ezik", "***");
-            dinnie = dinnie.replace("salak", "***");
-            dinnie = dinnie.replace("aptal", "***");
-            dinnie = dinnie.replace("sıç", "***");
-            dinnie = dinnie.replace("penis", "***");
-            dinnie = dinnie.replace("ananı", "***");
-            dinnie = dinnie.replace("anneni", "***");
-            dinnie = dinnie.replace("skym", "***");
-            dinnie = dinnie.replace("sikeyim", "güleyim");
-            dinnie = dinnie.replace("vagina", "***");
-            if (dinnie.length > 0) {
-              krishawna(dinnie);
-            }
-            document.getElementById("chat_textbox").value = "";
-          } else {
-            if (!demerius) {
-              document.getElementById("chat_textbox").focus();
-              gwanda = true;
-            }
-          }
-          break;
-      }
-    };
-    phenious.onkeyup = function (naomie) {
-      switch (naomie.keyCode) {
-        case 32:
-          tyghe = false;
-          break;
-        case 87:
-          johncarter = false;
-          break;
-        case 81:
-          if (deverie) {
-            zackorie(19);
-            deverie = false;
-          }
-          break;
-      }
-    };
-    phenious.onblur = function () {
-      zackorie(19);
-      johncarter = deverie = tyghe = false;
-    };
-    phenious.onresize = kentay;
-    kentay();
-    if (phenious.requestAnimationFrame) {
-      phenious.requestAnimationFrame(rally);
-    } else {
-      setInterval(musie, 16.666666666666668);
-    }
-    if (deandre) {
-      sniyah("#region").val(deandre);
-    }
-    asim();
-    ragnhild(sniyah("#region").val());
-    null == alexya && deandre && amaleigh();
-    thayla();
-    sniyah("#overlays").show();
-  }
-  function rayvon(shatiek) {
-    var karega = "";
-    if (karega == "") {
-      karega = shatiek;
-    }
-    $("#nn").css("position", "absolute");
-    $("#nn").show();
-    $("#nn").css("top", "200px");
-    $("#nn").css("font-size", "20px");
-    $("#nn").css("color", "red");
-    $("#nn").css("z-index", "2000");
-    $("#nn").css("text-align", "center");
-    $("#nn").css("width", "100%");
-    $("#nn").html(karega);
-    $("#nn").animate({opacity: 1, fontSize: "7em"}, 500, function () {
-      $("#nn").hide();
-    });
-  }
-  ;
-  (function () {
-    var crisol = function (decklin) {
-      if (decklin.keyCode === 69) {
-        for (var abad = 0; abad < 10; ++abad) {
-          setTimeout(function () {
-            window.onkeydown({keyCode: 87});
-            window.onkeyup({keyCode: 87});
-          }, abad * 50);
+            break;
         }
-      }
-    };
-    window.addEventListener("keydown", crisol);
-  }());
-  function keslyn(liola) {}
-  function trang(adisyn) {}
-  function sharlane(malahkai) {}
-  function tanikka(sareya) {
-    if (!juhee) {
-      march *= Math.pow(.9, sareya.wheelDelta / -120 || sareya.detail || 0);
-      .4 > march && (march = .4);
-      march > 10 / nitra && (march = 10 / nitra);
-    } else {
-      march *= Math.pow(.9, sareya.wheelDelta / -120 || sareya.detail || 0);
-      .1 > march && (march = .1);
-      march > 4 / nitra && (march = 4 / nitra);
-    }
-  }
-  function shigeyuki() {
-    if (.4 > nitra) {
-      savan = null;
-    } else {
-      var lynard = Number.POSITIVE_INFINITY, davares = Number.POSITIVE_INFINITY, joezette = Number.NEGATIVE_INFINITY, marquis = Number.NEGATIVE_INFINITY, keanda = 0;
-      for (var rodriguez = 0; rodriguez < eliose.length; rodriguez++) {
-        var swayzie = eliose[rodriguez];
-        if (swayzie.shouldRender() && !swayzie.prepareData && 20 < swayzie.size * nitra) {
-          keanda = Math.max(swayzie.size, keanda);
-          lynard = Math.min(swayzie.x, lynard);
-          davares = Math.min(swayzie.y, davares);
-          joezette = Math.max(swayzie.x, joezette);
-          marquis = Math.max(swayzie.y, marquis);
+      };
+      _0x47ddxa.onkeyup = function (_0x47ddx23) {
+        switch (_0x47ddx23.keyCode) {
+          case 32:
+            _0x47ddx24 = false;
+            break;
+          case 87:
+            _0x47ddx26 = false;
+            break;
+          case 81:
+            if (_0x47ddx25) {
+              _0x47ddx7c(19);
+              _0x47ddx25 = false;
+            }
+            break;
         }
+      };
+      _0x47ddxa.onblur = function () {
+        _0x47ddx7c(19);
+        _0x47ddx26 = _0x47ddx25 = _0x47ddx24 = false;
+      };
+      _0x47ddxa.onresize = _0x47ddx7e;
+      _0x47ddx7e();
+      if (_0x47ddxa.requestAnimationFrame) {
+        _0x47ddxa.requestAnimationFrame(_0x47ddx7d);
+      } else {
+        setInterval(_0x47ddx85, 16.666666666666668);
       }
-      savan = tamee.init({minX: lynard - (keanda + 100), minY: davares - (keanda + 100), maxX: joezette + (keanda + 100), maxY: marquis + (keanda + 100), maxChildren: 2, maxDepth: 4});
-      for (rodriguez = 0; rodriguez < eliose.length; rodriguez++) {
-        swayzie = eliose[rodriguez];
-        if (swayzie.shouldRender() && !(20 >= swayzie.size * nitra)) {
-          for (lynard = 0; lynard < swayzie.points.length; ++lynard) {
-            davares = swayzie.points[lynard].x;
-            joezette = swayzie.points[lynard].y;
-            davares < jovia - lachrisha / 2 / nitra || joezette < eretta - janaa / 2 / nitra || davares > jovia + lachrisha / 2 / nitra || joezette > eretta + janaa / 2 / nitra || savan.insert(swayzie.points[lynard]);
+      if (_0x47ddxd7) {
+        _0x47ddxb("#region").val(_0x47ddxd7);
+      }
+      _0x47ddx4c();
+      _0x47ddx40(_0x47ddxb("#region").val());
+      null == _0x47ddxc1 && _0x47ddxd7 && _0x47ddx4e();
+      _0x47ddx78();
+      _0x47ddxb("#overlays").show();
+    }
+    function _0x47ddx28(_0x47ddx29) {
+      var _0x47ddx2a = "";
+      if (_0x47ddx2a == "") {
+        _0x47ddx2a = _0x47ddx29;
+      }
+      $("#nn").css("position", "absolute");
+      $("#nn").show();
+      $("#nn").css("top", "200px");
+      $("#nn").css("font-size", "20px");
+      $("#nn").css("color", "red");
+      $("#nn").css("z-index", "2000");
+      $("#nn").css("text-align", "center");
+      $("#nn").css("width", "100%");
+      $("#nn").html(_0x47ddx2a);
+      $("#nn").animate({opacity: 1, fontSize: "7em"}, 500, function () {
+        $("#nn").hide();
+      });
+    }
+    function _0x47ddx2b(_0x47ddx2c) {
+      var _0x47ddx2d = _0x47ddx2c;
+      _0x47ddx2d = _0x47ddx2d.replace("piç", "***");
+      _0x47ddx2d = _0x47ddx2d.replace(":)", String.fromCodePoint(128513));
+      _0x47ddx2d = _0x47ddx2d.replace(":d", String.fromCodePoint(128513));
+      _0x47ddx2d = _0x47ddx2d.replace(":D", String.fromCodePoint(128513));
+      _0x47ddx2d = _0x47ddx2d.replace(":(", String.fromCodePoint(128577));
+      _0x47ddx2d = _0x47ddx2d.replace(":p", String.fromCodePoint(128541));
+      _0x47ddx2d = _0x47ddx2d.replace(":o", String.fromCodePoint(128562));
+      _0x47ddx2d = _0x47ddx2d.replace(";)", String.fromCodePoint(128521));
+      _0x47ddx2d = _0x47ddx2d.replace(":>", String.fromCodePoint(128535));
+      _0x47ddx2d = _0x47ddx2d.replace(":$", String.fromCodePoint(129324));
+      _0x47ddx2d = _0x47ddx2d.replace("love", String.fromCodePoint(128149));
+      _0x47ddx2d = _0x47ddx2d.replace("okay", String.fromCodePoint(128077));
+      _0x47ddx2d = _0x47ddx2d.replace("kiss", String.fromCodePoint(128139));
+      _0x47ddx2d = _0x47ddx2d.replace("yarak", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("amcık", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("amc1", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("sikerim", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("siken", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("SİKEN", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("sikerler", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("xero", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("XERO", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("bot", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("BOT", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("discord", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("http", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("HTTP", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("orospu", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("yarrak", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("s1keyim", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("s1k", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("ors", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("yarrağı", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("göt", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("fuck", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("ATATÜRK", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("parti", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("PARTİ", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("atatürk", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("fuck", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("FUCK", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("FUCK", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("allah", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("ALLAH", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("HZ", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("hz", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("TAYYİP", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("RTE", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("RECEP", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("rte", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("FUCK", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("FUCK", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("tayyip", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("tayyıp", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("recep", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("skmek", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("ananızı", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("sıkmek", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("rec", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("REC", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("BOK", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("bok", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("Ass", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("Vagina", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("Bitch", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("Sucker", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("meme", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("yarak", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("yarağı", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("sokam", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("sikem", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("sik", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("ANANIZI", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("gay", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("oç", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("o.ç", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("pkk", "!!!");
+      _0x47ddx2d = _0x47ddx2d.replace("PKK", "!!!");
+      _0x47ddx2d = _0x47ddx2d.replace("o.çocuğu", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("penis", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("ananı", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("anasını", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("amına", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("Siken", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("iken", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("İKEN", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("sıktıgım", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("sıkıyım", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("orspu", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("annenızın", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("anneni", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("skym", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("sikeyim", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("SİKEN", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("sikeyim", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("sikeyim", "***");
+      _0x47ddx2d = _0x47ddx2d.replace("vagina", "***");
+      return _0x47ddx2d;
+    }
+    ;
+    (function () {
+      var _0x47ddx30 = function (_0x47ddx31) {
+        if (_0x47ddx31.keyCode === 69) {
+          for (var _0x47ddx4 = 0; _0x47ddx4 < 10; ++_0x47ddx4) {
+            setTimeout(function () {
+              window.onkeydown({keyCode: 87});
+              window.onkeyup({keyCode: 87});
+            }, _0x47ddx4 * 50);
+          }
+        }
+      };
+      window.addEventListener("keydown", _0x47ddx30);
+    }());
+    function _0x47ddx32(_0x47ddx33) {}
+    function _0x47ddx34(_0x47ddx33) {}
+    function _0x47ddx35(_0x47ddx33) {}
+    function _0x47ddx36(_0x47ddx23) {
+      if (!_0x47ddxe4) {
+        _0x47ddxf6 *= Math.pow(.9, _0x47ddx23.wheelDelta / -120 || _0x47ddx23.detail || 0);
+        .4 > _0x47ddxf6 && (_0x47ddxf6 = .4);
+        _0x47ddxf6 > 10 / _0x47ddxd6 && (_0x47ddxf6 = 10 / _0x47ddxd6);
+      } else {
+        _0x47ddxf6 *= Math.pow(.9, _0x47ddx23.wheelDelta / -120 || _0x47ddx23.detail || 0);
+        .1 > _0x47ddxf6 && (_0x47ddxf6 = .1);
+        _0x47ddxf6 > 4 / _0x47ddxd6 && (_0x47ddxf6 = 4 / _0x47ddxd6);
+      }
+    }
+    function _0x47ddx37() {
+      if (.4 > _0x47ddxd6) {
+        _0x47ddxc0 = null;
+      } else {
+        var _0x47ddx38 = Number.POSITIVE_INFINITY, _0x47ddx39 = Number.POSITIVE_INFINITY, _0x47ddx3a = Number.NEGATIVE_INFINITY, _0x47ddx3b = Number.NEGATIVE_INFINITY, _0x47ddx33 = 0;
+        for (var _0x47ddx4 = 0; _0x47ddx4 < _0x47ddxc7.length; _0x47ddx4++) {
+          var _0x47ddx3c = _0x47ddxc7[_0x47ddx4];
+          if (_0x47ddx3c.shouldRender() && !_0x47ddx3c.prepareData && 20 < _0x47ddx3c.size * _0x47ddxd6) {
+            _0x47ddx33 = Math.max(_0x47ddx3c.size, _0x47ddx33);
+            _0x47ddx38 = Math.min(_0x47ddx3c.x, _0x47ddx38);
+            _0x47ddx39 = Math.min(_0x47ddx3c.y, _0x47ddx39);
+            _0x47ddx3a = Math.max(_0x47ddx3c.x, _0x47ddx3a);
+            _0x47ddx3b = Math.max(_0x47ddx3c.y, _0x47ddx3b);
+          }
+        }
+        _0x47ddxc0 = _0x47ddx122.init({minX: _0x47ddx38 - (_0x47ddx33 + 100), minY: _0x47ddx39 - (_0x47ddx33 + 100), maxX: _0x47ddx3a + (_0x47ddx33 + 100), maxY: _0x47ddx3b + (_0x47ddx33 + 100), maxChildren: 2, maxDepth: 4});
+        for (_0x47ddx4 = 0; _0x47ddx4 < _0x47ddxc7.length; _0x47ddx4++) {
+          _0x47ddx3c = _0x47ddxc7[_0x47ddx4];
+          if (_0x47ddx3c.shouldRender() && !(20 >= _0x47ddx3c.size * _0x47ddxd6)) {
+            for (_0x47ddx38 = 0; _0x47ddx38 < _0x47ddx3c.points.length; ++_0x47ddx38) {
+              _0x47ddx39 = _0x47ddx3c.points[_0x47ddx38].x;
+              _0x47ddx3a = _0x47ddx3c.points[_0x47ddx38].y;
+              _0x47ddx39 < _0x47ddxc2 - _0x47ddxbe / 2 / _0x47ddxd6 || _0x47ddx3a < _0x47ddxc3 - _0x47ddxbf / 2 / _0x47ddxd6 || _0x47ddx39 > _0x47ddxc2 + _0x47ddxbe / 2 / _0x47ddxd6 || _0x47ddx3a > _0x47ddxc3 + _0x47ddxbf / 2 / _0x47ddxd6 || _0x47ddxc0.insert(_0x47ddx3c.points[_0x47ddx38]);
+            }
           }
         }
       }
     }
-  }
-  function ivaniel() {
-    theia = (celton - lachrisha / 2) / nitra + jovia;
-    jaemarie = (rochely - janaa / 2) / nitra + eretta;
-  }
-  function noahalexander() {
-    demerius = false;
-    sniyah("#adsBottom").hide();
-    sniyah("#overlays").hide();
-    asim();
-  }
-  function thesha(shadi) {
-    if (!SCodes) {
-      return alert("Hata !");
+    function _0x47ddx3d() {
+      _0x47ddxcd = (_0x47ddxcb - _0x47ddxbe / 2) / _0x47ddxd6 + _0x47ddxc2;
+      _0x47ddxce = (_0x47ddxcc - _0x47ddxbf / 2) / _0x47ddxd6 + _0x47ddxc3;
     }
-    zA = shadi;
-    if (shadi != kuyper) {
-      clio = shadi;
-      kuyper = zA;
-      amaleigh();
+    function _0x47ddx3e() {
+      _0x47ddxed = false;
+      _0x47ddxb("#adsBottom").hide();
+      _0x47ddxb("#overlays").hide();
+      _0x47ddx4c();
     }
-    sniyah("#helloContainer").attr("data-gamemode", zA);
-  }
-  function ragnhild(buenaventura) {
-    if (buenaventura && buenaventura != deandre) {
-      if (sniyah("#region").val() != buenaventura) {
-        sniyah("#region").val(buenaventura);
+    function _0x47ddx3f(_0x47ddx38) {
+      if (!SCodes) {
+        return alert("Hata !");
       }
-      deandre = phenious.localStorage.location = buenaventura;
-      sniyah(".btn-needs-server").prop("disabled", false);
-      adilah && amaleigh();
+      zA = _0x47ddx38;
+      if (_0x47ddx38 != _0x47ddxea) {
+        _0x47ddxc = _0x47ddx38;
+        _0x47ddxea = zA;
+        _0x47ddx4e();
+      }
+      _0x47ddxb("#helloContainer").attr("data-gamemode", zA);
     }
-  }
-  function _0x402ex3e(calii) {
-    demerius = true;
-    eeva = null;
-    sniyah("#overlays").fadeIn(calii ? 200 : 3e3);
-    calii || sniyah("#adsBottom").fadeIn(3e3);
-  }
-  function olman(shoshana) {
-    shoshana = ~~shoshana;
-    var ashara = (shoshana % 60).toString();
-    shoshana = (~~(shoshana / 60)).toString();
-    2 > ashara.length && (ashara = "0" + ashara);
-    return shoshana + ":" + ashara;
-  }
-  function zanaiyah() {
-    if (null == lize) {
+    function _0x47ddx40(_0x47ddx38) {
+      if (_0x47ddx38 && _0x47ddx38 != _0x47ddxd7) {
+        if (_0x47ddxb("#region").val() != _0x47ddx38) {
+          _0x47ddxb("#region").val(_0x47ddx38);
+        }
+        _0x47ddxd7 = _0x47ddxa.localStorage.location = _0x47ddx38;
+        _0x47ddxb(".btn-needs-server").prop("disabled", false);
+        _0x47ddxec && _0x47ddx4e();
+      }
+    }
+    function _0x47ddx41(_0x47ddx42) {
+      _0x47ddxed = true;
+      _0x47ddxd1 = null;
+      _0x47ddxb("#overlays").fadeIn(_0x47ddx42 ? 200 : 3e3);
+      _0x47ddx42 || _0x47ddxb("#adsBottom").fadeIn(3e3);
+    }
+    function _0x47ddx43(_0x47ddx38) {
+      _0x47ddx38 = ~~_0x47ddx38;
+      var _0x47ddx39 = (_0x47ddx38 % 60).toString();
+      _0x47ddx38 = (~~(_0x47ddx38 / 60)).toString();
+      2 > _0x47ddx39.length && (_0x47ddx39 = "0" + _0x47ddx39);
+      return _0x47ddx38 + ":" + _0x47ddx39;
+    }
+    function _0x47ddx44() {
+      if (null == _0x47ddxc9) {
+        return 0;
+      }
+      for (var _0x47ddx38 = 0; _0x47ddx38 < _0x47ddxc9.length; ++_0x47ddx38) {
+        if (-1 != _0x47ddxc4.indexOf(_0x47ddxc9[_0x47ddx38].id)) {
+          return _0x47ddx38 + 1;
+        }
+      }
       return 0;
     }
-    for (var zamarrion = 0; zamarrion < lize.length; ++zamarrion) {
-      if (-1 != gesell.indexOf(lize[zamarrion].id)) {
-        return zamarrion + 1;
-      }
+    function _0x47ddx45(_0x47ddx38, _0x47ddx39) {
+      var _0x47ddx3a = -1 != _0x47ddxc4.indexOf(_0x47ddx38.id), _0x47ddx3b = -1 != _0x47ddxc4.indexOf(_0x47ddx39.id), _0x47ddx33 = 30 > _0x47ddx39.size;
+      _0x47ddx3a && _0x47ddx33 && ++_0x47ddxdd;
+      _0x47ddx33 || !_0x47ddx3a || _0x47ddx3b || ++_0x47ddxde;
+      _0x47ddx33 || !_0x47ddx3a || _0x47ddx3b;
     }
-    return 0;
-  }
-  function taleshia(roneka, adonai) {
-    var dawnella = -1 != gesell.indexOf(roneka.id), moustafa = -1 != gesell.indexOf(adonai.id), brahm = 30 > adonai.size;
-    dawnella && brahm && ++kosten;
-    brahm || !dawnella || moustafa || ++bnai;
-    brahm || !dawnella || moustafa;
-  }
-  function amerson(hadassah, destiney) {
-    if (hadassah.indexOf("{") != -1 && hadassah.indexOf("}") != -1) {
-      var takirra = hadassah.indexOf("{");
-      var romelio = hadassah.indexOf("}");
-      var demarri = hadassah.slice(romelio + 1);
-      if (destiney) {
-        if (demarri == "") {
-          demarri = "Unnamed Cell";
-        } else {
-          demarri = hadassah.slice(romelio + 1);
-        }
-      }
-      return [hadassah.slice(takirra + 1, romelio), demarri];
-    } else {
-      return ["", hadassah];
-    }
-  }
-  function jua() {
-    sniyah(".stats-leaderboard-time").text(olman(khabir));
-    sniyah(".stats-food-eaten").text(kosten);
-    sniyah(".stats-highest-mass").text(~~(vayle / 100));
-    sniyah(".stats-time-alive").text(olman((Date.now() - jayvon) / 1e3));
-    sniyah(".stats-cells-eaten").text(bnai);
-    sniyah(".stats-top-position").text(0 == jassir ? ":(" : jassir);
-    var toa = document.getElementById("statsGraph");
-    if (toa) {
-      var ravyn = toa.getContext("2d"), deymian = toa.width, toa = toa.height;
-      ravyn.clearRect(0, 0, deymian, toa);
-      if (2 < fayola.length) {
-        for (var alantis = 200, cornelious = 0; cornelious < fayola.length; cornelious++) {
-          alantis = Math.max(fayola[cornelious], alantis);
-        }
-        ravyn.lineWidth = 3;
-        ravyn.lineCap = "round";
-        ravyn.lineJoin = "round";
-        ravyn.strokeStyle = Pa;
-        ravyn.fillStyle = Pa;
-        ravyn.beginPath();
-        ravyn.moveTo(0, toa - fayola[0] / alantis * (toa - 10) + 10);
-        for (cornelious = 1; cornelious < fayola.length; cornelious += Math.max(~~(fayola.length / deymian), 1)) {
-          for (var janzen = cornelious / (fayola.length - 1) * deymian, aubriannah = [], keosha = -20; 20 >= keosha; ++keosha) {
-            0 > cornelious + keosha || cornelious + keosha >= fayola.length || aubriannah.push(fayola[cornelious + keosha]);
+    function _0x47ddx46(_0x47ddx3, _0x47ddx38) {
+      if (_0x47ddx3.indexOf("{") != -1 && _0x47ddx3.indexOf("}") != -1) {
+        var _0x47ddx5 = _0x47ddx3.indexOf("{");
+        var _0x47ddx33 = _0x47ddx3.indexOf("}");
+        var _0x47ddx3a = _0x47ddx3.slice(_0x47ddx33 + 1);
+        if (_0x47ddx38) {
+          if (_0x47ddx3a == "") {
+            _0x47ddx3a = "Unnamed Cell";
+          } else {
+            _0x47ddx3a = _0x47ddx3.slice(_0x47ddx33 + 1);
           }
-          aubriannah = aubriannah.reduce(function (karmani, jeryl) {
-            return karmani + jeryl;
-          }) / aubriannah.length / alantis;
-          ravyn.lineTo(janzen, toa - aubriannah * (toa - 10) + 10);
         }
-        ravyn.stroke();
-        ravyn.globalAlpha = .5;
-        ravyn.lineTo(deymian, toa);
-        ravyn.lineTo(0, toa);
-        ravyn.fill();
-        ravyn.globalAlpha = 1;
-      }
-    }
-  }
-  function eriverto(raymand, duff) {
-    demerius = true;
-    if (duff == 1) {
-      if (clyta == false) {
-        jua();
-        sniyah("#statoverlay").show();
-        sniyah("#stats").fadeIn(raymand ? 200 : 3e3);
+        return [_0x47ddx3.slice(_0x47ddx5 + 1, _0x47ddx33), _0x47ddx3a];
       } else {
-        sniyah("#overlays").fadeIn(raymand ? 200 : 3e3);
-      }
-    } else {
-      sniyah("#overlays").fadeIn(raymand ? 200 : 3e3);
-    }
-    eeva = null;
-  }
-  function asim() {
-    sniyah("#region").val() ? phenious.localStorage.location = sniyah("#region").val() : phenious.localStorage.location && sniyah("#region").val(phenious.localStorage.location);
-    sniyah("#region").val() ? sniyah(".locationKnown").append(sniyah("#region")) : sniyah("#locationUnknown").append(sniyah("#region"));
-  }
-  function montrese() {
-    jannet("wss://" + clio);
-  }
-  function amaleigh() {
-    if (adilah && deandre) {
-      sniyah("#connecting").show();
-      montrese();
-    }
-  }
-  function jannet(ansli) {
-    if (alexya) {
-      alexya.onopen = null;
-      alexya.onmessage = null;
-      alexya.onclose = null;
-      try {
-        alexya.close();
-      } catch (b) {}
-      alexya = null;
-    }
-    var pharaoh = clio;
-    ansli = "wss://" + pharaoh + "?SCode=" + SCodes;
-    gesell = [];
-    larina = [];
-    emyly = {};
-    eliose = [];
-    ladejah = [];
-    lize = [];
-    kaisa = bianny = null;
-    vayle = 0;
-    this.leaderdefault = "Leaderboard";
-    this.lastWinner = "Leaderboard";
-    this.countdown = 3600;
-    kosten = 0;
-    fayola = [];
-    bnai = 0;
-    jassir = 0;
-    khabir = 0;
-    alexya = new WebSocket(ansli);
-    alexya.binaryType = "arraybuffer";
-    alexya.onopen = niree;
-    alexya.onmessage = shavontae;
-    alexya.onclose = louisette;
-    alexya.onerror = function (iyshia) {
-      console.log("socket error" + iyshia);
-    };
-  }
-  function latayvia(evanny) {
-    return new DataView(new ArrayBuffer(evanny));
-  }
-  function whittney(chrishaud) {
-    alexya.send(chrishaud.buffer);
-  }
-  function niree() {
-    var tamija;
-    cooledge = 100;
-    sniyah("#connecting").hide();
-    console.log("socket open");
-    tamija = latayvia(5);
-    tamija.setUint8(0, 254);
-    tamija.setUint32(1, 5, true);
-    whittney(tamija);
-    tamija = latayvia(5);
-    tamija.setUint8(0, 255);
-    tamija.setUint32(1, 123456789, true);
-    whittney(tamija);
-    caytlen();
-  }
-  function louisette() {
-    console.log("socket close");
-    setTimeout(amaleigh, 500);
-    cooledge *= 1.5;
-  }
-  function shavontae(sadiqua) {
-    saloma(new DataView(sadiqua.data));
-  }
-  function saloma(chirley) {
-    function wiley() {
-      var neira = "", adelayne;
-      while ((adelayne = chirley.getUint16(golan, true)) != 0) {
-        golan += 2;
-        neira += String.fromCharCode(adelayne);
-      }
-      golan += 2;
-      return neira;
-    }
-    var golan = 0, eniya = false;
-    240 == chirley.getUint8(golan) && (golan += 5);
-    switch (chirley.getUint8(golan++)) {
-      case 185:
-        kristi(chirley, golan);
-        break;
-      case 17:
-        reeyansh = chirley.getFloat32(golan, true);
-        golan += 4;
-        jehan = chirley.getFloat32(golan, true);
-        golan += 4;
-        jess = chirley.getFloat32(golan, true);
-        golan += 4;
-        break;
-      case 20:
-        larina = [];
-        gesell = [];
-        break;
-      case 21:
-        madelin = chirley.getInt16(golan, true);
-        golan += 2;
-        shambreka = chirley.getInt16(golan, true);
-        golan += 2;
-        if (!tennielle) {
-          tennielle = true;
-          jerrion = madelin;
-          matthijs = shambreka;
-        }
-        break;
-      case 32:
-        gesell.push(chirley.getUint32(golan, true));
-        golan += 4;
-        break;
-      case 48:
-        eniya = true;
-        kaylianie = true;
-        break;
-      case 49:
-        if (!eniya) {
-          kaylianie = false;
-        }
-        bianny = null;
-        var joaniel = chirley.getUint32(golan, true);
-        golan += 4;
-        lize = [];
-        for (lilliani = 0; lilliani < joaniel; ++lilliani) {
-          var nyzeria = chirley.getUint32(golan, true);
-          golan += 4;
-          lize.push({id: nyzeria, name: wiley()});
-        }
-        briley();
-        break;
-      case 50:
-        bianny = [];
-        var avren = chirley.getUint32(golan, true);
-        golan += 4;
-        for (var lilliani = 0; lilliani < avren; ++lilliani) {
-          bianny.push(chirley.getFloat32(golan, true));
-          golan += 4;
-        }
-        briley();
-        break;
-      case 64:
-        mekenzi = chirley.getFloat64(golan, true);
-        golan += 8;
-        loutricia = chirley.getFloat64(golan, true);
-        golan += 8;
-        alliyah = chirley.getFloat64(golan, true);
-        golan += 8;
-        raquel = chirley.getFloat64(golan, true);
-        golan += 8;
-        reeyansh = (alliyah + mekenzi) / 2;
-        jehan = (raquel + loutricia) / 2;
-        jess = 1;
-        if (0 == larina.length) {
-          jovia = reeyansh;
-          eretta = jehan;
-          nitra = jess;
-        }
-        break;
-      case 90:
-        var jiajun = new Date - latency;
-        $("#latency").html("Latency " + jiajun + " ms;");
-        var marlen = chirley.getFloat64(golan, true);
-        golan += 8;
-        $("#uptime").html("Uptime " + marlen + " sec;");
-        var enyia = chirley.getFloat64(golan, true);
-        golan += 8;
-        $("#onlineplayers").html("Players " + enyia + ";");
-        break;
-      case 199:
-        yotam(chirley, golan);
-        break;
-      case 96:
-        this.countdown = chirley.getUint16(golan, true);
-        break;
-      case 97:
-        this.lastWinner = "";
-        this.lastWinner = wiley();
-        if (this.lastWinner == "") {
-          this.lastWinner = this.leaderdefault;
-        }
-        this.lastWinner = amerson(this.lastWinner.split("*")[0])[1];
-        break;
-    }
-  }
-  function yotam(trelynn, yailen) {
-    function avina() {
-      var henesis = "", moraima;
-      while ((moraima = trelynn.getUint16(yailen, true)) != 0) {
-        yailen += 2;
-        henesis += String.fromCharCode(moraima);
-      }
-      yailen += 2;
-      return henesis;
-    }
-    var tywonda = trelynn.getUint8(yailen++);
-    if (tywonda & 2) {
-      yailen += 4;
-    }
-    if (tywonda & 4) {
-      yailen += 8;
-    }
-    if (tywonda & 8) {
-      yailen += 16;
-    }
-    var kiwanna = trelynn.getUint8(yailen++), samonie = trelynn.getUint8(yailen++), maeleigh = trelynn.getUint8(yailen++), taijae = (kiwanna << 16 | samonie << 8 | maeleigh).toString(16);
-    while (taijae.length > 6) {
-      taijae = "0" + taijae;
-    }
-    taijae = "#" + taijae;
-    name = amerson(avina())[1];
-    if (name == "") {
-      name = "Unnamed Cell";
-    }
-    patty.push({name: name, color: taijae, message: avina(), time: Date.now()});
-  }
-  function kristi(japonica, sorsha) {
-    jamiera = +new Date;
-    var kailia = Math.random();
-    deshaud = false;
-    var aaryn = japonica.getUint16(sorsha, true);
-    sorsha += 2;
-    for (kallissa = 0; kallissa < aaryn; ++kallissa) {
-      var zariaha = emyly[japonica.getUint32(sorsha, true)], nagely = emyly[japonica.getUint32(sorsha + 4, true)];
-      sorsha += 8;
-      if (zariaha && nagely) {
-        nagely.destroy();
-        nagely.ox = nagely.x;
-        nagely.oy = nagely.y;
-        nagely.oSize = nagely.size;
-        nagely.nx = zariaha.x;
-        nagely.ny = zariaha.y;
-        nagely.nSize = nagely.size;
-        nagely.updateTime = jamiera;
-        taleshia(zariaha, nagely);
+        return ["", _0x47ddx3];
       }
     }
-    for (var kallissa = 0;;) {
-      var taqiyya = japonica.getUint32(sorsha, true);
-      sorsha += 4;
-      if (0 == taqiyya) {
-        break;
-      }
-      ++kallissa;
-      var isaid, paulyn, tanzia = japonica.getInt16(sorsha, true);
-      sorsha += 2;
-      paulyn = japonica.getInt16(sorsha, true);
-      sorsha += 2;
-      isaid = japonica.getInt16(sorsha, true);
-      sorsha += 2;
-      for (var jnia = japonica.getUint8(sorsha++), ashlesha = japonica.getUint8(sorsha++), adrainne = japonica.getUint8(sorsha++), maycel = (jnia << 16 | ashlesha << 8 | adrainne).toString(16); 6 > maycel.length;) {
-        maycel = "0" + maycel;
-      }
-      var zyer = "#" + maycel, phillicia = japonica.getUint8(sorsha++), tequita = !!(phillicia & 1), garlyn = !!(phillicia & 16);
-      phillicia & 2 && (sorsha += 4);
-      phillicia & 4 && (sorsha += 8);
-      phillicia & 8 && (sorsha += 16);
-      for (var pranshu, maynord = "";;) {
-        pranshu = japonica.getUint16(sorsha, true);
-        sorsha += 2;
-        if (0 == pranshu) {
-          break;
-        }
-        maynord += String.fromCharCode(pranshu);
-      }
-      var selen = null;
-      if (emyly.hasOwnProperty(taqiyya)) {
-        selen = emyly[taqiyya];
-        selen.updatePos();
-        selen.ox = selen.x;
-        selen.oy = selen.y;
-        selen.oSize = selen.size;
-        selen.color = zyer;
-      } else {
-        selen = new erien(taqiyya, tanzia, paulyn, isaid, zyer, maynord);
-        eliose.push(selen);
-        selen.ka = tanzia;
-        selen.la = paulyn;
-      }
-      selen.isVirus = tequita;
-      selen.isAgitated = garlyn;
-      selen.nx = tanzia;
-      selen.ny = paulyn;
-      selen.nSize = isaid;
-      selen.updateCode = kailia;
-      selen.updateTime = jamiera;
-      selen.flag = phillicia;
-      maynord && selen.setName(maynord);
-      if (-1 != gesell.indexOf(taqiyya) && -1 == larina.indexOf(selen)) {
-        document.getElementById("overlays").style.display = "none";
-        larina.push(selen);
-        if (1 == larina.length) {
-          jovia = selen.x;
-          eretta = selen.y;
+    function _0x47ddx47() {
+      _0x47ddxb(".stats-leaderboard-time").text(_0x47ddx43(_0x47ddxe0));
+      _0x47ddxb(".stats-food-eaten").text(_0x47ddxdd);
+      _0x47ddxb(".stats-highest-mass").text(~~(_0x47ddxdc / 100));
+      _0x47ddxb(".stats-time-alive").text(_0x47ddx43((Date.now() - _0x47ddxf4) / 1e3));
+      _0x47ddxb(".stats-cells-eaten").text(_0x47ddxde);
+      _0x47ddxb(".stats-top-position").text(0 == _0x47ddxdf ? ":(" : _0x47ddxdf);
+      var _0x47ddx38 = document.getElementById("statsGraph");
+      if (_0x47ddx38) {
+        var _0x47ddx39 = _0x47ddx38.getContext("2d"), _0x47ddx3a = _0x47ddx38.width, _0x47ddx38 = _0x47ddx38.height;
+        _0x47ddx39.clearRect(0, 0, _0x47ddx3a, _0x47ddx38);
+        if (2 < _0x47ddxf3.length) {
+          for (var _0x47ddx3b = 200, _0x47ddx48 = 0; _0x47ddx48 < _0x47ddxf3.length; _0x47ddx48++) {
+            _0x47ddx3b = Math.max(_0x47ddxf3[_0x47ddx48], _0x47ddx3b);
+          }
+          _0x47ddx39.lineWidth = 3;
+          _0x47ddx39.lineCap = "round";
+          _0x47ddx39.lineJoin = "round";
+          _0x47ddx39.strokeStyle = Pa;
+          _0x47ddx39.fillStyle = Pa;
+          _0x47ddx39.beginPath();
+          _0x47ddx39.moveTo(0, _0x47ddx38 - _0x47ddxf3[0] / _0x47ddx3b * (_0x47ddx38 - 10) + 10);
+          for (_0x47ddx48 = 1; _0x47ddx48 < _0x47ddxf3.length; _0x47ddx48 += Math.max(~~(_0x47ddxf3.length / _0x47ddx3a), 1)) {
+            for (var _0x47ddx3 = _0x47ddx48 / (_0x47ddxf3.length - 1) * _0x47ddx3a, _0x47ddx49 = [], _0x47ddx4a = -20; 20 >= _0x47ddx4a; ++_0x47ddx4a) {
+              0 > _0x47ddx48 + _0x47ddx4a || _0x47ddx48 + _0x47ddx4a >= _0x47ddxf3.length || _0x47ddx49.push(_0x47ddxf3[_0x47ddx48 + _0x47ddx4a]);
+            }
+            _0x47ddx49 = _0x47ddx49.reduce(function (_0x47ddx38, _0x47ddx39) {
+              return _0x47ddx38 + _0x47ddx39;
+            }) / _0x47ddx49.length / _0x47ddx3b;
+            _0x47ddx39.lineTo(_0x47ddx3, _0x47ddx38 - _0x47ddx49 * (_0x47ddx38 - 10) + 10);
+          }
+          _0x47ddx39.stroke();
+          _0x47ddx39.globalAlpha = .5;
+          _0x47ddx39.lineTo(_0x47ddx3a, _0x47ddx38);
+          _0x47ddx39.lineTo(0, _0x47ddx38);
+          _0x47ddx39.fill();
+          _0x47ddx39.globalAlpha = 1;
         }
       }
     }
-    aaryn = japonica.getUint32(sorsha, true);
-    sorsha += 4;
-    for (kallissa = 0; kallissa < aaryn; kallissa++) {
-      var raetta = japonica.getUint32(sorsha, true);
-      sorsha += 4;
-      selen = emyly[raetta];
-      null != selen && selen.destroy();
-    }
-    deshaud && 0 == larina.length && eriverto(false, 1);
-  }
-  function kealeigh() {
-    var geffory;
-    if (null != alexya && alexya.readyState == alexya.OPEN && Sfreeze != true) {
-      geffory = celton - lachrisha / 2;
-      var khaliel = rochely - janaa / 2;
-      if (64 <= geffory * geffory + khaliel * khaliel && !(.01 > Math.abs(grant - theia) && .01 > Math.abs(jadalynn - jaemarie))) {
-        grant = theia;
-        jadalynn = jaemarie;
-        geffory = latayvia(21);
-        geffory.setUint8(0, 185);
-        geffory.setFloat64(1, theia, true);
-        geffory.setFloat64(9, jaemarie, true);
-        geffory.setUint32(17, 0, true);
-        whittney(geffory);
-      }
-    }
-  }
-  function caytlen() {
-    if (null != alexya && alexya.readyState == alexya.OPEN && null != eeva) {
-      var rassan = latayvia(1 + 2 * eeva.length);
-      rassan.setUint8(0, 129);
-      for (var clarence = 0; clarence < eeva.length; ++clarence) {
-        rassan.setUint16(1 + 2 * clarence, eeva.charCodeAt(clarence), true);
-      }
-      whittney(rassan);
-    }
-  }
-  function thayla() {
-    m = phenious.innerWidth;
-    q = phenious.innerHeight;
-    canvas.width = canvas.width = m;
-    canvas.height = canvas.height = q;
-    var kanysha = sniyah("#helloContainer");
-    kanysha.css("transform", "none");
-    var sherrille = phenious.innerHeight;
-    660 > sherrille / 1.1 ? kanysha.css("transform", "translate(-50%, -50%) scale(" + sherrille / 660 / 1.1 + ")") : kanysha.css("transform", "translate(-50%, -50%)");
-  }
-  function krishawna(justys) {
-    if (null != alexya && alexya.readyState == alexya.OPEN && justys.length < 200 && justys.length > 0) {
-      var haowen = latayvia(4 + 2 * justys.length);
-      var kydan = 0;
-      haowen.setUint8(kydan++, 199);
-      haowen.setUint8(kydan++, 0);
-      for (var hiya = 0; hiya < justys.length; ++hiya) {
-        haowen.setUint16(kydan, justys.charCodeAt(hiya), true);
-        kydan += 2;
-      }
-      haowen.setUint16(kydan, 57344, true);
-      whittney(haowen);
-    }
-  }
-  function zackorie(tashina) {
-    if (null != alexya && alexya.readyState == alexya.OPEN) {
-      var janoah = latayvia(1);
-      janoah.setUint8(0, tashina);
-      whittney(janoah);
-    }
-  }
-  function rally() {
-    musie();
-    phenious.requestAnimationFrame(rally);
-  }
-  function kentay() {
-    window.scrollTo(0, 0);
-    lachrisha = phenious.innerWidth;
-    janaa = phenious.innerHeight;
-    giovannii.width = lachrisha;
-    giovannii.height = janaa;
-    var quiyana = sniyah("#helloDialog");
-    quiyana.css("transform", "none");
-    var saara = quiyana.height();
-    saara > janaa / 1.1 ? quiyana.css("transform", "translate(-50%, -50%) scale(" + janaa / saara / 1.1 + ")") : quiyana.css("transform", "translate(-50%, -50%)");
-    musie();
-  }
-  function viraj() {
-    var myrianna;
-    myrianna = Math.max(janaa / 1080, lachrisha / 1920);
-    return myrianna * march;
-  }
-  function magaly() {
-    if (0 != larina.length) {
-      for (var marcion = 0, vincenzina = 0; vincenzina < larina.length; vincenzina++) {
-        marcion += larina[vincenzina].size;
-      }
-      marcion = Math.pow(Math.min(64 / marcion, 1), .4) * viraj();
-      nitra = (9 * nitra + marcion) / 10;
-    }
-  }
-  function musie() {
-    var niurca, niilo = Date.now();
-    ++nadilynn;
-    var robertha = Date.now() - adelinne;
-    if (robertha > 50) {
-      adelinne = Date.now();
-      kealeigh();
-    }
-    jamiera = niilo;
-    if (0 < larina.length) {
-      magaly();
-      var dieter = niurca = 0;
-      for (var gohar = 0; gohar < larina.length; gohar++) {
-        larina[gohar].updatePos();
-        niurca += larina[gohar].x / larina.length;
-        dieter += larina[gohar].y / larina.length;
-      }
-      reeyansh = niurca;
-      jehan = dieter;
-      jess = nitra;
-      jovia = (jovia + niurca) / 2;
-      eretta = (eretta + dieter) / 2;
-    } else {
-      jovia = (29 * jovia + reeyansh) / 30;
-      eretta = (29 * eretta + jehan) / 30;
-      nitra = (9 * nitra + jess * viraj()) / 10;
-    }
-    shigeyuki();
-    ivaniel();
-    azuree.fillStyle = raycen ? "#111111" : "#F2FBFF";
-    azuree.fillRect(0, 0, lachrisha, janaa);
-    eliose.sort(function (paarth, letti) {
-      return paarth.size == letti.size ? paarth.id - letti.id : paarth.size - letti.size;
-    });
-    azuree.save();
-    azuree.translate(lachrisha / 2, janaa / 2);
-    azuree.scale(nitra, nitra);
-    azuree.translate(-jovia, -eretta);
-    if (danil == true) {
-      azuree.globalAlpha = .6;
-    } else {
-      azuree.globalAlpha = 1;
-    }
-    for (gohar = 0; gohar < eliose.length; gohar++) {
-      eliose[gohar].drawOneCell(azuree);
-    }
-    if (tennielle) {
-      jerrion = (3 * jerrion + madelin) / 4;
-      matthijs = (3 * matthijs + shambreka) / 4;
-      azuree.save();
-      azuree.strokeStyle = "#FFAAAA";
-      azuree.lineWidth = 10;
-      azuree.lineCap = "round";
-      azuree.lineJoin = "round";
-      azuree.globalAlpha = .5;
-      azuree.beginPath();
-      for (gohar = 0; gohar < larina.length; gohar++) {
-        azuree.moveTo(larina[gohar].x, larina[gohar].y);
-        azuree.lineTo(jerrion, matthijs);
-      }
-      azuree.restore();
-    }
-    azuree.strokeStyle = "#FF0000";
-    azuree.lineWidth = 50;
-    azuree.lineCap = "round";
-    azuree.lineJoin = "round";
-    azuree.beginPath();
-    azuree.moveTo(mekenzi, loutricia);
-    azuree.lineTo(alliyah, loutricia);
-    azuree.lineTo(alliyah, raquel);
-    azuree.lineTo(mekenzi, raquel);
-    azuree.closePath();
-    azuree.stroke();
-    azuree.restore();
-    azuree.globalAlpha = 1;
-    azuree.fillStyle = "#0000FF";
-    azuree.font = "bold 32px Ubuntu";
-    if (this.countdown < 3600) {
-      var bekham = "";
-      var jamarrion = "";
-      var voilet = Math.floor(this.countdown / 60);
-      if (voilet < 10) {
-        bekham += "0";
-      }
-      bekham += voilet + ":";
-      var arkham = this.countdown % 60;
-      if (arkham < 10) {
-        bekham += "0";
-      }
-      bekham += arkham;
-      if (this.countdown < 60) {
-        jamarrion = " sec";
-      } else {
-        jamarrion = " min";
-      }
-      $("#countdown").html("Restart in " + bekham + jamarrion);
-    }
-    dovie && dovie.width && azuree.drawImage(dovie, lachrisha - dovie.width - 10, 10);
-    if (!radhya) {
-      if (cornecia != null && cornecia.width > 0) {
-        azuree.drawImage(cornecia, 0, janaa - cornecia.height - 50);
-      }
-    }
-    var jkai = emmanul();
-    vayle = Math.max(vayle, emmanul());
-    if (0 != vayle) {
-      azuree.globalAlpha = .8;
-      if (raycen == true) {
-        azuree.fillStyle = "#FFFFFF";
-      } else {
-        azuree.fillStyle = "#000000";
-      }
-      azuree.font = "bold 24px Ubuntu";
-      var canary = document.getElementsByTagName("html")[0].getAttribute("lang");
-      if (canary == "tr") {
-        azuree.fillText("Skor: " + ~~(jkai / 100), 10, 34);
-        azuree.fillText("Max.: " + ~~(vayle / 100), 10, 60);
-      } else {
-        azuree.fillText("Score: " + ~~(jkai / 100), 10, 34);
-        azuree.fillText("Max.: " + ~~(vayle / 100), 10, 60);
-      }
-    }
-    if (!radhya) {
-      var siersha = 0;
-      for (var myshayla = patty.length - 1; myshayla >= 0; myshayla--) {
-        siersha++;
-        if (siersha > 15) {
-          break;
-        }
-        var erike = patty[myshayla].name.trim();
-        if (erike == "") {
-          erike = "Unnamed Cell";
-        }
-        var deontra = patty[myshayla].message.trim();
-        var janyah = " : " + deontra;
-        azuree.font = "17px Arial";
-        patty[myshayla].name_x = 15;
-        patty[myshayla].name_y = janaa - 30 - 20 * siersha;
-        patty[myshayla].name_w = azuree.measureText(erike).width;
-        patty[myshayla].name_h = 18;
-        patty[myshayla].msg_x = 15 + patty[myshayla].name_w;
-        patty[myshayla].msg_y = patty[myshayla].name_y;
-        patty[myshayla].msg_w = azuree.measureText(janyah).width;
-        patty[myshayla].msg_h = patty[myshayla].name_h;
-        azuree.fillStyle = patty[myshayla].color;
-        azuree.fillText(erike, patty[myshayla].name_x, patty[myshayla].name_y);
-        if (raycen == true) {
-          azuree.fillStyle = "#FFFFFF";
+    function _0x47ddx41(_0x47ddx42, _0x47ddx4b) {
+      _0x47ddxed = true;
+      if (_0x47ddx4b == 1) {
+        if (_0x47ddxe8 == false) {
+          _0x47ddx47();
+          _0x47ddxb("#statoverlay").show();
+          _0x47ddxb("#stats").fadeIn(_0x47ddx42 ? 200 : 3e3);
         } else {
-          azuree.fillStyle = "#000000";
+          _0x47ddxb("#overlays").fadeIn(_0x47ddx42 ? 200 : 3e3);
         }
-        azuree.fillText(janyah, patty[myshayla].msg_x, patty[myshayla].msg_y);
-      }
-    }
-    if (!soul) {
-      lucil();
-    }
-    var karra = Date.now() - niilo;
-    karra > 16.666666666666668 ? nekeya -= .01 : karra < 15.384615384615385 && (nekeya += .01);
-    .4 > nekeya && (nekeya = .4);
-    1 < nekeya && (nekeya = 1);
-  }
-  function lucil() {
-    if (larina.length == 0 || false) {
-      return;
-    }
-    azuree.save();
-    function daylyn(wenceslao, natara) {
-      return !natara ? wenceslao : daylyn(natara, wenceslao % natara);
-    }
-    azuree.beginPath();
-    azuree.fillStyle = "rgba(0,0,0,.25)";
-    var rafat = soul ? 150 : 200;
-    azuree.lineWidth = 1.5;
-    var calhoun = lachrisha - rafat - 10;
-    var reshell = janaa - rafat - 5;
-    azuree.rect(calhoun, reshell, rafat, rafat);
-    azuree.lineWidth = 1.25;
-    var dalit = jovia / (alliyah - mekenzi);
-    var oladipupo = eretta / (raquel - loutricia);
-    var shunya = dalit * rafat + calhoun + rafat / 2 - 100;
-    var emmabelle = oladipupo * rafat + reshell + rafat / 2 - 100;
-    var jaeli = bh = rafat;
-    var saied = -1;
-    var rigved = -1;
-    for (var selda = 0; selda <= jaeli; selda += 40) {
-      if (selda != jaeli) {
-        var sinnamon = .5 + selda + calhoun;
-        var lazareth = reshell;
-        if (murdoch(sinnamon, lazareth, sinnamon + 40, lazareth + bh, shunya, emmabelle)) {
-          saied = sinnamon;
-        }
-        if (selda == 0) {
-          continue;
-        }
-        azuree.moveTo(.5 + selda + calhoun, reshell);
-        azuree.lineTo(.5 + selda + calhoun, bh + reshell);
-      }
-      if (raycen == true) {
-        azuree.fillStyle = "#FFFFFF";
       } else {
-        azuree.fillStyle = "#000000";
+        _0x47ddxb("#overlays").fadeIn(_0x47ddx42 ? 200 : 3e3);
       }
-      azuree.font = "700 18px nunito";
-      azuree.textAlign = "center";
-      azuree.strokeStyle = "white";
-      azuree.lineWidth = 1;
-      azuree.globalAlpha = .35;
-      for (var ophelia = 0; ophelia < 5; ophelia++) {
-        azuree.fillText(String.fromCharCode(ophelia + 65) + selda / 40, .5 + selda + calhoun - 20, reshell + 25.5 + ophelia * 40);
-      }
+      _0x47ddxd1 = null;
     }
-    for (var kalauni = 0; kalauni <= bh; kalauni += 40) {
-      if (kalauni != bh) {
-        var sinnamon = calhoun;
-        var lazareth = .5 + kalauni + reshell;
-        if (murdoch(sinnamon, lazareth, sinnamon + jaeli, lazareth + 40, shunya, emmabelle)) {
-          rigved = lazareth;
-        }
-        if (kalauni == 0) {
-          continue;
-        }
-        azuree.moveTo(calhoun, .5 + kalauni + reshell);
-        azuree.lineTo(jaeli + calhoun, .5 + kalauni + reshell);
+    function _0x47ddx4c() {
+      _0x47ddxb("#region").val() ? _0x47ddxa.localStorage.location = _0x47ddxb("#region").val() : _0x47ddxa.localStorage.location && _0x47ddxb("#region").val(_0x47ddxa.localStorage.location);
+      _0x47ddxb("#region").val() ? _0x47ddxb(".locationKnown").append(_0x47ddxb("#region")) : _0x47ddxb("#locationUnknown").append(_0x47ddxb("#region"));
+    }
+    function _0x47ddx4d() {
+      _0x47ddx4f("wss://" + _0x47ddxc);
+    }
+    function _0x47ddx4e() {
+      if (_0x47ddxec && _0x47ddxd7) {
+        _0x47ddxb("#connecting").show();
+        _0x47ddx4d();
       }
     }
-    if (larina.length > 0 && saied > -1 && rigved > -1) {
-      azuree.fillStyle = "#ccff00";
-      azuree.globalAlpha = .3;
-      azuree.fillRect(saied, rigved, 40, 40);
-    }
-    azuree.globalAlpha = 1;
-    azuree.strokeStyle = "rgba(238,0,17,.2)";
-    azuree.stroke();
-    azuree.closePath();
-    for (var ophelia = 0; ophelia < larina.length; ophelia++) {
-      var yadah = larina[ophelia];
-      var tessanne = yadah.ox / (alliyah - mekenzi);
-      var sahithi = yadah.oy / (raquel - loutricia);
-      var selda = tessanne * rafat + calhoun + rafat / 2 - 100;
-      var kalauni = sahithi * rafat + reshell + rafat / 2 - 100;
-      var jennifr = Math.max(2, yadah.size / (rafat / 2));
-      azuree.fillStyle = yadah.color;
-      if (ophelia == 0) {
-        azuree.font = "bold " + (14 + jennifr) + "px Ubuntu";
-        var jawwaad = azuree.measureText(yadah.name);
-        azuree.strokestyle = "black";
+    function _0x47ddx4f(_0x47ddx50) {
+      if (_0x47ddxc1) {
+        _0x47ddxc1.onopen = null;
+        _0x47ddxc1.onmessage = null;
+        _0x47ddxc1.onclose = null;
+        try {
+          _0x47ddxc1.close();
+        } catch (b) {}
+        _0x47ddxc1 = null;
       }
-      azuree.beginPath();
-      azuree.strokeStyle = "black";
-      azuree.lineWidth = 1;
-      azuree.globalAlpha = 1;
-      azuree.arc(selda, kalauni, jennifr, 0, 2 * Math.PI);
-      azuree.stroke();
-      azuree.fill();
-      azuree.closePath();
-    }
-    azuree.restore();
-  }
-  function rashita() {
-    if (raycen) {
-      azuree.fillStyle = "#111111";
-    } else {}
-    azuree.fillRect(0, 0, lachrisha, janaa);
-    azuree.save();
-    if (raycen) {
-      azuree.strokeStyle = "#AAAAAA";
-    } else {}
-    azuree.globalAlpha = .2;
-    azuree.scale(nitra, nitra);
-    var takeira = lachrisha / nitra, socrates = janaa / nitra;
-    azuree.restore();
-  }
-  function emmanul() {
-    for (var zyliah = 0, usayd = 0; usayd < larina.length; usayd++) {
-      zyliah += larina[usayd].nSize * larina[usayd].nSize;
-    }
-    return zyliah;
-  }
-  function regine() {
-    var flo;
-    flo = 1 * Math.max(q / 1080, m / 1920);
-    return flo *= M;
-  }
-  function zephen(jahcier) {
-    for (var khamaya = jahcier.length, jarmel, abiezer; 0 < khamaya;) {
-      abiezer = Math.floor(Math.random() * khamaya);
-      khamaya--;
-      jarmel = jahcier[khamaya];
-      jahcier[khamaya] = jahcier[abiezer];
-      jahcier[abiezer] = jarmel;
-    }
-  }
-  function briley() {
-    dovie = null;
-    var gilfred = 140;
-    if (null != bianny) {
-      gilfred = 200;
-    }
-    if (null != bianny || 0 != lize.length) {
-      dovie = document.createElement("canvas");
-    }
-    var franes = dovie.getContext("2d"), arlyn = 110;
-    arlyn = null == bianny ? arlyn + 24 * lize.length : arlyn + 180;
-    var jerrik = Math.min(.22 * janaa, Math.min(200, .3 * lachrisha)) / 200;
-    dovie.width = gilfred * jerrik;
-    dovie.height = arlyn * jerrik;
-    franes.scale(jerrik, jerrik);
-    franes.globalAlpha = .4;
-    franes.fillStyle = "#000000";
-    franes.fillRect(0, 0, 200, arlyn);
-    franes.globalAlpha = 1;
-    franes.fillStyle = "#FFFFFF";
-    var kymberle;
-    var clenon = ["#E6339B", "#FFD700", "#33E660", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"];
-    if (null == bianny) {
-      franes.fillStyle = "yellow";
-      franes.font = "12px Ubuntu";
-      var chauntel = new Image;
-      chauntel.onload = function () {
-        franes.drawImage(chauntel, 40, 0);
+      var _0x47ddx3a = _0x47ddxc;
+      _0x47ddx50 = "wss://" + _0x47ddx3a + "?SCode=" + SCodes;
+      _0x47ddxc4 = [];
+      _0x47ddxc5 = [];
+      _0x47ddxc6 = {};
+      _0x47ddxc7 = [];
+      _0x47ddxc8 = [];
+      _0x47ddxc9 = [];
+      _0x47ddxbb = _0x47ddxeb = null;
+      _0x47ddxdc = 0;
+      this.leaderdefault = "Leaderboard";
+      this.lastWinner = "Leaderboard";
+      this.countdown = 3600;
+      _0x47ddxdd = 0;
+      _0x47ddxf3 = [];
+      _0x47ddxde = 0;
+      _0x47ddxdf = 0;
+      _0x47ddxe0 = 0;
+      _0x47ddxc1 = new WebSocket(_0x47ddx50);
+      _0x47ddxc1.binaryType = "arraybuffer";
+      _0x47ddxc1.onopen = _0x47ddx54;
+      _0x47ddxc1.onmessage = _0x47ddx57;
+      _0x47ddxc1.onclose = _0x47ddx56;
+      _0x47ddxc1.onerror = function (_0x47ddx51) {
+        console.log("socket error" + _0x47ddx51);
       };
-      chauntel.src = "/img/lbfirst.png";
-      franes.fillText(this.lastWinner, 70 - franes.measureText(this.lastWinner).width / 2, 80);
-      for (kymberle = 0; kymberle < lize.length; ++kymberle) {
-        c = lize[kymberle].name.split("*")[0] || "Unnamed Cell";
-        c = amerson(c)[1];
-        if (c == "") {
-          c = "Unnamed Cell";
+    }
+    function _0x47ddx52(_0x47ddx38) {
+      return new DataView(new ArrayBuffer(_0x47ddx38));
+    }
+    function _0x47ddx53(_0x47ddx38) {
+      _0x47ddxc1.send(_0x47ddx38.buffer);
+    }
+    function _0x47ddx54() {
+      var _0x47ddx55;
+      _0x47ddxfe = 100;
+      _0x47ddxb("#connecting").hide();
+      console.log("socket open");
+      _0x47ddx55 = _0x47ddx52(5);
+      _0x47ddx55.setUint8(0, 254);
+      _0x47ddx55.setUint32(1, 5, true);
+      _0x47ddx53(_0x47ddx55);
+      _0x47ddx55 = _0x47ddx52(5);
+      _0x47ddx55.setUint8(0, 255);
+      _0x47ddx55.setUint32(1, 123456789, true);
+      _0x47ddx53(_0x47ddx55);
+      _0x47ddx77();
+    }
+    function _0x47ddx56() {
+      console.log("socket close");
+      setTimeout(_0x47ddx4e, 500);
+      _0x47ddxfe *= 1.5;
+    }
+    function _0x47ddx57(_0x47ddx55) {
+      _0x47ddx58(new DataView(_0x47ddx55.data));
+    }
+    function _0x47ddx58(_0x47ddx55) {
+      function _0x47ddx59() {
+        var _0x47ddx29 = "", _0x47ddx5a;
+        while ((_0x47ddx5a = _0x47ddx55.getUint16(_0x47ddx5b, true)) != 0) {
+          _0x47ddx5b += 2;
+          _0x47ddx29 += String.fromCharCode(_0x47ddx5a);
         }
-        if (-1 != gesell.indexOf(lize[kymberle].id)) {
-          larina[0].name && (c = amerson(larina[0].name)[1]);
+        _0x47ddx5b += 2;
+        return _0x47ddx29;
+      }
+      var _0x47ddx5b = 0, _0x47ddx5c = false;
+      240 == _0x47ddx55.getUint8(_0x47ddx5b) && (_0x47ddx5b += 5);
+      switch (_0x47ddx55.getUint8(_0x47ddx5b++)) {
+        case 185:
+          _0x47ddx69(_0x47ddx55, _0x47ddx5b);
+          break;
+        case 17:
+          _0x47ddx71 = _0x47ddx55.getFloat32(_0x47ddx5b, true);
+          _0x47ddx5b += 4;
+          _0x47ddx70 = _0x47ddx55.getFloat32(_0x47ddx5b, true);
+          _0x47ddx5b += 4;
+          _0x47ddxe9 = _0x47ddx55.getFloat32(_0x47ddx5b, true);
+          _0x47ddx5b += 4;
+          break;
+        case 20:
+          _0x47ddxc5 = [];
+          _0x47ddxc4 = [];
+          break;
+        case 21:
+          _0x47ddxef = _0x47ddx55.getInt16(_0x47ddx5b, true);
+          _0x47ddx5b += 2;
+          _0x47ddxf0 = _0x47ddx55.getInt16(_0x47ddx5b, true);
+          _0x47ddx5b += 2;
+          if (!_0x47ddxee) {
+            _0x47ddxee = true;
+            _0x47ddxf1 = _0x47ddxef;
+            _0x47ddxf2 = _0x47ddxf0;
+          }
+          break;
+        case 32:
+          _0x47ddxc4.push(_0x47ddx55.getUint32(_0x47ddx5b, true));
+          _0x47ddx5b += 4;
+          break;
+        case 48:
+          _0x47ddx5c = true;
+          _0x47ddxfa = true;
+          break;
+        case 49:
+          if (!_0x47ddx5c) {
+            _0x47ddxfa = false;
+          }
+          _0x47ddxeb = null;
+          var _0x47ddx5d = _0x47ddx55.getUint32(_0x47ddx5b, true);
+          _0x47ddx5b += 4;
+          _0x47ddxc9 = [];
+          for (_0x47ddx4 = 0; _0x47ddx4 < _0x47ddx5d; ++_0x47ddx4) {
+            var _0x47ddx5e = _0x47ddx55.getUint32(_0x47ddx5b, true);
+            _0x47ddx5b += 4;
+            _0x47ddxc9.push({id: _0x47ddx5e, name: _0x47ddx59()});
+          }
+          _0x47ddxa4();
+          break;
+        case 50:
+          _0x47ddxeb = [];
+          var _0x47ddx5f = _0x47ddx55.getUint32(_0x47ddx5b, true);
+          _0x47ddx5b += 4;
+          for (var _0x47ddx4 = 0; _0x47ddx4 < _0x47ddx5f; ++_0x47ddx4) {
+            _0x47ddxeb.push(_0x47ddx55.getFloat32(_0x47ddx5b, true));
+            _0x47ddx5b += 4;
+          }
+          _0x47ddxa4();
+          break;
+        case 64:
+          _0x47ddxd2 = _0x47ddx55.getFloat64(_0x47ddx5b, true);
+          _0x47ddx5b += 8;
+          _0x47ddxd3 = _0x47ddx55.getFloat64(_0x47ddx5b, true);
+          _0x47ddx5b += 8;
+          _0x47ddxd4 = _0x47ddx55.getFloat64(_0x47ddx5b, true);
+          _0x47ddx5b += 8;
+          _0x47ddxd5 = _0x47ddx55.getFloat64(_0x47ddx5b, true);
+          _0x47ddx5b += 8;
+          _0x47ddx71 = (_0x47ddxd4 + _0x47ddxd2) / 2;
+          _0x47ddx70 = (_0x47ddxd5 + _0x47ddxd3) / 2;
+          _0x47ddxe9 = 1;
+          if (0 == _0x47ddxc5.length) {
+            _0x47ddxc2 = _0x47ddx71;
+            _0x47ddxc3 = _0x47ddx70;
+            _0x47ddxd6 = _0x47ddxe9;
+          }
+          break;
+        case 90:
+          var _0x47ddx60 = new Date - latency;
+          $("#latency").html("Latency " + _0x47ddx60 + " ms;");
+          var _0x47ddx61 = _0x47ddx55.getFloat64(_0x47ddx5b, true);
+          _0x47ddx5b += 8;
+          $("#uptime").html("Uptime " + _0x47ddx61 + " sec;");
+          var _0x47ddx62 = _0x47ddx55.getFloat64(_0x47ddx5b, true);
+          _0x47ddx5b += 8;
+          $("#onlineplayers").html("Players " + _0x47ddx62 + ";");
+          break;
+        case 199:
+          _0x47ddx64(_0x47ddx55, _0x47ddx5b);
+          break;
+        case 96:
+          this.countdown = _0x47ddx55.getUint16(_0x47ddx5b, true);
+          break;
+        case 97:
+          this.lastWinner = "";
+          this.lastWinner = _0x47ddx59();
+          if (this.lastWinner == "") {
+            this.lastWinner = this.leaderdefault;
+          }
+          this.lastWinner = _0x47ddx46(this.lastWinner.split("*")[0])[1];
+          break;
+      }
+    }
+    function _0x47ddx64(_0x47ddx65, _0x47ddx5b) {
+      function _0x47ddx59() {
+        var _0x47ddx29 = "", _0x47ddx5a;
+        while ((_0x47ddx5a = _0x47ddx65.getUint16(_0x47ddx5b, true)) != 0) {
+          _0x47ddx5b += 2;
+          _0x47ddx29 += String.fromCharCode(_0x47ddx5a);
+        }
+        _0x47ddx5b += 2;
+        return _0x47ddx29;
+      }
+      var _0x47ddx66 = _0x47ddx65.getUint8(_0x47ddx5b++);
+      if (_0x47ddx66 & 2) {
+        _0x47ddx5b += 4;
+      }
+      if (_0x47ddx66 & 4) {
+        _0x47ddx5b += 8;
+      }
+      if (_0x47ddx66 & 8) {
+        _0x47ddx5b += 16;
+      }
+      var _0x47ddx49 = _0x47ddx65.getUint8(_0x47ddx5b++), _0x47ddx67 = _0x47ddx65.getUint8(_0x47ddx5b++), _0x47ddx39 = _0x47ddx65.getUint8(_0x47ddx5b++), _0x47ddx68 = (_0x47ddx49 << 16 | _0x47ddx67 << 8 | _0x47ddx39).toString(16);
+      while (_0x47ddx68.length > 6) {
+        _0x47ddx68 = "0" + _0x47ddx68;
+      }
+      _0x47ddx68 = "#" + _0x47ddx68;
+      name = _0x47ddx46(_0x47ddx59())[1];
+      if (name == "") {
+        name = "Unnamed Cell";
+      }
+      _0x47ddxca.push({name: name, color: _0x47ddx68, message: _0x47ddx59(), time: Date.now()});
+    }
+    function _0x47ddx69(_0x47ddx65, _0x47ddx5b) {
+      _0x47ddxd0 = +new Date;
+      var _0x47ddx6a = Math.random();
+      _0x47ddxdb = false;
+      var _0x47ddx6b = _0x47ddx65.getUint16(_0x47ddx5b, true);
+      _0x47ddx5b += 2;
+      for (_0x47ddx4 = 0; _0x47ddx4 < _0x47ddx6b; ++_0x47ddx4) {
+        var _0x47ddx6c = _0x47ddxc6[_0x47ddx65.getUint32(_0x47ddx5b, true)], _0x47ddx6d = _0x47ddxc6[_0x47ddx65.getUint32(_0x47ddx5b + 4, true)];
+        _0x47ddx5b += 8;
+        if (_0x47ddx6c && _0x47ddx6d) {
+          _0x47ddx6d.destroy();
+          _0x47ddx6d.ox = _0x47ddx6d.x;
+          _0x47ddx6d.oy = _0x47ddx6d.y;
+          _0x47ddx6d.oSize = _0x47ddx6d.size;
+          _0x47ddx6d.nx = _0x47ddx6c.x;
+          _0x47ddx6d.ny = _0x47ddx6c.y;
+          _0x47ddx6d.nSize = _0x47ddx6d.size;
+          _0x47ddx6d.updateTime = _0x47ddxd0;
+          _0x47ddx45(_0x47ddx6c, _0x47ddx6d);
+        }
+      }
+      for (var _0x47ddx4 = 0;;) {
+        var _0x47ddx6e = _0x47ddx65.getUint32(_0x47ddx5b, true);
+        _0x47ddx5b += 4;
+        if (0 == _0x47ddx6e) {
+          break;
+        }
+        ++_0x47ddx4;
+        var _0x47ddx6f, _0x47ddx70, _0x47ddx71 = _0x47ddx65.getInt16(_0x47ddx5b, true);
+        _0x47ddx5b += 2;
+        _0x47ddx70 = _0x47ddx65.getInt16(_0x47ddx5b, true);
+        _0x47ddx5b += 2;
+        _0x47ddx6f = _0x47ddx65.getInt16(_0x47ddx5b, true);
+        _0x47ddx5b += 2;
+        for (var _0x47ddx49 = _0x47ddx65.getUint8(_0x47ddx5b++), _0x47ddx67 = _0x47ddx65.getUint8(_0x47ddx5b++), _0x47ddx39 = _0x47ddx65.getUint8(_0x47ddx5b++), _0x47ddx68 = (_0x47ddx49 << 16 | _0x47ddx67 << 8 | _0x47ddx39).toString(16); 6 > _0x47ddx68.length;) {
+          _0x47ddx68 = "0" + _0x47ddx68;
+        }
+        var _0x47ddx72 = "#" + _0x47ddx68, _0x47ddx66 = _0x47ddx65.getUint8(_0x47ddx5b++), _0x47ddx73 = !!(_0x47ddx66 & 1), _0x47ddx74 = !!(_0x47ddx66 & 16);
+        _0x47ddx66 & 2 && (_0x47ddx5b += 4);
+        _0x47ddx66 & 4 && (_0x47ddx5b += 8);
+        _0x47ddx66 & 8 && (_0x47ddx5b += 16);
+        for (var _0x47ddx5a, _0x47ddx75 = "";;) {
+          _0x47ddx5a = _0x47ddx65.getUint16(_0x47ddx5b, true);
+          _0x47ddx5b += 2;
+          if (0 == _0x47ddx5a) {
+            break;
+          }
+          _0x47ddx75 += String.fromCharCode(_0x47ddx5a);
+        }
+        var _0x47ddx3c = null;
+        if (_0x47ddxc6.hasOwnProperty(_0x47ddx6e)) {
+          _0x47ddx3c = _0x47ddxc6[_0x47ddx6e];
+          _0x47ddx3c.updatePos();
+          _0x47ddx3c.ox = _0x47ddx3c.x;
+          _0x47ddx3c.oy = _0x47ddx3c.y;
+          _0x47ddx3c.oSize = _0x47ddx3c.size;
+          _0x47ddx3c.color = _0x47ddx72;
+        } else {
+          _0x47ddx3c = new _0x47ddxae(_0x47ddx6e, _0x47ddx71, _0x47ddx70, _0x47ddx6f, _0x47ddx72, _0x47ddx75);
+          _0x47ddxc7.push(_0x47ddx3c);
+          _0x47ddx3c.ka = _0x47ddx71;
+          _0x47ddx3c.la = _0x47ddx70;
+        }
+        _0x47ddx3c.isVirus = _0x47ddx73;
+        _0x47ddx3c.isAgitated = _0x47ddx74;
+        _0x47ddx3c.nx = _0x47ddx71;
+        _0x47ddx3c.ny = _0x47ddx70;
+        _0x47ddx3c.nSize = _0x47ddx6f;
+        _0x47ddx3c.updateCode = _0x47ddx6a;
+        _0x47ddx3c.updateTime = _0x47ddxd0;
+        _0x47ddx3c.flag = _0x47ddx66;
+        _0x47ddx75 && _0x47ddx3c.setName(_0x47ddx75);
+        if (-1 != _0x47ddxc4.indexOf(_0x47ddx6e) && -1 == _0x47ddxc5.indexOf(_0x47ddx3c)) {
+          document.getElementById("overlays").style.display = "none";
+          _0x47ddxc5.push(_0x47ddx3c);
+          if (1 == _0x47ddxc5.length) {
+            _0x47ddxc2 = _0x47ddx3c.x;
+            _0x47ddxc3 = _0x47ddx3c.y;
+          }
+        }
+      }
+      _0x47ddx6b = _0x47ddx65.getUint32(_0x47ddx5b, true);
+      _0x47ddx5b += 4;
+      for (_0x47ddx4 = 0; _0x47ddx4 < _0x47ddx6b; _0x47ddx4++) {
+        var _0x47ddx5e = _0x47ddx65.getUint32(_0x47ddx5b, true);
+        _0x47ddx5b += 4;
+        _0x47ddx3c = _0x47ddxc6[_0x47ddx5e];
+        null != _0x47ddx3c && _0x47ddx3c.destroy();
+      }
+      _0x47ddxdb && 0 == _0x47ddxc5.length && _0x47ddx41(false, 1);
+    }
+    function _0x47ddx76() {
+      var _0x47ddx55;
+      if (null != _0x47ddxc1 && _0x47ddxc1.readyState == _0x47ddxc1.OPEN && Sfreeze != true) {
+        _0x47ddx55 = _0x47ddxcb - _0x47ddxbe / 2;
+        var _0x47ddx39 = _0x47ddxcc - _0x47ddxbf / 2;
+        if (64 <= _0x47ddx55 * _0x47ddx55 + _0x47ddx39 * _0x47ddx39 && !(.01 > Math.abs(_0x47ddxff - _0x47ddxcd) && .01 > Math.abs(_0x47ddx100 - _0x47ddxce))) {
+          _0x47ddxff = _0x47ddxcd;
+          _0x47ddx100 = _0x47ddxce;
+          _0x47ddx55 = _0x47ddx52(21);
+          _0x47ddx55.setUint8(0, 185);
+          _0x47ddx55.setFloat64(1, _0x47ddxcd, true);
+          _0x47ddx55.setFloat64(9, _0x47ddxce, true);
+          _0x47ddx55.setUint32(17, 0, true);
+          _0x47ddx53(_0x47ddx55);
+        }
+      }
+    }
+    function _0x47ddx77() {
+      _0x47ddxd1 = _0x47ddx2b(_0x47ddxd1);
+      if (null != _0x47ddxc1 && _0x47ddxc1.readyState == _0x47ddxc1.OPEN && null != _0x47ddxd1) {
+        var _0x47ddx55 = _0x47ddx52(1 + 2 * _0x47ddxd1.length);
+        _0x47ddx55.setUint8(0, 129);
+        for (var _0x47ddx4 = 0; _0x47ddx4 < _0x47ddxd1.length; ++_0x47ddx4) {
+          _0x47ddx55.setUint16(1 + 2 * _0x47ddx4, _0x47ddxd1.charCodeAt(_0x47ddx4), true);
+        }
+        _0x47ddx53(_0x47ddx55);
+      }
+    }
+    function _0x47ddx78() {
+      m = _0x47ddxa.innerWidth;
+      q = _0x47ddxa.innerHeight;
+      canvas.width = canvas.width = m;
+      canvas.height = canvas.height = q;
+      var _0x47ddx38 = _0x47ddxb("#helloContainer");
+      _0x47ddx38.css("transform", "none");
+      var _0x47ddx3a = _0x47ddxa.innerHeight;
+      660 > _0x47ddx3a / 1.1 ? _0x47ddx38.css("transform", "translate(-50%, -50%) scale(" + _0x47ddx3a / 660 / 1.1 + ")") : _0x47ddx38.css("transform", "translate(-50%, -50%)");
+    }
+    function _0x47ddx79(_0x47ddx7a) {
+      if (null != _0x47ddxc1 && _0x47ddxc1.readyState == _0x47ddxc1.OPEN && _0x47ddx7a.length < 200 && _0x47ddx7a.length > 0) {
+        var _0x47ddx55 = _0x47ddx52(4 + 2 * _0x47ddx7a.length);
+        var _0x47ddx5b = 0;
+        _0x47ddx55.setUint8(_0x47ddx5b++, 199);
+        _0x47ddx55.setUint8(_0x47ddx5b++, 0);
+        for (var _0x47ddx4 = 0; _0x47ddx4 < _0x47ddx7a.length; ++_0x47ddx4) {
+          _0x47ddx55.setUint16(_0x47ddx5b, _0x47ddx7a.charCodeAt(_0x47ddx4), true);
+          _0x47ddx5b += 2;
+        }
+        _0x47ddx55.setUint16(_0x47ddx5b, 57344, true);
+        _0x47ddx53(_0x47ddx55);
+      }
+    }
+    function _0x47ddx7c(_0x47ddx38) {
+      if (null != _0x47ddxc1 && _0x47ddxc1.readyState == _0x47ddxc1.OPEN) {
+        var _0x47ddx55 = _0x47ddx52(1);
+        _0x47ddx55.setUint8(0, _0x47ddx38);
+        _0x47ddx53(_0x47ddx55);
+      }
+    }
+    function _0x47ddx7d() {
+      _0x47ddx85();
+      _0x47ddxa.requestAnimationFrame(_0x47ddx7d);
+    }
+    function _0x47ddx7e() {
+      window.scrollTo(0, 0);
+      _0x47ddxbe = _0x47ddxa.innerWidth;
+      _0x47ddxbf = _0x47ddxa.innerHeight;
+      _0x47ddxba.width = _0x47ddxbe;
+      _0x47ddxba.height = _0x47ddxbf;
+      var _0x47ddx7f = _0x47ddxb("#helloDialog");
+      _0x47ddx7f.css("transform", "none");
+      var _0x47ddx80 = _0x47ddx7f.height();
+      _0x47ddx80 > _0x47ddxbf / 1.1 ? _0x47ddx7f.css("transform", "translate(-50%, -50%) scale(" + _0x47ddxbf / _0x47ddx80 / 1.1 + ")") : _0x47ddx7f.css("transform", "translate(-50%, -50%)");
+      _0x47ddx85();
+    }
+    function _0x47ddx81() {
+      var _0x47ddx82;
+      _0x47ddx82 = Math.max(_0x47ddxbf / 1080, _0x47ddxbe / 1920);
+      return _0x47ddx82 * _0x47ddxf6;
+    }
+    function _0x47ddx83() {
+      if (0 != _0x47ddxc5.length) {
+        for (var _0x47ddx84 = 0, _0x47ddx4 = 0; _0x47ddx4 < _0x47ddxc5.length; _0x47ddx4++) {
+          _0x47ddx84 += _0x47ddxc5[_0x47ddx4].size;
+        }
+        _0x47ddx84 = Math.pow(Math.min(64 / _0x47ddx84, 1), .4) * _0x47ddx81();
+        _0x47ddxd6 = (9 * _0x47ddxd6 + _0x47ddx84) / 10;
+      }
+    }
+    function _0x47ddx85() {
+      var _0x47ddx38, _0x47ddx86 = Date.now();
+      ++_0x47ddxcf;
+      var _0x47ddx87 = Date.now() - _0x47ddxfc;
+      if (_0x47ddx87 > 50) {
+        _0x47ddxfc = Date.now();
+        _0x47ddx76();
+      }
+      _0x47ddxd0 = _0x47ddx86;
+      if (0 < _0x47ddxc5.length) {
+        _0x47ddx83();
+        var _0x47ddx3a = _0x47ddx38 = 0;
+        for (var _0x47ddx3b = 0; _0x47ddx3b < _0x47ddxc5.length; _0x47ddx3b++) {
+          _0x47ddxc5[_0x47ddx3b].updatePos();
+          _0x47ddx38 += _0x47ddxc5[_0x47ddx3b].x / _0x47ddxc5.length;
+          _0x47ddx3a += _0x47ddxc5[_0x47ddx3b].y / _0x47ddxc5.length;
+        }
+        _0x47ddx71 = _0x47ddx38;
+        _0x47ddx70 = _0x47ddx3a;
+        _0x47ddxe9 = _0x47ddxd6;
+        _0x47ddxc2 = (_0x47ddxc2 + _0x47ddx38) / 2;
+        _0x47ddxc3 = (_0x47ddxc3 + _0x47ddx3a) / 2;
+      } else {
+        _0x47ddxc2 = (29 * _0x47ddxc2 + _0x47ddx71) / 30;
+        _0x47ddxc3 = (29 * _0x47ddxc3 + _0x47ddx70) / 30;
+        _0x47ddxd6 = (9 * _0x47ddxd6 + _0x47ddxe9 * _0x47ddx81()) / 10;
+      }
+      _0x47ddx37();
+      _0x47ddx3d();
+      _0x47ddxa9.fillStyle = _0x47ddxe1 ? "#111111" : "#F2FBFF";
+      _0x47ddxa9.fillRect(0, 0, _0x47ddxbe, _0x47ddxbf);
+      _0x47ddxc7.sort(function (_0x47ddx38, _0x47ddx39) {
+        return _0x47ddx38.size == _0x47ddx39.size ? _0x47ddx38.id - _0x47ddx39.id : _0x47ddx38.size - _0x47ddx39.size;
+      });
+      _0x47ddxa9.save();
+      _0x47ddxa9.translate(_0x47ddxbe / 2, _0x47ddxbf / 2);
+      _0x47ddxa9.scale(_0x47ddxd6, _0x47ddxd6);
+      _0x47ddxa9.translate(-_0x47ddxc2, -_0x47ddxc3);
+      if (_0x47ddxe6 == true) {
+        _0x47ddxa9.globalAlpha = .6;
+      } else {
+        _0x47ddxa9.globalAlpha = 1;
+      }
+      for (_0x47ddx3b = 0; _0x47ddx3b < _0x47ddxc7.length; _0x47ddx3b++) {
+        _0x47ddxc7[_0x47ddx3b].drawOneCell(_0x47ddxa9);
+      }
+      if (_0x47ddxee) {
+        _0x47ddxf1 = (3 * _0x47ddxf1 + _0x47ddxef) / 4;
+        _0x47ddxf2 = (3 * _0x47ddxf2 + _0x47ddxf0) / 4;
+        _0x47ddxa9.save();
+        _0x47ddxa9.strokeStyle = "#FFAAAA";
+        _0x47ddxa9.lineWidth = 10;
+        _0x47ddxa9.lineCap = "round";
+        _0x47ddxa9.lineJoin = "round";
+        _0x47ddxa9.globalAlpha = .5;
+        _0x47ddxa9.beginPath();
+        for (_0x47ddx3b = 0; _0x47ddx3b < _0x47ddxc5.length; _0x47ddx3b++) {
+          _0x47ddxa9.moveTo(_0x47ddxc5[_0x47ddx3b].x, _0x47ddxc5[_0x47ddx3b].y);
+          _0x47ddxa9.lineTo(_0x47ddxf1, _0x47ddxf2);
+        }
+        _0x47ddxa9.restore();
+      }
+      _0x47ddxa9.strokeStyle = "#FF0000";
+      _0x47ddxa9.lineWidth = 50;
+      _0x47ddxa9.lineCap = "round";
+      _0x47ddxa9.lineJoin = "round";
+      _0x47ddxa9.beginPath();
+      _0x47ddxa9.moveTo(_0x47ddxd2, _0x47ddxd3);
+      _0x47ddxa9.lineTo(_0x47ddxd4, _0x47ddxd3);
+      _0x47ddxa9.lineTo(_0x47ddxd4, _0x47ddxd5);
+      _0x47ddxa9.lineTo(_0x47ddxd2, _0x47ddxd5);
+      _0x47ddxa9.closePath();
+      _0x47ddxa9.stroke();
+      _0x47ddxa9.restore();
+      _0x47ddxa9.globalAlpha = 1;
+      _0x47ddxa9.fillStyle = "#0000FF";
+      _0x47ddxa9.font = "bold 32px Ubuntu";
+      if (this.countdown < 3600) {
+        var _0x47ddx88 = "";
+        var _0x47ddx89 = "";
+        var _0x47ddx8a = Math.floor(this.countdown / 60);
+        if (_0x47ddx8a < 10) {
+          _0x47ddx88 += "0";
+        }
+        _0x47ddx88 += _0x47ddx8a + ":";
+        var _0x47ddx8b = this.countdown % 60;
+        if (_0x47ddx8b < 10) {
+          _0x47ddx88 += "0";
+        }
+        _0x47ddx88 += _0x47ddx8b;
+        if (this.countdown < 60) {
+          _0x47ddx89 = " sec";
+        } else {
+          _0x47ddx89 = " min";
+        }
+        $("#countdown").html("Restart in " + _0x47ddx88 + _0x47ddx89);
+      }
+      _0x47ddxbc && _0x47ddxbc.width && _0x47ddxa9.drawImage(_0x47ddxbc, _0x47ddxbe - _0x47ddxbc.width - 10, 10);
+      if (!_0x47ddxe7) {
+        if (_0x47ddxbd != null && _0x47ddxbd.width > 0) {
+          _0x47ddxa9.drawImage(_0x47ddxbd, 0, _0x47ddxbf - _0x47ddxbd.height - 50);
+        }
+      }
+      var _0x47ddx8c = _0x47ddxa0();
+      _0x47ddxdc = Math.max(_0x47ddxdc, _0x47ddxa0());
+      if (0 != _0x47ddxdc) {
+        _0x47ddxa9.globalAlpha = .8;
+        if (_0x47ddxe1 == true) {
+          _0x47ddxa9.fillStyle = "#FFFFFF";
+        } else {
+          _0x47ddxa9.fillStyle = "#000000";
+        }
+        _0x47ddxa9.font = "bold 24px Ubuntu";
+        var _0x47ddx8d = document.getElementsByTagName("html")[0].getAttribute("lang");
+        if (_0x47ddx8d == "tr") {
+          _0x47ddxa9.fillText("Skor: " + ~~(_0x47ddx8c / 100), 10, 34);
+          _0x47ddxa9.fillText("Max.: " + ~~(_0x47ddxdc / 100), 10, 60);
+        } else {
+          _0x47ddxa9.fillText("Score: " + ~~(_0x47ddx8c / 100), 10, 34);
+          _0x47ddxa9.fillText("Max.: " + ~~(_0x47ddxdc / 100), 10, 60);
+        }
+      }
+      if (!_0x47ddxe7) {
+        var _0x47ddx8e = 0;
+        for (var _0x47ddx4 = _0x47ddxca.length - 1; _0x47ddx4 >= 0; _0x47ddx4--) {
+          _0x47ddx8e++;
+          if (_0x47ddx8e > 15) {
+            break;
+          }
+          var _0x47ddx75 = _0x47ddxca[_0x47ddx4].name.trim();
+          if (_0x47ddx75 == "") {
+            _0x47ddx75 = "Unnamed Cell";
+          }
+          var _0x47ddx8f = _0x47ddxca[_0x47ddx4].message.trim();
+          var _0x47ddx7a = _0x47ddx8f.toLowerCase();
+          var _0x47ddx90 = " : " + _0x47ddx7a;
+          _0x47ddxa9.font = "17px Arial";
+          _0x47ddxca[_0x47ddx4].name_x = 15;
+          _0x47ddxca[_0x47ddx4].name_y = _0x47ddxbf - 30 - 20 * _0x47ddx8e;
+          _0x47ddxca[_0x47ddx4].name_w = _0x47ddxa9.measureText(_0x47ddx75).width;
+          _0x47ddxca[_0x47ddx4].name_h = 18;
+          _0x47ddxca[_0x47ddx4].msg_x = 15 + _0x47ddxca[_0x47ddx4].name_w;
+          _0x47ddxca[_0x47ddx4].msg_y = _0x47ddxca[_0x47ddx4].name_y;
+          _0x47ddxca[_0x47ddx4].msg_w = _0x47ddxa9.measureText(_0x47ddx90).width;
+          _0x47ddxca[_0x47ddx4].msg_h = _0x47ddxca[_0x47ddx4].name_h;
+          _0x47ddxa9.fillStyle = _0x47ddxca[_0x47ddx4].color;
+          _0x47ddxa9.fillText(_0x47ddx75, _0x47ddxca[_0x47ddx4].name_x, _0x47ddxca[_0x47ddx4].name_y);
+          if (_0x47ddxe1 == true) {
+            _0x47ddxa9.fillStyle = "#FFFFFF";
+          } else {
+            _0x47ddxa9.fillStyle = "#000000";
+          }
+          _0x47ddxa9.fillText(_0x47ddx90, _0x47ddxca[_0x47ddx4].msg_x, _0x47ddxca[_0x47ddx4].msg_y);
+        }
+      }
+      if (!_0x47ddx1f) {
+        _0x47ddx92();
+      }
+      var _0x47ddx91 = Date.now() - _0x47ddx86;
+      _0x47ddx91 > 16.666666666666668 ? _0x47ddx102 -= .01 : _0x47ddx91 < 15.384615384615385 && (_0x47ddx102 += .01);
+      .4 > _0x47ddx102 && (_0x47ddx102 = .4);
+      1 < _0x47ddx102 && (_0x47ddx102 = 1);
+    }
+    function _0x47ddx92() {
+      if (_0x47ddxc5.length == 0 || false) {
+        return;
+      }
+      _0x47ddxa9.save();
+      function _0x47ddx93(_0x47ddx38, _0x47ddx39) {
+        return !_0x47ddx39 ? _0x47ddx38 : _0x47ddx93(_0x47ddx39, _0x47ddx38 % _0x47ddx39);
+      }
+      _0x47ddxa9.beginPath();
+      _0x47ddxa9.fillStyle = "rgba(0,0,0,.25)";
+      var _0x47ddx6f = _0x47ddx1f ? 150 : 200;
+      _0x47ddxa9.lineWidth = 1.5;
+      var _0x47ddx94 = _0x47ddxbe - _0x47ddx6f - 10;
+      var _0x47ddx95 = _0x47ddxbf - _0x47ddx6f - 5;
+      _0x47ddxa9.rect(_0x47ddx94, _0x47ddx95, _0x47ddx6f, _0x47ddx6f);
+      _0x47ddxa9.lineWidth = 1.25;
+      var _0x47ddx96 = _0x47ddxc2 / (_0x47ddxd4 - _0x47ddxd2);
+      var _0x47ddx97 = _0x47ddxc3 / (_0x47ddxd5 - _0x47ddxd3);
+      var _0x47ddx71 = _0x47ddx96 * _0x47ddx6f + _0x47ddx94 + _0x47ddx6f / 2 - 100;
+      var _0x47ddx70 = _0x47ddx97 * _0x47ddx6f + _0x47ddx95 + _0x47ddx6f / 2 - 100;
+      var _0x47ddx98 = bh = _0x47ddx6f;
+      var _0x47ddx99 = -1;
+      var _0x47ddx9a = -1;
+      for (var _0x47ddx13 = 0; _0x47ddx13 <= _0x47ddx98; _0x47ddx13 += 40) {
+        if (_0x47ddx13 != _0x47ddx98) {
+          var _0x47ddxf = .5 + _0x47ddx13 + _0x47ddx94;
+          var _0x47ddx10 = _0x47ddx95;
+          if (_0x47ddxe(_0x47ddxf, _0x47ddx10, _0x47ddxf + 40, _0x47ddx10 + bh, _0x47ddx71, _0x47ddx70)) {
+            _0x47ddx99 = _0x47ddxf;
+          }
+          if (_0x47ddx13 == 0) {
+            continue;
+          }
+          _0x47ddxa9.moveTo(.5 + _0x47ddx13 + _0x47ddx94, _0x47ddx95);
+          _0x47ddxa9.lineTo(.5 + _0x47ddx13 + _0x47ddx94, bh + _0x47ddx95);
+        }
+        if (_0x47ddxe1 == true) {
+          _0x47ddxa9.fillStyle = "#FFFFFF";
+        } else {
+          _0x47ddxa9.fillStyle = "#000000";
+        }
+        _0x47ddxa9.font = "700 18px nunito";
+        _0x47ddxa9.textAlign = "center";
+        _0x47ddxa9.strokeStyle = "white";
+        _0x47ddxa9.lineWidth = 1;
+        _0x47ddxa9.globalAlpha = .35;
+        for (var _0x47ddx4 = 0; _0x47ddx4 < 5; _0x47ddx4++) {
+          _0x47ddxa9.fillText(String.fromCharCode(_0x47ddx4 + 65) + _0x47ddx13 / 40, .5 + _0x47ddx13 + _0x47ddx94 - 20, _0x47ddx95 + 25.5 + _0x47ddx4 * 40);
+        }
+      }
+      for (var _0x47ddx14 = 0; _0x47ddx14 <= bh; _0x47ddx14 += 40) {
+        if (_0x47ddx14 != bh) {
+          var _0x47ddxf = _0x47ddx94;
+          var _0x47ddx10 = .5 + _0x47ddx14 + _0x47ddx95;
+          if (_0x47ddxe(_0x47ddxf, _0x47ddx10, _0x47ddxf + _0x47ddx98, _0x47ddx10 + 40, _0x47ddx71, _0x47ddx70)) {
+            _0x47ddx9a = _0x47ddx10;
+          }
+          if (_0x47ddx14 == 0) {
+            continue;
+          }
+          _0x47ddxa9.moveTo(_0x47ddx94, .5 + _0x47ddx14 + _0x47ddx95);
+          _0x47ddxa9.lineTo(_0x47ddx98 + _0x47ddx94, .5 + _0x47ddx14 + _0x47ddx95);
+        }
+      }
+      if (_0x47ddxc5.length > 0 && _0x47ddx99 > -1 && _0x47ddx9a > -1) {
+        _0x47ddxa9.fillStyle = "#ccff00";
+        _0x47ddxa9.globalAlpha = .3;
+        _0x47ddxa9.fillRect(_0x47ddx99, _0x47ddx9a, 40, 40);
+      }
+      _0x47ddxa9.globalAlpha = 1;
+      _0x47ddxa9.strokeStyle = "rgba(238,0,17,.2)";
+      _0x47ddxa9.stroke();
+      _0x47ddxa9.closePath();
+      for (var _0x47ddx4 = 0; _0x47ddx4 < _0x47ddxc5.length; _0x47ddx4++) {
+        var _0x47ddx9b = _0x47ddxc5[_0x47ddx4];
+        var _0x47ddx9c = _0x47ddx9b.ox / (_0x47ddxd4 - _0x47ddxd2);
+        var _0x47ddx9d = _0x47ddx9b.oy / (_0x47ddxd5 - _0x47ddxd3);
+        var _0x47ddx13 = _0x47ddx9c * _0x47ddx6f + _0x47ddx94 + _0x47ddx6f / 2 - 100;
+        var _0x47ddx14 = _0x47ddx9d * _0x47ddx6f + _0x47ddx95 + _0x47ddx6f / 2 - 100;
+        var _0x47ddx8c = Math.max(2, _0x47ddx9b.size / (_0x47ddx6f / 2));
+        _0x47ddxa9.fillStyle = _0x47ddx9b.color;
+        if (_0x47ddx4 == 0) {
+          _0x47ddxa9.font = "bold " + (14 + _0x47ddx8c) + "px Ubuntu";
+          var _0x47ddx9e = _0x47ddxa9.measureText(_0x47ddx9b.name);
+          _0x47ddxa9.strokestyle = "black";
+        }
+        _0x47ddxa9.beginPath();
+        _0x47ddxa9.strokeStyle = "black";
+        _0x47ddxa9.lineWidth = 1;
+        _0x47ddxa9.globalAlpha = 1;
+        _0x47ddxa9.arc(_0x47ddx13, _0x47ddx14, _0x47ddx8c, 0, 2 * Math.PI);
+        _0x47ddxa9.stroke();
+        _0x47ddxa9.fill();
+        _0x47ddxa9.closePath();
+      }
+      _0x47ddxa9.restore();
+    }
+    function _0x47ddx9f() {
+      if (_0x47ddxe1) {
+        _0x47ddxa9.fillStyle = "#111111";
+      } else {}
+      _0x47ddxa9.fillRect(0, 0, _0x47ddxbe, _0x47ddxbf);
+      _0x47ddxa9.save();
+      if (_0x47ddxe1) {
+        _0x47ddxa9.strokeStyle = "#AAAAAA";
+      } else {}
+      _0x47ddxa9.globalAlpha = .2;
+      _0x47ddxa9.scale(_0x47ddxd6, _0x47ddxd6);
+      var _0x47ddx38 = _0x47ddxbe / _0x47ddxd6, _0x47ddx39 = _0x47ddxbf / _0x47ddxd6;
+      _0x47ddxa9.restore();
+    }
+    function _0x47ddxa0() {
+      for (var _0x47ddxa1 = 0, _0x47ddx4 = 0; _0x47ddx4 < _0x47ddxc5.length; _0x47ddx4++) {
+        _0x47ddxa1 += _0x47ddxc5[_0x47ddx4].nSize * _0x47ddxc5[_0x47ddx4].nSize;
+      }
+      return _0x47ddxa1;
+    }
+    function _0x47ddxa2() {
+      var _0x47ddx38;
+      _0x47ddx38 = 1 * Math.max(q / 1080, m / 1920);
+      return _0x47ddx38 *= M;
+    }
+    function _0x47ddxa3(_0x47ddx38) {
+      for (var _0x47ddx39 = _0x47ddx38.length, _0x47ddx3a, _0x47ddx3b; 0 < _0x47ddx39;) {
+        _0x47ddx3b = Math.floor(Math.random() * _0x47ddx39);
+        _0x47ddx39--;
+        _0x47ddx3a = _0x47ddx38[_0x47ddx39];
+        _0x47ddx38[_0x47ddx39] = _0x47ddx38[_0x47ddx3b];
+        _0x47ddx38[_0x47ddx3b] = _0x47ddx3a;
+      }
+    }
+    function _0x47ddxa4() {
+      _0x47ddxbc = null;
+      var _0x47ddxa8 = 140;
+      if (null != _0x47ddxeb) {
+        _0x47ddxa8 = 200;
+      }
+      if (null != _0x47ddxeb || 0 != _0x47ddxc9.length) {
+        _0x47ddxbc = document.createElement("canvas");
+      }
+      var _0x47ddxa9 = _0x47ddxbc.getContext("2d"), _0x47ddxaa = 110;
+      _0x47ddxaa = null == _0x47ddxeb ? _0x47ddxaa + 24 * _0x47ddxc9.length : _0x47ddxaa + 180;
+      var _0x47ddxab = Math.min(.22 * _0x47ddxbf, Math.min(200, .3 * _0x47ddxbe)) / 200;
+      _0x47ddxbc.width = _0x47ddxa8 * _0x47ddxab;
+      _0x47ddxbc.height = _0x47ddxaa * _0x47ddxab;
+      _0x47ddxa9.scale(_0x47ddxab, _0x47ddxab);
+      _0x47ddxa9.globalAlpha = .4;
+      _0x47ddxa9.fillStyle = "#000000";
+      _0x47ddxa9.fillRect(0, 0, 200, _0x47ddxaa);
+      _0x47ddxa9.globalAlpha = 1;
+      _0x47ddxa9.fillStyle = "#FFFFFF";
+      var _0x47ddx39;
+      var _0x47ddxac = ["#E6339B", "#FFD700", "#33E660", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"];
+      if (null == _0x47ddxeb) {
+        _0x47ddxa9.fillStyle = "yellow";
+        _0x47ddxa9.font = "12px Ubuntu";
+        var _0x47ddxad = new Image;
+        _0x47ddxad.onload = function () {
+          _0x47ddxa9.drawImage(_0x47ddxad, 40, 0);
+        };
+        _0x47ddxad.src = "/img/lbfirst.png";
+        _0x47ddxa9.fillText(this.lastWinner, 70 - _0x47ddxa9.measureText(this.lastWinner).width / 2, 80);
+        for (_0x47ddx39 = 0; _0x47ddx39 < _0x47ddxc9.length; ++_0x47ddx39) {
+          c = _0x47ddxc9[_0x47ddx39].name.split("*")[0] || "Unnamed Cell";
+          c = _0x47ddx46(c)[1];
           if (c == "") {
             c = "Unnamed Cell";
           }
-          franes.fillStyle = "#FFAAAA";
-          if (!kaylianie) {
-            c = kymberle + 1 + ". " + c;
+          if (-1 != _0x47ddxc4.indexOf(_0x47ddxc9[_0x47ddx39].id)) {
+            _0x47ddxc5[0].name && (c = _0x47ddx46(_0x47ddxc5[0].name)[1]);
+            if (c == "") {
+              c = "Unnamed Cell";
+            }
+            _0x47ddxa9.fillStyle = "#FFAAAA";
+            if (!_0x47ddxfa) {
+              c = _0x47ddx39 + 1 + ". " + c;
+            }
+            _0x47ddxa9.fillText(c, 70 - _0x47ddxa9.measureText(c).width / 2, 125 + 23 * _0x47ddx39);
+          } else {
+            _0x47ddxa9.fillStyle = _0x47ddxac[_0x47ddx39];
+            if (!_0x47ddxfa) {
+              c = _0x47ddx39 + 1 + ". " + c;
+            }
+            _0x47ddxa9.fillText(c, 70 - _0x47ddxa9.measureText(c).width / 2, 125 + 23 * _0x47ddx39);
           }
-          franes.fillText(c, 70 - franes.measureText(c).width / 2, 125 + 23 * kymberle);
+        }
+      } else {
+        for (_0x47ddx39 = c = 0; _0x47ddx39 < _0x47ddxeb.length; ++_0x47ddx39) {
+          var _0x47ddx3b = c + _0x47ddxeb[_0x47ddx39] * Math.PI * 2;
+          _0x47ddxa9.fillStyle = _0x47ddxf5[_0x47ddx39 + 1];
+          _0x47ddxa9.beginPath();
+          _0x47ddxa9.moveTo(100, 140);
+          _0x47ddxa9.arc(100, 140, 80, c, _0x47ddx3b, false);
+          _0x47ddxa9.fill();
+          c = _0x47ddx3b;
+        }
+      }
+    }
+    function _0x47ddxae(_0x47ddxaf, _0x47ddxb0, _0x47ddxb1, _0x47ddxb2, _0x47ddxb3, _0x47ddxb4) {
+      this.id = _0x47ddxaf;
+      this.ox = this.x = _0x47ddxb0;
+      this.oy = this.y = _0x47ddxb1;
+      this.oSize = this.size = _0x47ddxb2;
+      this.color = _0x47ddxb3;
+      this.points = [];
+      this.pointsAcc = [];
+      this.createPoints();
+      this.setName(_0x47ddxb4);
+    }
+    function _0x47ddxb5(_0x47ddxb2, _0x47ddxb3, _0x47ddxb6, _0x47ddxb7) {
+      _0x47ddxb2 && (this._size = _0x47ddxb2);
+      _0x47ddxb3 && (this._color = _0x47ddxb3);
+      this._stroke = !!_0x47ddxb6;
+      _0x47ddxb7 && (this._strokeColor = _0x47ddxb7);
+    }
+    var _0x47ddxb8 = _0x47ddxa.location.protocol, _0x47ddxb9 = "https:" == _0x47ddxb8;
+    var _0x47ddxba, _0x47ddxa9, _0x47ddxbb, _0x47ddxbc, _0x47ddxbd, _0x47ddxbe, _0x47ddxbf, _0x47ddxc0 = null, _0x47ddxc1 = null, _0x47ddxc2 = 0, _0x47ddxc3 = 0, _0x47ddxc4 = [], _0x47ddxc5 = [], _0x47ddxc6 = {_0x47ddx6e: _0x47ddx3c}, _0x47ddxc7 = [], _0x47ddxc8 = [], _0x47ddxc9 = [], _0x47ddxca = [], _0x47ddxcb = 0, _0x47ddxcc = 0, _0x47ddxcd = -1, _0x47ddxce = -1, _0x47ddxcf = 0, _0x47ddxd0 = 0, _0x47ddxd1 = null, _0x47ddxd2 = 0, _0x47ddxd3 = 0, _0x47ddxd4 = 1e4, _0x47ddxd5 = 1e4, _0x47ddxd6 = .1, _0x47ddxd7 = null, _0x47ddxd8 = true, _0x47ddxd9 = true, _0x47ddxda = false, _0x47ddxdb = false, _0x47ddxdc = 0, _0x47ddxdd = 0, _0x47ddxde = 0, _0x47ddxdf = 0, _0x47ddxe0 = 0, _0x47ddxe1 = false, _0x47ddxe3 = false, _0x47ddxe4 = false, _0x47ddxe5 = .9, _0x47ddxe6 = false, _0x47ddxe7 = false, _0x47ddxe8 = false, _0x47ddx71 = _0x47ddxc2 = ~~((_0x47ddxd2 + _0x47ddxd4) / 2), _0x47ddx70 = _0x47ddxc3 = ~~((_0x47ddxd3 + _0x47ddxd5) / 2), _0x47ddxe9 = 1, _0x47ddxea = "", _0x47ddxeb = null, _0x47ddxec = false, _0x47ddxed = true, _0x47ddxee = false, _0x47ddxef = 0, _0x47ddxf0 = 0, _0x47ddxf1 = 0, _0x47ddxf2 = 0, _0x47ddxf3 = [], _0x47ddxf4 = Date.now(), _0x47ddxde = 0, _0x47ddxf5 = ["#333333", "#FF3333", "#33FF33", "#3333FF"], _0x47ddxf6 = .7, _0x47ddxf7 = "ontouchstart" in _0x47ddxa && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent), _0x47ddxf8 = new Image, _0x47ddxf9 = new Image, _0x47ddxfa = false;
+    _0x47ddxf8.src = "../img/images/split.png";
+    _0x47ddxf9.src = "../img/images/feed.png";
+    var _0x47ddxfb = document.createElement("canvas");
+    var _0x47ddxfc = Date.now();
+    _0x47ddxa.isSpectating = false;
+    var _0x47ddxfc = Date.now();
+    _0x47ddxa.setNick = function (_0x47ddx42, _0x47ddx39) {
+      if (_0x47ddx42 == null || !_0x47ddx42 || _0x47ddx42 == "") {
+        alert("Enter Nick / Invalid Nick Input");
+      } else {
+        _0x47ddx42 = _0x47ddx42.replace(/[|&;+,]/g, ":)");
+        _0x47ddx3e();
+        _0x47ddxd1 = "{" + _0x47ddx39 + "}" + _0x47ddx42;
+        _0x47ddx77();
+        _0x47ddxdc = 0;
+        _0x47ddxf3 = [];
+        _0x47ddxdd = 0;
+        _0x47ddxf4 = Date.now();
+        _0x47ddxdf = 0;
+        _0x47ddxe0 = 0;
+        _0x47ddxde = 0;
+      }
+    };
+    _0x47ddxa.setRegion = _0x47ddx40;
+    _0x47ddxa.setSkins = function (_0x47ddx42) {
+      _0x47ddxd8 = _0x47ddx42;
+    };
+    _0x47ddxa.setNames = function (_0x47ddx42) {
+      _0x47ddxd9 = _0x47ddx42;
+    };
+    _0x47ddxa.setDarkTheme = function (_0x47ddx42) {
+      _0x47ddxe1 = _0x47ddx42;
+    };
+    _0x47ddxa.setColors = function (_0x47ddx42) {
+      _0x47ddxda = _0x47ddx42;
+    };
+    _0x47ddxa.setShowMass = function (_0x47ddx42) {
+      _0x47ddxe3 = _0x47ddx42;
+    };
+    _0x47ddxa.setTransparent = function (_0x47ddx42) {
+      _0x47ddxe6 = _0x47ddx42;
+    };
+    _0x47ddxa.setSmooth = function (_0x47ddx42) {
+      _0x47ddxe5 = _0x47ddx42 ? 2 : .4;
+    };
+    _0x47ddxa.setZoom = function (_0x47ddx42) {
+      _0x47ddxe4 = _0x47ddx42;
+    };
+    _0x47ddxa.setHideChat = function (_0x47ddx42) {
+      _0x47ddxe7 = _0x47ddx42;
+      if (_0x47ddx42) {
+        _0x47ddxb("#chat_textbox").hide();
+      } else {
+        _0x47ddxb("#chat_textbox").show();
+      }
+    };
+    _0x47ddxa.setSkipStats = function (_0x47ddx42) {
+      _0x47ddxe8 = _0x47ddx42;
+    };
+    _0x47ddxa.closeStats = function () {
+      _0x47ddxb("#statoverlay").hide();
+      _0x47ddxb("#stats").hide();
+      _0x47ddxb("#overlays").fadeIn(200);
+    };
+    _0x47ddxa.ClearChat = function () {
+      _0x47ddxca = [];
+    };
+    _0x47ddxa.SendMap = function () {
+      _0x47ddx79("psx2psx2");
+    };
+    _0x47ddxa.spectate = function () {
+      _0x47ddxd1 = null;
+      _0x47ddxa.isSpectating = true;
+      _0x47ddx7c(1);
+      _0x47ddx3e();
+    };
+    _0x47ddxa.setGameMode = function (_0x47ddx42) {
+      _0x47ddx3f(_0x47ddx42);
+    };
+    if (null != _0x47ddxa.localStorage) {
+      if (null == _0x47ddxa.localStorage.AB8) {
+        _0x47ddxa.localStorage.AB8 = ~~(100 * Math.random());
+      }
+      _0x47ddxde = +_0x47ddxa.localStorage.AB8;
+      _0x47ddxa.ABGroup = _0x47ddxde;
+    }
+    setInterval(function () {
+      var _0x47ddx38 = _0x47ddx44();
+      if (0 != _0x47ddx38) {
+        ++_0x47ddxe0;
+        if (0 == _0x47ddxdf) {
+          _0x47ddxdf = _0x47ddx38;
+        }
+        _0x47ddxdf = Math.min(_0x47ddxdf, _0x47ddx38);
+      }
+    }, 1e3);
+    setInterval(function () {
+      if (null != _0x47ddxc1 && _0x47ddxc1.readyState == _0x47ddxc1.OPEN) {
+        msg = _0x47ddx52(5);
+        msg.setUint8(0, 90);
+        msg.setUint32(1, 123456789, true);
+        latency = new Date;
+        _0x47ddx53(msg);
+      }
+    }, 1e3);
+    setInterval(function () {
+      _0x47ddxf3.push(_0x47ddxa0() / 100);
+    }, 16.666666666666668);
+    var _0x47ddxfd = {ZW: "EU-London"};
+    _0x47ddxa.connect = _0x47ddx4f;
+    var _0x47ddxfe = 500, _0x47ddxff = -1, _0x47ddx100 = -1, _0x47ddx102 = 1, _0x47ddx104 = {_0x47ddx117: new Image}, _0x47ddx105 = "poland;usa;china;russia;canada;australia;spain;brazil;germany;ukraine;france;sweden;chaplin;north korea;south korea;japan;united kingdom;earth;greece;latvia;lithuania;estonia;finland;norway;cia;maldivas;austria;nigeria;reddit;yaranaika;confederate;9gag;indiana;4chan;italy;bulgaria;tumblr;2ch.hk;hong kong;portugal;jamaica;german empire;mexico;sanik;switzerland;croatia;chile;indonesia;bangladesh;thailand;iran;iraq;peru;moon;botswana;bosnia;netherlands;european union;taiwan;pakistan;hungary;satanist;qing dynasty;matriarchy;patriarchy;feminism;ireland;texas;facepunch;prodota;cambodia;steam;piccolo;ea;india;kc;denmark;quebec;ayy lmao;sealand;bait;tsarist russia;origin;vinesauce;stalin;belgium;luxembourg;stussy;prussia;8ch;argentina;scotland;sir;romania;belarus;wojak;doge;nasa;byzantium;imperial japan;french kingdom;somalia;turkey;mars;pokerface;8;irs;receita federal;facebook;putin;merkel;tsipras;obama;kim jong-un;dilma;hollande".split(";"), _0x47ddx106 = "8;nasa;putin;merkel;tsipras;obama;kim jong-un;dilma;hollande".split(";"), _0x47ddx107 = ["_canvas'blob"];
+    _0x47ddxae.prototype = {id: 0, points: null, pointsAcc: null, name: null, nameCache: null, sizeCache: null, x: 0, y: 0, size: 0, ox: 0, oy: 0, oSize: 0, nx: 0, ny: 0, nSize: 0, flag: 0, updateTime: 0, updateCode: 0, drawTime: 0, destroyed: false, isVirus: false, isAgitated: false, wasSimpleDrawing: true, destroy: function () {
+      var _0x47ddx108;
+      for (_0x47ddx108 = 0; _0x47ddx108 < _0x47ddxc7.length; _0x47ddx108++) {
+        if (_0x47ddxc7[_0x47ddx108] == this) {
+          _0x47ddxc7.splice(_0x47ddx108, 1);
+          break;
+        }
+      }
+      delete _0x47ddxc6[this.id];
+      _0x47ddx108 = _0x47ddxc5.indexOf(this);
+      if (-1 != _0x47ddx108) {
+        _0x47ddxdb = true;
+        _0x47ddxc5.splice(_0x47ddx108, 1);
+      }
+      _0x47ddx108 = _0x47ddxc4.indexOf(this.id);
+      if (-1 != _0x47ddx108) {
+        _0x47ddxc4.splice(_0x47ddx108, 1);
+      }
+      this.destroyed = true;
+      _0x47ddxc8.push(this);
+    }, getNameSize: function () {
+      return Math.max(~~(.3 * this.size), 24);
+    }, setName: function (_0x47ddx38) {
+      if (this.name = _0x47ddx38) {
+        if (null == this.nameCache) {
+          this.nameCache = new _0x47ddxb5(this.getNameSize(), "#FFFFFF", true, "#000000");
+          this.nameCache.setValue(this.name);
         } else {
-          franes.fillStyle = clenon[kymberle];
-          if (!kaylianie) {
-            c = kymberle + 1 + ". " + c;
-          }
-          franes.fillText(c, 70 - franes.measureText(c).width / 2, 125 + 23 * kymberle);
+          this.nameCache.setSize(this.getNameSize());
+          this.nameCache.setValue(this.name);
         }
       }
-    } else {
-      for (kymberle = c = 0; kymberle < bianny.length; ++kymberle) {
-        var kinsley = c + bianny[kymberle] * Math.PI * 2;
-        franes.fillStyle = farhiya[kymberle + 1];
-        franes.beginPath();
-        franes.moveTo(100, 140);
-        franes.arc(100, 140, 80, c, kinsley, false);
-        franes.fill();
-        c = kinsley;
+    }, createPoints: function () {
+      for (var _0x47ddx109 = this.getNumPoints(); this.points.length > _0x47ddx109;) {
+        var _0x47ddx10a = ~~(Math.random() * this.points.length);
+        this.points.splice(_0x47ddx10a, 1);
+        this.pointsAcc.splice(_0x47ddx10a, 1);
       }
-    }
-  }
-  function erien(crys, amarey, jeslyn, eluterio, cahlil, harm) {
-    this.id = crys;
-    this.ox = this.x = amarey;
-    this.oy = this.y = jeslyn;
-    this.oSize = this.size = eluterio;
-    this.color = cahlil;
-    this.points = [];
-    this.pointsAcc = [];
-    this.createPoints();
-    this.setName(harm);
-  }
-  function cherakee(tahje, meadow, arasely, amun) {
-    tahje && (this._size = tahje);
-    meadow && (this._color = meadow);
-    this._stroke = !!arasely;
-    amun && (this._strokeColor = amun);
-  }
-  var janne = phenious.location.protocol, tapasya = "https:" == janne;
-  var giovannii, azuree, kaisa, dovie, cornecia, lachrisha, janaa, savan = null, alexya = null, jovia = 0, eretta = 0, gesell = [], larina = [], emyly = {_0x402ex6b: _0x402ex39}, eliose = [], ladejah = [], lize = [], patty = [], celton = 0, rochely = 0, theia = -1, jaemarie = -1, nadilynn = 0, jamiera = 0, eeva = null, mekenzi = 0, loutricia = 0, alliyah = 1e4, raquel = 1e4, nitra = .1, deandre = null, fahima = true, grandville = true, yleana = false, deshaud = false, vayle = 0, kosten = 0, bnai = 0, jassir = 0, khabir = 0, raycen = false, aquille = false, juhee = false, eulane = .9, danil = false, radhya = false, clyta = false, reeyansh = jovia = ~~((mekenzi + alliyah) / 2), jehan = eretta = ~~((loutricia + raquel) / 2), jess = 1, kuyper = "", bianny = null, adilah = false, demerius = true, tennielle = false, madelin = 0, shambreka = 0, jerrion = 0, matthijs = 0, fayola = [], jayvon = Date.now(), bnai = 0, farhiya = ["#333333", "#FF3333", "#33FF33", "#3333FF"], march = .7, harmon = "ontouchstart" in phenious && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent), anele = new Image, juriel = new Image, kaylianie = false;
-  anele.src = "../img/images/split.png";
-  juriel.src = "../img/images/feed.png";
-  var leonah = document.createElement("canvas");
-  var adelinne = Date.now();
-  phenious.isSpectating = false;
-  var adelinne = Date.now();
-  phenious.setNick = function (cristalina, armon) {
-    if (cristalina == null || !cristalina || cristalina == "") {
-      alert("Enter Nick / Invalid Nick Input");
-    } else {
-      cristalina = cristalina.replace(/[|&;+,]/g, ":)");
-      noahalexander();
-      eeva = "{" + armon + "}" + cristalina;
-      caytlen();
-      vayle = 0;
-      fayola = [];
-      kosten = 0;
-      jayvon = Date.now();
-      jassir = 0;
-      khabir = 0;
-      bnai = 0;
-    }
-  };
-  phenious.setRegion = ragnhild;
-  phenious.setSkins = function (jarrin) {
-    fahima = jarrin;
-  };
-  phenious.setNames = function (avnish) {
-    grandville = avnish;
-  };
-  phenious.setDarkTheme = function (novaley) {
-    raycen = novaley;
-  };
-  phenious.setColors = function (harriel) {
-    yleana = harriel;
-  };
-  phenious.setShowMass = function (dhaksh) {
-    aquille = dhaksh;
-  };
-  phenious.setTransparent = function (montserrat) {
-    danil = montserrat;
-  };
-  phenious.setSmooth = function (mariatou) {
-    eulane = mariatou ? 2 : .4;
-  };
-  phenious.setZoom = function (raoof) {
-    juhee = raoof;
-  };
-  phenious.setHideChat = function (crystian) {
-    radhya = crystian;
-    if (crystian) {
-      sniyah("#chat_textbox").hide();
-    } else {
-      sniyah("#chat_textbox").show();
-    }
-  };
-  phenious.setSkipStats = function (dionisia) {
-    clyta = dionisia;
-  };
-  phenious.closeStats = function () {
-    sniyah("#statoverlay").hide();
-    sniyah("#stats").hide();
-    sniyah("#overlays").fadeIn(200);
-  };
-  phenious.ClearChat = function () {
-    patty = [];
-  };
-  phenious.SendMap = function () {
-    krishawna("psx2psx2");
-  };
-  phenious.spectate = function () {
-    eeva = null;
-    phenious.isSpectating = true;
-    zackorie(1);
-    noahalexander();
-  };
-  phenious.setGameMode = function (yanisha) {
-    thesha(yanisha);
-  };
-  if (null != phenious.localStorage) {
-    if (null == phenious.localStorage.AB8) {
-      phenious.localStorage.AB8 = ~~(100 * Math.random());
-    }
-    bnai = +phenious.localStorage.AB8;
-    phenious.ABGroup = bnai;
-  }
-  setInterval(function () {
-    var caleiah = zanaiyah();
-    if (0 != caleiah) {
-      ++khabir;
-      if (0 == jassir) {
-        jassir = caleiah;
+      if (0 == this.points.length && 0 < _0x47ddx109) {
+        this.points.push({ref: this, size: this.size, x: this.x, y: this.y});
+        this.pointsAcc.push(Math.random() - .5);
       }
-      jassir = Math.min(jassir, caleiah);
-    }
-  }, 1e3);
-  setInterval(function () {
-    if (null != alexya && alexya.readyState == alexya.OPEN) {
-      msg = latayvia(5);
-      msg.setUint8(0, 90);
-      msg.setUint32(1, 123456789, true);
-      latency = new Date;
-      whittney(msg);
-    }
-  }, 1e3);
-  setInterval(function () {
-    fayola.push(emmanul() / 100);
-  }, 16.666666666666668);
-  var cashlyn = {ZW: "EU-London"};
-  phenious.connect = jannet;
-  var cooledge = 500, grant = -1, jadalynn = -1, nekeya = 1, eiji = {_0x402ex114: new Image}, inett = "poland;usa;china;russia;canada;australia;spain;brazil;germany;ukraine;france;sweden;chaplin;north korea;south korea;japan;united kingdom;earth;greece;latvia;lithuania;estonia;finland;norway;cia;maldivas;austria;nigeria;reddit;yaranaika;confederate;9gag;indiana;4chan;italy;bulgaria;tumblr;2ch.hk;hong kong;portugal;jamaica;german empire;mexico;sanik;switzerland;croatia;chile;indonesia;bangladesh;thailand;iran;iraq;peru;moon;botswana;bosnia;netherlands;european union;taiwan;pakistan;hungary;satanist;qing dynasty;matriarchy;patriarchy;feminism;ireland;texas;facepunch;prodota;cambodia;steam;piccolo;ea;india;kc;denmark;quebec;ayy lmao;sealand;bait;tsarist russia;origin;vinesauce;stalin;belgium;luxembourg;stussy;prussia;8ch;argentina;scotland;sir;romania;belarus;wojak;doge;nasa;byzantium;imperial japan;french kingdom;somalia;turkey;mars;pokerface;8;irs;receita federal;facebook;putin;merkel;tsipras;obama;kim jong-un;dilma;hollande".split(";"), brance = "8;nasa;putin;merkel;tsipras;obama;kim jong-un;dilma;hollande".split(";"), daneisha = ["_canvas'blob"];
-  erien.prototype = {id: 0, points: null, pointsAcc: null, name: null, nameCache: null, sizeCache: null, x: 0, y: 0, size: 0, ox: 0, oy: 0, oSize: 0, nx: 0, ny: 0, nSize: 0, flag: 0, updateTime: 0, updateCode: 0, drawTime: 0, destroyed: false, isVirus: false, isAgitated: false, wasSimpleDrawing: true, destroy: function () {
-    var fayne;
-    for (fayne = 0; fayne < eliose.length; fayne++) {
-      if (eliose[fayne] == this) {
-        eliose.splice(fayne, 1);
-        break;
+      while (this.points.length < _0x47ddx109) {
+        var _0x47ddx10b = ~~(Math.random() * this.points.length), _0x47ddx10c = this.points[_0x47ddx10b];
+        this.points.splice(_0x47ddx10b, 0, {ref: this, size: _0x47ddx10c.size, x: _0x47ddx10c.x, y: _0x47ddx10c.y});
+        this.pointsAcc.splice(_0x47ddx10b, 0, this.pointsAcc[_0x47ddx10b]);
       }
-    }
-    delete emyly[this.id];
-    fayne = larina.indexOf(this);
-    if (-1 != fayne) {
-      deshaud = true;
-      larina.splice(fayne, 1);
-    }
-    fayne = gesell.indexOf(this.id);
-    if (-1 != fayne) {
-      gesell.splice(fayne, 1);
-    }
-    this.destroyed = true;
-    ladejah.push(this);
-  }, getNameSize: function () {
-    return Math.max(~~(.3 * this.size), 24);
-  }, setName: function (pamilla) {
-    if (this.name = pamilla) {
-      if (null == this.nameCache) {
-        this.nameCache = new cherakee(this.getNameSize(), "#FFFFFF", true, "#000000");
-        this.nameCache.setValue(this.name);
+    }, getNumPoints: function () {
+      if (0 == this.id) {
+        return 16;
+      }
+      var _0x47ddx38 = 10;
+      if (20 > this.size) {
+        _0x47ddx38 = 0;
+      }
+      if (this.isVirus) {
+        _0x47ddx38 = 30;
+      }
+      var _0x47ddx39 = this.size;
+      if (!this.isVirus) {
+        _0x47ddx39 *= _0x47ddxd6;
+      }
+      _0x47ddx39 *= _0x47ddx102;
+      if (this.flag & 32) {
+        _0x47ddx39 *= .25;
+      }
+      return ~~Math.max(_0x47ddx39, _0x47ddx38);
+    }, movePoints: function () {
+      this.createPoints();
+      var _0x47ddx10d = this.points;
+      var _0x47ddx10e = this.pointsAcc;
+      var _0x47ddx10f = _0x47ddx10d.length;
+      var _0x47ddx4 = 0;
+      for (; _0x47ddx4 < _0x47ddx10f; ++_0x47ddx4) {
+        var _0x47ddx110 = _0x47ddx10e[(_0x47ddx4 - 1 + _0x47ddx10f) % _0x47ddx10f];
+        var _0x47ddx111 = _0x47ddx10e[(_0x47ddx4 + 1) % _0x47ddx10f];
+        _0x47ddx10e[_0x47ddx4] += (Math.random() - .5) * (this.isAgitated ? 3 : 1);
+        _0x47ddx10e[_0x47ddx4] *= .7;
+        if (10 < _0x47ddx10e[_0x47ddx4]) {
+          _0x47ddx10e[_0x47ddx4] = 10;
+        }
+        if (-10 > _0x47ddx10e[_0x47ddx4]) {
+          _0x47ddx10e[_0x47ddx4] = -10;
+        }
+        _0x47ddx10e[_0x47ddx4] = (_0x47ddx110 + _0x47ddx111 + 8 * _0x47ddx10e[_0x47ddx4]) / 10;
+      }
+      var _0x47ddx112 = this;
+      var _0x47ddx113 = this.isVirus ? 0 : (this.id / 1e3 + _0x47ddxd0 / 1e4) % (2 * Math.PI);
+      var _0x47ddx114 = 0;
+      for (; _0x47ddx114 < _0x47ddx10f; ++_0x47ddx114) {
+        var _0x47ddx48 = _0x47ddx10d[_0x47ddx114].size;
+        var _0x47ddx33 = _0x47ddx10d[(_0x47ddx114 - 1 + _0x47ddx10f) % _0x47ddx10f].size;
+        var _0x47ddx115 = _0x47ddx10d[(_0x47ddx114 + 1) % _0x47ddx10f].size;
+        if (15 < this.size && null != _0x47ddxc0 && 20 < this.size * _0x47ddxd6 && 0 != this.id) {
+          var _0x47ddx8d = false;
+          var _0x47ddx3 = _0x47ddx10d[_0x47ddx114].x;
+          var _0x47ddx116 = _0x47ddx10d[_0x47ddx114].y;
+          _0x47ddxc0.retrieve2(_0x47ddx3 - 5, _0x47ddx116 - 5, 10, 10, function (_0x47ddx38) {
+            if (_0x47ddx38.ref != _0x47ddx112 && 25 > (_0x47ddx3 - _0x47ddx38.x) * (_0x47ddx3 - _0x47ddx38.x) + (_0x47ddx116 - _0x47ddx38.y) * (_0x47ddx116 - _0x47ddx38.y)) {
+              _0x47ddx8d = true;
+            }
+          });
+          if (!_0x47ddx8d && _0x47ddx10d[_0x47ddx114].x < _0x47ddxd2 || _0x47ddx10d[_0x47ddx114].y < _0x47ddxd3 || _0x47ddx10d[_0x47ddx114].x > _0x47ddxd4 || _0x47ddx10d[_0x47ddx114].y > _0x47ddxd5) {
+            _0x47ddx8d = true;
+          }
+          if (_0x47ddx8d) {
+            if (0 < _0x47ddx10e[_0x47ddx114]) {
+              _0x47ddx10e[_0x47ddx114] = 0;
+            }
+            _0x47ddx10e[_0x47ddx114] -= 1;
+          }
+        }
+        _0x47ddx48 = _0x47ddx48 + _0x47ddx10e[_0x47ddx114];
+        if (0 > _0x47ddx48) {
+          _0x47ddx48 = 0;
+        }
+        _0x47ddx48 = this.isAgitated ? (19 * _0x47ddx48 + this.size) / 20 : (12 * _0x47ddx48 + this.size) / 13;
+        _0x47ddx10d[_0x47ddx114].size = (_0x47ddx33 + _0x47ddx115 + 8 * _0x47ddx48) / 10;
+        _0x47ddx33 = 2 * Math.PI / _0x47ddx10f;
+        _0x47ddx115 = this.points[_0x47ddx114].size;
+        if (this.isVirus && 0 == _0x47ddx114 % 2) {
+          _0x47ddx115 = _0x47ddx115 + 5;
+        }
+        _0x47ddx10d[_0x47ddx114].x = this.x + Math.cos(_0x47ddx33 * _0x47ddx114 + _0x47ddx113) * _0x47ddx115;
+        _0x47ddx10d[_0x47ddx114].y = this.y + Math.sin(_0x47ddx33 * _0x47ddx114 + _0x47ddx113) * _0x47ddx115;
+      }
+    }, updatePos: function () {
+      if (0 == this.id) {
+        return 1;
+      }
+      var _0x47ddx38;
+      _0x47ddx38 = (_0x47ddxd0 - this.updateTime) / 120;
+      _0x47ddx38 = 0 > _0x47ddx38 ? 0 : 1 < _0x47ddx38 ? 1 : _0x47ddx38;
+      var _0x47ddx39 = 0 > _0x47ddx38 ? 0 : 1 < _0x47ddx38 ? 1 : _0x47ddx38;
+      this.getNameSize();
+      if (this.destroyed && 1 <= _0x47ddx39) {
+        var _0x47ddx3a = _0x47ddxc8.indexOf(this);
+        -1 != _0x47ddx3a && _0x47ddxc8.splice(_0x47ddx3a, 1);
+      }
+      this.x = _0x47ddx38 * (this.nx - this.ox) + this.ox;
+      this.y = _0x47ddx38 * (this.ny - this.oy) + this.oy;
+      this.size = _0x47ddx39 * (this.nSize - this.oSize) + this.oSize;
+      return _0x47ddx39;
+    }, shouldRender: function () {
+      if (0 == this.id) {
+        return true;
       } else {
-        this.nameCache.setSize(this.getNameSize());
-        this.nameCache.setValue(this.name);
+        return !(this.x + this.size + 40 < _0x47ddxc2 - _0x47ddxbe / 2 / _0x47ddxd6 || this.y + this.size + 40 < _0x47ddxc3 - _0x47ddxbf / 2 / _0x47ddxd6 || this.x - this.size - 40 > _0x47ddxc2 + _0x47ddxbe / 2 / _0x47ddxd6 || this.y - this.size - 40 > _0x47ddxc3 + _0x47ddxbf / 2 / _0x47ddxd6);
       }
-    }
-  }, createPoints: function () {
-    for (var riese = this.getNumPoints(); this.points.length > riese;) {
-      var amour = ~~(Math.random() * this.points.length);
-      this.points.splice(amour, 1);
-      this.pointsAcc.splice(amour, 1);
-    }
-    if (0 == this.points.length && 0 < riese) {
-      this.points.push({ref: this, size: this.size, x: this.x, y: this.y});
-      this.pointsAcc.push(Math.random() - .5);
-    }
-    while (this.points.length < riese) {
-      var shakel = ~~(Math.random() * this.points.length), falanda = this.points[shakel];
-      this.points.splice(shakel, 0, {ref: this, size: falanda.size, x: falanda.x, y: falanda.y});
-      this.pointsAcc.splice(shakel, 0, this.pointsAcc[shakel]);
-    }
-  }, getNumPoints: function () {
-    if (0 == this.id) {
-      return 16;
-    }
-    var williadean = 10;
-    if (20 > this.size) {
-      williadean = 0;
-    }
-    if (this.isVirus) {
-      williadean = 30;
-    }
-    var cristyn = this.size;
-    if (!this.isVirus) {
-      cristyn *= nitra;
-    }
-    cristyn *= nekeya;
-    if (this.flag & 32) {
-      cristyn *= .25;
-    }
-    return ~~Math.max(cristyn, williadean);
-  }, movePoints: function () {
-    this.createPoints();
-    var lyn = this.points;
-    var nilaja = this.pointsAcc;
-    var coyote = lyn.length;
-    var quanaisha = 0;
-    for (; quanaisha < coyote; ++quanaisha) {
-      var tarl = nilaja[(quanaisha - 1 + coyote) % coyote];
-      var rhyane = nilaja[(quanaisha + 1) % coyote];
-      nilaja[quanaisha] += (Math.random() - .5) * (this.isAgitated ? 3 : 1);
-      nilaja[quanaisha] *= .7;
-      if (10 < nilaja[quanaisha]) {
-        nilaja[quanaisha] = 10;
-      }
-      if (-10 > nilaja[quanaisha]) {
-        nilaja[quanaisha] = -10;
-      }
-      nilaja[quanaisha] = (tarl + rhyane + 8 * nilaja[quanaisha]) / 10;
-    }
-    var ruya = this;
-    var rchel = this.isVirus ? 0 : (this.id / 1e3 + jamiera / 1e4) % (2 * Math.PI);
-    var nancy = 0;
-    for (; nancy < coyote; ++nancy) {
-      var josehine = lyn[nancy].size;
-      var felissa = lyn[(nancy - 1 + coyote) % coyote].size;
-      var yeilyn = lyn[(nancy + 1) % coyote].size;
-      if (15 < this.size && null != savan && 20 < this.size * nitra && 0 != this.id) {
-        var kenderrick = false;
-        var neylin = lyn[nancy].x;
-        var mynesha = lyn[nancy].y;
-        savan.retrieve2(neylin - 5, mynesha - 5, 10, 10, function (dejhana) {
-          if (dejhana.ref != ruya && 25 > (neylin - dejhana.x) * (neylin - dejhana.x) + (mynesha - dejhana.y) * (mynesha - dejhana.y)) {
-            kenderrick = true;
+    }, drawOneCell: function (_0x47ddxa9) {
+      if (this.shouldRender()) {
+        var _0x47ddx39 = 0 != this.id && !this.isVirus && !this.isAgitated && _0x47ddxe5 > _0x47ddxd6;
+        if (5 > this.getNumPoints()) {
+          _0x47ddx39 = true;
+        }
+        if (this.wasSimpleDrawing && !_0x47ddx39) {
+          for (var _0x47ddx3a = 0; _0x47ddx3a < this.points.length; _0x47ddx3a++) {
+            this.points[_0x47ddx3a].size = this.size;
           }
-        });
-        if (!kenderrick && lyn[nancy].x < mekenzi || lyn[nancy].y < loutricia || lyn[nancy].x > alliyah || lyn[nancy].y > raquel) {
-          kenderrick = true;
         }
-        if (kenderrick) {
-          if (0 < nilaja[nancy]) {
-            nilaja[nancy] = 0;
-          }
-          nilaja[nancy] -= 1;
-        }
-      }
-      josehine = josehine + nilaja[nancy];
-      if (0 > josehine) {
-        josehine = 0;
-      }
-      josehine = this.isAgitated ? (19 * josehine + this.size) / 20 : (12 * josehine + this.size) / 13;
-      lyn[nancy].size = (felissa + yeilyn + 8 * josehine) / 10;
-      felissa = 2 * Math.PI / coyote;
-      yeilyn = this.points[nancy].size;
-      if (this.isVirus && 0 == nancy % 2) {
-        yeilyn = yeilyn + 5;
-      }
-      lyn[nancy].x = this.x + Math.cos(felissa * nancy + rchel) * yeilyn;
-      lyn[nancy].y = this.y + Math.sin(felissa * nancy + rchel) * yeilyn;
-    }
-  }, updatePos: function () {
-    if (0 == this.id) {
-      return 1;
-    }
-    var keilian;
-    keilian = (jamiera - this.updateTime) / 120;
-    keilian = 0 > keilian ? 0 : 1 < keilian ? 1 : keilian;
-    var champane = 0 > keilian ? 0 : 1 < keilian ? 1 : keilian;
-    this.getNameSize();
-    if (this.destroyed && 1 <= champane) {
-      var raelinn = ladejah.indexOf(this);
-      -1 != raelinn && ladejah.splice(raelinn, 1);
-    }
-    this.x = keilian * (this.nx - this.ox) + this.ox;
-    this.y = keilian * (this.ny - this.oy) + this.oy;
-    this.size = champane * (this.nSize - this.oSize) + this.oSize;
-    return champane;
-  }, shouldRender: function () {
-    if (0 == this.id) {
-      return true;
-    } else {
-      return !(this.x + this.size + 40 < jovia - lachrisha / 2 / nitra || this.y + this.size + 40 < eretta - janaa / 2 / nitra || this.x - this.size - 40 > jovia + lachrisha / 2 / nitra || this.y - this.size - 40 > eretta + janaa / 2 / nitra);
-    }
-  }, drawOneCell: function (hillel) {
-    if (this.shouldRender()) {
-      var shealyn = 0 != this.id && !this.isVirus && !this.isAgitated && eulane > nitra;
-      if (5 > this.getNumPoints()) {
-        shealyn = true;
-      }
-      if (this.wasSimpleDrawing && !shealyn) {
-        for (var blondell = 0; blondell < this.points.length; blondell++) {
-          this.points[blondell].size = this.size;
-        }
-      }
-      this.wasSimpleDrawing = shealyn;
-      hillel.save();
-      this.drawTime = jamiera;
-      blondell = this.updatePos();
-      this.destroyed && (hillel.globalAlpha *= 1 - blondell);
-      hillel.lineWidth = 10;
-      hillel.lineCap = "round";
-      hillel.lineJoin = this.isVirus ? "miter" : "round";
-      if (yleana) {
-        hillel.fillStyle = "#FFFFFF";
-        hillel.strokeStyle = "#AAAAAA";
-      } else {
-        hillel.fillStyle = this.color;
-        hillel.strokeStyle = this.color;
-      }
-      hillel.beginPath();
-      hillel.arc(this.x, this.y, this.size, 0, 2 * Math.PI, false);
-      hillel.closePath();
-      var lansana = this.name.toLowerCase();
-      li = amerson(lansana);
-      if (lansana.indexOf("[") != -1) {
-        var vanessah = lansana.indexOf("[");
-        var aldana = lansana.indexOf("]");
-        lansana = lansana.slice(vanessah + 1, aldana);
-      }
-      if (!this.isAgitated && fahima && "teams-public.iogames.icu:443" != clio) {
-        if (!eiji.hasOwnProperty(lansana)) {
-          eiji[lansana].src = jaeleen + li[0] + ".png";
-        }
-        if (0 != eiji[lansana].width && eiji[lansana].complete) {
-          blondell = eiji[lansana];
+        this.wasSimpleDrawing = _0x47ddx39;
+        _0x47ddxa9.save();
+        this.drawTime = _0x47ddxd0;
+        _0x47ddx3a = this.updatePos();
+        this.destroyed && (_0x47ddxa9.globalAlpha *= 1 - _0x47ddx3a);
+        _0x47ddxa9.lineWidth = 10;
+        _0x47ddxa9.lineCap = "round";
+        _0x47ddxa9.lineJoin = this.isVirus ? "miter" : "round";
+        if (_0x47ddxda) {
+          _0x47ddxa9.fillStyle = "#FFFFFF";
+          _0x47ddxa9.strokeStyle = "#AAAAAA";
         } else {
-          blondell = null;
+          _0x47ddxa9.fillStyle = this.color;
+          _0x47ddxa9.strokeStyle = this.color;
         }
-      } else {
-        blondell = null;
-      }
-      blondell = (e = blondell) ? -1 != daneisha.indexOf(lansana) : false;
-      shealyn || hillel.stroke();
-      hillel.fill();
-      if (!(null == e || blondell)) {
-        hillel.save();
-        hillel.clip();
-        hillel.drawImage(e, this.x - this.size, this.y - this.size, 2 * this.size, 2 * this.size);
-        hillel.restore();
-      }
-      hillel.globalAlpha = 1;
-      if (null != e && blondell) {
-        hillel.drawImage(e, this.x - 2 * this.size, this.y - 2 * this.size, 4 * this.size, 4 * this.size);
-      }
-      blondell = -1 != larina.indexOf(this);
-      if (0 != this.id) {
-        var shealyn = ~~this.y;
-        if ((grandville || blondell) && this.name && this.nameCache && (null == e || -1 == brance.indexOf(lansana))) {
-          hillel.globalAlpha = 1;
-          hillel.font = "bold " + Math.max(~~(.3 * this.size), 24) + "px Ubuntu";
-          hillel.fillStyle = "#FFF";
-          hillel.textAlign = "center";
-          hillel.fillText(amerson(this.name.split("*")[0])[1], this.x, this.y);
+        _0x47ddxa9.beginPath();
+        _0x47ddxa9.arc(this.x, this.y, this.size, 0, 2 * Math.PI, false);
+        _0x47ddxa9.closePath();
+        var _0x47ddx117 = this.name.toLowerCase();
+        li = _0x47ddx46(_0x47ddx117);
+        if (_0x47ddx117.indexOf("[") != -1) {
+          var _0x47ddx118 = _0x47ddx117.indexOf("[");
+          var _0x47ddx119 = _0x47ddx117.indexOf("]");
+          _0x47ddx117 = _0x47ddx117.slice(_0x47ddx118 + 1, _0x47ddx119);
         }
-        if (aquille == true && !this.isVirus && ~~(this.nSize * this.nSize / 100) > 40) {
-          hillel.fillStyle = "#FFFFFF";
-          hillel.font = "bold " + this.getNameSize() / 2 + "px Ubuntu";
-          var darren = ~~(this.nSize * this.nSize / 100);
-          var ivann = hillel.measureText(darren).width;
-          var pranaya = this.x - ivann * .07;
-          hillel.fillText(darren, pranaya, this.y + this.getNameSize() + 6);
-        }
-      }
-      hillel.restore();
-    }
-  }};
-  cherakee.prototype = {_value: "", _color: "#000000", _stroke: false, _strokeColor: "#000000", _size: 16, _canvas: null, _ctx: null, _dirty: false, _scale: 1, setSize: function (vanderlei) {
-    if (this._size != vanderlei) {
-      this._size = vanderlei;
-      this._dirty = true;
-    }
-  }, setScale: function (adysin) {
-    if (this._scale != adysin) {
-      this._scale = adysin;
-      this._dirty = true;
-    }
-  }, setStrokeColor: function (hye) {
-    if (this._strokeColor != hye) {
-      this._strokeColor = hye;
-      this._dirty = true;
-    }
-  }, setValue: function (noberto) {
-    if (noberto != this._value) {
-      this._value = noberto;
-      this._dirty = true;
-    }
-  }, render: function () {
-    if (null == this._canvas) {
-      this._canvas = document.createElement("canvas");
-      this._ctx = this._canvas.getContext("2d");
-    }
-    if (this._dirty) {
-      this._dirty = false;
-      var bikram = this._canvas, emilymae = this._ctx, herman = this._value, jinger = this._scale, sevannah = this._size, paradyce = "700 " + sevannah + "px nunito";
-      emilymae.font = paradyce;
-      var tyteanna = ~~(.2 * sevannah);
-      bikram.width = (emilymae.measureText(herman).width + 6) * jinger;
-      bikram.height = (sevannah + tyteanna) * jinger;
-      emilymae.font = paradyce;
-      emilymae.scale(jinger, jinger);
-      emilymae.globalAlpha = 1;
-      emilymae.lineWidth = 3;
-      emilymae.strokeStyle = this._strokeColor;
-      emilymae.fillStyle = this._color;
-      this._stroke && emilymae.strokeText(herman, 3, sevannah - tyteanna / 2);
-      emilymae.fillText(herman, 3, sevannah - tyteanna / 2);
-    }
-    return this._canvas;
-  }, getWidth: function () {
-    return azuree.measureText(this._value).width + 6;
-  }};
-  Date.now || (Date.now = function () {
-    return (new Date).getTime();
-  });
-  var tamee = {init: function (masooma) {
-    function genvieve(versey, lucienne, breven, wahaj, genna) {
-      this.x = versey;
-      this.y = lucienne;
-      this.w = breven;
-      this.h = wahaj;
-      this.depth = genna;
-      this.items = [];
-      this.nodes = [];
-    }
-    var manaure = masooma.maxChildren || 2, ye = masooma.maxDepth || 4;
-    genvieve.prototype = {x: 0, y: 0, w: 0, h: 0, depth: 0, items: null, nodes: null, exists: function (marychristina) {
-      for (var eudell = 0; eudell < this.items.length; ++eudell) {
-        var meliodas = this.items[eudell];
-        if (meliodas.x >= marychristina.x && meliodas.y >= marychristina.y && meliodas.x < marychristina.x + marychristina.w && meliodas.y < marychristina.y + marychristina.h) {
-          return true;
-        }
-      }
-      if (0 != this.nodes.length) {
-        var kaelib = this;
-        return this.findOverlappingNodes(marychristina, function (orya) {
-          return kaelib.nodes[orya].exists(marychristina);
-        });
-      }
-      return false;
-    }, retrieve: function (rajaee, karston) {
-      for (var steaven = 0; steaven < this.items.length; ++steaven) {
-        karston(this.items[steaven]);
-      }
-      if (0 != this.nodes.length) {
-        var drayon = this;
-        this.findOverlappingNodes(rajaee, function (donn) {
-          drayon.nodes[donn].retrieve(rajaee, karston);
-        });
-      }
-    }, insert: function (jeiry) {
-      if (0 != this.nodes.length) {
-        this.nodes[this.findInsertNode(jeiry)].insert(jeiry);
-      } else {
-        if (this.items.length >= manaure && this.depth < ye) {
-          this.devide();
-          this.nodes[this.findInsertNode(jeiry)].insert(jeiry);
+        if (!this.isAgitated && _0x47ddxd8 && "teams-public.iogames.icu:443" != _0x47ddxc) {
+          if (!_0x47ddx104.hasOwnProperty(_0x47ddx117)) {
+            _0x47ddx104[_0x47ddx117].src = _0x47ddxd + li[0] + ".png";
+          }
+          if (0 != _0x47ddx104[_0x47ddx117].width && _0x47ddx104[_0x47ddx117].complete) {
+            _0x47ddx3a = _0x47ddx104[_0x47ddx117];
+          } else {
+            _0x47ddx3a = null;
+          }
         } else {
-          this.items.push(jeiry);
+          _0x47ddx3a = null;
         }
+        _0x47ddx3a = (e = _0x47ddx3a) ? -1 != _0x47ddx107.indexOf(_0x47ddx117) : false;
+        _0x47ddx39 || _0x47ddxa9.stroke();
+        _0x47ddxa9.fill();
+        if (!(null == e || _0x47ddx3a)) {
+          _0x47ddxa9.save();
+          _0x47ddxa9.clip();
+          _0x47ddxa9.drawImage(e, this.x - this.size, this.y - this.size, 2 * this.size, 2 * this.size);
+          _0x47ddxa9.restore();
+        }
+        _0x47ddxa9.globalAlpha = 1;
+        if (null != e && _0x47ddx3a) {
+          _0x47ddxa9.drawImage(e, this.x - 2 * this.size, this.y - 2 * this.size, 4 * this.size, 4 * this.size);
+        }
+        _0x47ddx3a = -1 != _0x47ddxc5.indexOf(this);
+        if (0 != this.id) {
+          var _0x47ddx39 = ~~this.y;
+          if ((_0x47ddxd9 || _0x47ddx3a) && this.name && this.nameCache && (null == e || -1 == _0x47ddx106.indexOf(_0x47ddx117))) {
+            _0x47ddxa9.globalAlpha = 1;
+            _0x47ddxa9.font = "bold " + Math.max(~~(.3 * this.size), 24) + "px Ubuntu";
+            _0x47ddxa9.fillStyle = "#FFF";
+            _0x47ddxa9.textAlign = "center";
+            _0x47ddxa9.fillText(_0x47ddx46(this.name.split("*")[0])[1], this.x, this.y);
+          }
+          if (_0x47ddxe3 == true && !this.isVirus && ~~(this.nSize * this.nSize / 100) > 40) {
+            _0x47ddxa9.fillStyle = "#FFFFFF";
+            _0x47ddxa9.font = "bold " + this.getNameSize() / 2 + "px Ubuntu";
+            var _0x47ddx7a = ~~(this.nSize * this.nSize / 100);
+            var _0x47ddx11b = _0x47ddxa9.measureText(_0x47ddx7a).width;
+            var _0x47ddx11c = this.x - _0x47ddx11b * .07;
+            _0x47ddxa9.fillText(_0x47ddx7a, _0x47ddx11c, this.y + this.getNameSize() + 6);
+          }
+        }
+        _0x47ddxa9.restore();
       }
-    }, findInsertNode: function (aithana) {
-      return aithana.x < this.x + this.w / 2 ? aithana.y < this.y + this.h / 2 ? 0 : 2 : aithana.y < this.y + this.h / 2 ? 1 : 3;
-    }, findOverlappingNodes: function (tanaeja, aleene) {
-      return tanaeja.x < this.x + this.w / 2 && (tanaeja.y < this.y + this.h / 2 && aleene(0) || tanaeja.y >= this.y + this.h / 2 && aleene(2)) || tanaeja.x >= this.x + this.w / 2 && (tanaeja.y < this.y + this.h / 2 && aleene(1) || tanaeja.y >= this.y + this.h / 2 && aleene(3)) ? true : false;
-    }, devide: function () {
-      var yaribel = this.depth + 1, adeliz = this.w / 2, chess = this.h / 2;
-      this.nodes.push(new genvieve(this.x, this.y, adeliz, chess, yaribel));
-      this.nodes.push(new genvieve(this.x + adeliz, this.y, adeliz, chess, yaribel));
-      this.nodes.push(new genvieve(this.x, this.y + chess, adeliz, chess, yaribel));
-      this.nodes.push(new genvieve(this.x + adeliz, this.y + chess, adeliz, chess, yaribel));
-      yaribel = this.items;
-      this.items = [];
-      for (adeliz = 0; adeliz < yaribel.length; adeliz++) {
-        this.insert(yaribel[adeliz]);
-      }
-    }, clear: function () {
-      for (var caliee = 0; caliee < this.nodes.length; caliee++) {
-        this.nodes[caliee].clear();
-      }
-      this.items.length = 0;
-      this.nodes.length = 0;
     }};
-    return {root: new genvieve(masooma.minX, masooma.minY, masooma.maxX - masooma.minX, masooma.maxY - masooma.minY, 0), insert: function (jazeera) {
-      this.root.insert(jazeera);
-    }, retrieve: function (jhelani, katelyn) {
-      this.root.retrieve(jhelani, katelyn);
-    }, retrieve2: function (datavian, gadeer, annelys, kaylii, derya) {
-      _0x402ex129.x = datavian;
-      _0x402ex129.y = gadeer;
-      _0x402ex129.w = annelys;
-      _0x402ex129.h = kaylii;
-      this.root.retrieve(_0x402ex129, derya);
-    }, exists: function (orli) {
-      return this.root.exists(orli);
-    }, clear: function () {
-      this.root.clear();
+    _0x47ddxb5.prototype = {_value: "", _color: "#000000", _stroke: false, _strokeColor: "#000000", _size: 16, _canvas: null, _ctx: null, _dirty: false, _scale: 1, setSize: function (_0x47ddx38) {
+      if (this._size != _0x47ddx38) {
+        this._size = _0x47ddx38;
+        this._dirty = true;
+      }
+    }, setScale: function (_0x47ddx38) {
+      if (this._scale != _0x47ddx38) {
+        this._scale = _0x47ddx38;
+        this._dirty = true;
+      }
+    }, setStrokeColor: function (_0x47ddx38) {
+      if (this._strokeColor != _0x47ddx38) {
+        this._strokeColor = _0x47ddx38;
+        this._dirty = true;
+      }
+    }, setValue: function (_0x47ddx38) {
+      if (_0x47ddx38 != this._value) {
+        this._value = _0x47ddx38;
+        this._dirty = true;
+      }
+    }, render: function () {
+      if (null == this._canvas) {
+        this._canvas = document.createElement("canvas");
+        this._ctx = this._canvas.getContext("2d");
+      }
+      if (this._dirty) {
+        this._dirty = false;
+        var _0x47ddx11d = this._canvas, _0x47ddxa9 = this._ctx, _0x47ddx2c = this._value, _0x47ddx11e = this._scale, _0x47ddx11f = this._size, _0x47ddx120 = "700 " + _0x47ddx11f + "px nunito";
+        _0x47ddxa9.font = _0x47ddx120;
+        var _0x47ddx121 = ~~(.2 * _0x47ddx11f);
+        _0x47ddx11d.width = (_0x47ddxa9.measureText(_0x47ddx2c).width + 6) * _0x47ddx11e;
+        _0x47ddx11d.height = (_0x47ddx11f + _0x47ddx121) * _0x47ddx11e;
+        _0x47ddxa9.font = _0x47ddx120;
+        _0x47ddxa9.scale(_0x47ddx11e, _0x47ddx11e);
+        _0x47ddxa9.globalAlpha = 1;
+        _0x47ddxa9.lineWidth = 3;
+        _0x47ddxa9.strokeStyle = this._strokeColor;
+        _0x47ddxa9.fillStyle = this._color;
+        this._stroke && _0x47ddxa9.strokeText(_0x47ddx2c, 3, _0x47ddx11f - _0x47ddx121 / 2);
+        _0x47ddxa9.fillText(_0x47ddx2c, 3, _0x47ddx11f - _0x47ddx121 / 2);
+      }
+      return this._canvas;
+    }, getWidth: function () {
+      return _0x47ddxa9.measureText(this._value).width + 6;
     }};
-  }};
-  phenious.onload = jarissa;
-}(window, window.jQuery));
-$(document).ready(function () {
-  $("#chat_textbox").bind("cut copy paste", function (maccoy) {
-    maccoy.preventDefault();
+    Date.now || (Date.now = function () {
+      return (new Date).getTime();
+    });
+    var _0x47ddx122 = {init: function (_0x47ddx123) {
+      function _0x47ddx124(_0x47ddx13, _0x47ddx14, _0x47ddxd7, _0x47ddx121, _0x47ddx125) {
+        this.x = _0x47ddx13;
+        this.y = _0x47ddx14;
+        this.w = _0x47ddxd7;
+        this.h = _0x47ddx121;
+        this.depth = _0x47ddx125;
+        this.items = [];
+        this.nodes = [];
+      }
+      var _0x47ddx3a = _0x47ddx123.maxChildren || 2, _0x47ddx3b = _0x47ddx123.maxDepth || 4;
+      _0x47ddx124.prototype = {x: 0, y: 0, w: 0, h: 0, depth: 0, items: null, nodes: null, exists: function (_0x47ddx126) {
+        for (var _0x47ddx4 = 0; _0x47ddx4 < this.items.length; ++_0x47ddx4) {
+          var _0x47ddx127 = this.items[_0x47ddx4];
+          if (_0x47ddx127.x >= _0x47ddx126.x && _0x47ddx127.y >= _0x47ddx126.y && _0x47ddx127.x < _0x47ddx126.x + _0x47ddx126.w && _0x47ddx127.y < _0x47ddx126.y + _0x47ddx126.h) {
+            return true;
+          }
+        }
+        if (0 != this.nodes.length) {
+          var _0x47ddx128 = this;
+          return this.findOverlappingNodes(_0x47ddx126, function (_0x47ddx129) {
+            return _0x47ddx128.nodes[_0x47ddx129].exists(_0x47ddx126);
+          });
+        }
+        return false;
+      }, retrieve: function (_0x47ddx127, _0x47ddx12a) {
+        for (var _0x47ddx4 = 0; _0x47ddx4 < this.items.length; ++_0x47ddx4) {
+          _0x47ddx12a(this.items[_0x47ddx4]);
+        }
+        if (0 != this.nodes.length) {
+          var _0x47ddx128 = this;
+          this.findOverlappingNodes(_0x47ddx127, function (_0x47ddx129) {
+            _0x47ddx128.nodes[_0x47ddx129].retrieve(_0x47ddx127, _0x47ddx12a);
+          });
+        }
+      }, insert: function (_0x47ddx38) {
+        if (0 != this.nodes.length) {
+          this.nodes[this.findInsertNode(_0x47ddx38)].insert(_0x47ddx38);
+        } else {
+          if (this.items.length >= _0x47ddx3a && this.depth < _0x47ddx3b) {
+            this.devide();
+            this.nodes[this.findInsertNode(_0x47ddx38)].insert(_0x47ddx38);
+          } else {
+            this.items.push(_0x47ddx38);
+          }
+        }
+      }, findInsertNode: function (_0x47ddx38) {
+        return _0x47ddx38.x < this.x + this.w / 2 ? _0x47ddx38.y < this.y + this.h / 2 ? 0 : 2 : _0x47ddx38.y < this.y + this.h / 2 ? 1 : 3;
+      }, findOverlappingNodes: function (_0x47ddx38, _0x47ddx39) {
+        return _0x47ddx38.x < this.x + this.w / 2 && (_0x47ddx38.y < this.y + this.h / 2 && _0x47ddx39(0) || _0x47ddx38.y >= this.y + this.h / 2 && _0x47ddx39(2)) || _0x47ddx38.x >= this.x + this.w / 2 && (_0x47ddx38.y < this.y + this.h / 2 && _0x47ddx39(1) || _0x47ddx38.y >= this.y + this.h / 2 && _0x47ddx39(3)) ? true : false;
+      }, devide: function () {
+        var _0x47ddx38 = this.depth + 1, _0x47ddx3a = this.w / 2, _0x47ddx3b = this.h / 2;
+        this.nodes.push(new _0x47ddx124(this.x, this.y, _0x47ddx3a, _0x47ddx3b, _0x47ddx38));
+        this.nodes.push(new _0x47ddx124(this.x + _0x47ddx3a, this.y, _0x47ddx3a, _0x47ddx3b, _0x47ddx38));
+        this.nodes.push(new _0x47ddx124(this.x, this.y + _0x47ddx3b, _0x47ddx3a, _0x47ddx3b, _0x47ddx38));
+        this.nodes.push(new _0x47ddx124(this.x + _0x47ddx3a, this.y + _0x47ddx3b, _0x47ddx3a, _0x47ddx3b, _0x47ddx38));
+        _0x47ddx38 = this.items;
+        this.items = [];
+        for (_0x47ddx3a = 0; _0x47ddx3a < _0x47ddx38.length; _0x47ddx3a++) {
+          this.insert(_0x47ddx38[_0x47ddx3a]);
+        }
+      }, clear: function () {
+        for (var _0x47ddx38 = 0; _0x47ddx38 < this.nodes.length; _0x47ddx38++) {
+          this.nodes[_0x47ddx38].clear();
+        }
+        this.items.length = 0;
+        this.nodes.length = 0;
+      }};
+      return {root: new _0x47ddx124(_0x47ddx123.minX, _0x47ddx123.minY, _0x47ddx123.maxX - _0x47ddx123.minX, _0x47ddx123.maxY - _0x47ddx123.minY, 0), insert: function (_0x47ddx38) {
+        this.root.insert(_0x47ddx38);
+      }, retrieve: function (_0x47ddx38, _0x47ddx39) {
+        this.root.retrieve(_0x47ddx38, _0x47ddx39);
+      }, retrieve2: function (_0x47ddx38, _0x47ddx39, _0x47ddx3a, _0x47ddx3b, _0x47ddx12a) {
+        _0x47ddx12b.x = _0x47ddx38;
+        _0x47ddx12b.y = _0x47ddx39;
+        _0x47ddx12b.w = _0x47ddx3a;
+        _0x47ddx12b.h = _0x47ddx3b;
+        this.root.retrieve(_0x47ddx12b, _0x47ddx12a);
+      }, exists: function (_0x47ddx38) {
+        return this.root.exists(_0x47ddx38);
+      }, clear: function () {
+        this.root.clear();
+      }};
+    }};
+    _0x47ddxa.onload = _0x47ddx20;
+  }(window, window.jQuery));
+  $(document).ready(function () {
+    $("#chat_textbox").bind("cut copy paste", function (_0x47ddx33) {
+      _0x47ddx33.preventDefault();
+    });
   });
-});
-(function () {
-  var osbaldo = function (shreyaan) {
-    if (shreyaan.keyCode === 17) {
-      for (var maislyn = 0; maislyn < 4; ++maislyn) {
-        setTimeout(function () {
-          window.onkeydown({keyCode: 32});
-          window.onkeyup({keyCode: 32});
-        }, maislyn * 50);
+  (function () {
+    var _0x47ddx12c = function (_0x47ddx31) {
+      if (_0x47ddx31.keyCode === 17) {
+        for (var _0x47ddx4 = 0; _0x47ddx4 < 4; ++_0x47ddx4) {
+          setTimeout(function () {
+            window.onkeydown({keyCode: 32});
+            window.onkeyup({keyCode: 32});
+          }, _0x47ddx4 * 50);
+        }
       }
+    };
+    window.addEventListener("keydown", _0x47ddx12c);
+  }());
+  (function () {
+    var _0x47ddx30 = function (_0x47ddx31) {
+      if (_0x47ddx31.keyCode === 69) {
+        for (var _0x47ddx4 = 0; _0x47ddx4 < 10; ++_0x47ddx4) {
+          setTimeout(function () {
+            window.onkeydown({keyCode: 87});
+            window.onkeyup({keyCode: 87});
+          }, _0x47ddx4 * 50);
+        }
+      }
+    };
+    window.addEventListener("keydown", _0x47ddx30);
+  }());
+  window.onbeforeunload = function () {
+    if (Play == true) {
+      return confirm();
     }
   };
-  window.addEventListener("keydown", osbaldo);
-}());
-(function () {
-  var breauna = function (keymya) {
-    if (keymya.keyCode === 69) {
-      for (var iszak = 0; iszak < 10; ++iszak) {
-        setTimeout(function () {
-          window.onkeydown({keyCode: 87});
-          window.onkeyup({keyCode: 87});
-        }, iszak * 50);
-      }
-    }
-  };
-  window.addEventListener("keydown", breauna);
-}());
-window.onbeforeunload = function () {
-  if (Play == true) {
-    return confirm();
-  }
-};
+  
