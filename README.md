@@ -8,4 +8,6 @@ If you're having any issues contact me on my discord: Tatsuya#9737 or join my di
 
 If you need any help in any games feel free to contact me there as well.
 
-Lmao: https://prnt.sc/O2xW-u6G-Z3s
+Wall of smart dev decisions: 
+https://prnt.sc/O2xW-u6G-Z3s
+https://prnt.sc/dJM6FnvQDC9A
