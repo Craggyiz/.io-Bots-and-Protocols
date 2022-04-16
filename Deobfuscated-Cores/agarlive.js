@@ -1,218 +1,226 @@
-var Vector2 = function (laural, sharonica) {
-  this.x = laural || 0;
-  this.y = sharonica || 0;
+var Vector2 = function (steevie, karenza) {
+  this.x = steevie || 0, this.y = karenza || 0;
 };
-Vector2.prototype = {reset: function (mairead, claree) {
-  return this.x = mairead, this.y = claree, this;
-}, toString: function (nakedra) {
-  nakedra = nakedra || 3;
-  var janyah = Math.pow(10, nakedra);
-  return "[" + Math.round(this.x * janyah) / janyah + ", " + Math.round(this.y * janyah) / janyah + "]";
+Vector2.prototype = {reset: function (efrem, myrtha) {
+  return this.x = efrem, this.y = myrtha, this;
+}, toString: function (shelbyjo) {
+  shelbyjo = shelbyjo || 3;
+  var sheleta = Math.pow(10, shelbyjo);
+  return "[" + Math.round(this.x * sheleta) / sheleta + ", " + Math.round(this.y * sheleta) / sheleta + "]";
 }, clone: function () {
   return new Vector2(this.x, this.y);
-}, copyTo: function (jeroldine) {
-  jeroldine.x = this.x;
-  jeroldine.y = this.y;
-}, copyFrom: function (thania) {
-  this.x = thania.x;
-  this.y = thania.y;
+}, copyTo: function (linnea) {
+  linnea.x = this.x, linnea.y = this.y;
+}, copyFrom: function (tahlea) {
+  this.x = tahlea.x, this.y = tahlea.y;
 }, magnitude: function () {
   return Math.sqrt(this.x * this.x + this.y * this.y);
 }, magnitudeSquared: function () {
   return this.x * this.x + this.y * this.y;
 }, normalise: function () {
-  var branesha = this.magnitude();
-  return this.x = this.x / branesha, this.y = this.y / branesha, this;
+  var theren = this.magnitude();
+  return this.x = this.x / theren, this.y = this.y / theren, this;
 }, reverse: function () {
   return this.x = -this.x, this.y = -this.y, this;
-}, plusEq: function (vinisha) {
-  return this.x += vinisha.x, this.y += vinisha.y, this;
-}, plusNew: function (johnalyn) {
-  return new Vector2(this.x + johnalyn.x, this.y + johnalyn.y);
-}, minusEq: function (avyel) {
-  return this.x -= avyel.x, this.y -= avyel.y, this;
-}, minusNew: function (ineka) {
-  return new Vector2(this.x - ineka.x, this.y - ineka.y);
-}, multiplyEq: function (rikuto) {
-  return this.x *= rikuto, this.y *= rikuto, this;
-}, multiplyNew: function (jacksin) {
-  return this.clone().multiplyEq(jacksin);
-}, divideEq: function (redden) {
-  return this.x /= redden, this.y /= redden, this;
-}, divideNew: function (avantae) {
-  return this.clone().divideEq(avantae);
-}, dot: function (edzon) {
-  return this.x * edzon.x + this.y * edzon.y;
-}, angle: function (costa) {
-  return Math.atan2(this.y, this.x) * (costa ? 1 : Vector2Const.TO_DEGREES);
-}, rotate: function (saadiq, lovisa) {
-  var correen = Math.cos(saadiq * (lovisa ? 1 : Vector2Const.TO_RADIANS)), kaitie = Math.sin(saadiq * (lovisa ? 1 : Vector2Const.TO_RADIANS));
-  return Vector2Const.temp.copyFrom(this), this.x = Vector2Const.temp.x * correen - Vector2Const.temp.y * kaitie, this.y = Vector2Const.temp.x * kaitie + Vector2Const.temp.y * correen, this;
-}, equals: function (mavrix) {
-  return this.x == mavrix.x && this.y == mavrix.x;
-}, isCloseTo: function (eldren, netta) {
-  return !!this.equals(eldren) || (Vector2Const.temp.copyFrom(this), Vector2Const.temp.minusEq(eldren), Vector2Const.temp.magnitudeSquared() < netta * netta);
-}, rotateAroundPoint: function (chamaya, xenos, venezia) {
-  Vector2Const.temp.copyFrom(this);
-  Vector2Const.temp.minusEq(chamaya);
-  Vector2Const.temp.rotate(xenos, venezia);
-  Vector2Const.temp.plusEq(chamaya);
-  this.copyFrom(Vector2Const.temp);
-}, isMagLessThan: function (krysta) {
-  return this.magnitudeSquared() < krysta * krysta;
-}, isMagGreaterThan: function (eboni) {
-  return this.magnitudeSquared() > eboni * eboni;
-}};
-Vector2Const = {TO_DEGREES: 180 / Math.PI, TO_RADIANS: Math.PI / 180, temp: new Vector2};
+}, plusEq: function (reisha) {
+  return this.x += reisha.x, this.y += reisha.y, this;
+}, plusNew: function (virdell) {
+  return new Vector2(this.x + virdell.x, this.y + virdell.y);
+}, minusEq: function (pressly) {
+  return this.x -= pressly.x, this.y -= pressly.y, this;
+}, minusNew: function (shah) {
+  return new Vector2(this.x - shah.x, this.y - shah.y);
+}, multiplyEq: function (jsamine) {
+  return this.x *= jsamine, this.y *= jsamine, this;
+}, multiplyNew: function (ladaesha) {
+  return this.clone().multiplyEq(ladaesha);
+}, divideEq: function (damari) {
+  return this.x /= damari, this.y /= damari, this;
+}, divideNew: function (durane) {
+  return this.clone().divideEq(durane);
+}, dot: function (shadya) {
+  return this.x * shadya.x + this.y * shadya.y;
+}, angle: function (tomiah) {
+  return Math.atan2(this.y, this.x) * (tomiah ? 1 : Vector2Const.TO_DEGREES);
+}, rotate: function (jaelynne, milt) {
+  var aneel = Math.cos(jaelynne * (milt ? 1 : Vector2Const.TO_RADIANS)), lorik = Math.sin(jaelynne * (milt ? 1 : Vector2Const.TO_RADIANS));
+  return Vector2Const.temp.copyFrom(this), this.x = Vector2Const.temp.x * aneel - Vector2Const.temp.y * lorik, this.y = Vector2Const.temp.x * lorik + Vector2Const.temp.y * aneel, this;
+}, equals: function (lia) {
+  return this.x == lia.x && this.y == lia.x;
+}, isCloseTo: function (jameelah, caleiah) {
+  return !!this.equals(jameelah) || (Vector2Const.temp.copyFrom(this), Vector2Const.temp.minusEq(jameelah), Vector2Const.temp.magnitudeSquared() < caleiah * caleiah);
+}, rotateAroundPoint: function (gwennette, nouf, demicheal) {
+  Vector2Const.temp.copyFrom(this), Vector2Const.temp.minusEq(gwennette), Vector2Const.temp.rotate(nouf, demicheal), Vector2Const.temp.plusEq(gwennette), this.copyFrom(Vector2Const.temp);
+}, isMagLessThan: function (hassane) {
+  return this.magnitudeSquared() < hassane * hassane;
+}, isMagGreaterThan: function (romaisa) {
+  return this.magnitudeSquared() > romaisa * romaisa;
+}}, Vector2Const = {TO_DEGREES: 180 / Math.PI, TO_RADIANS: Math.PI / 180, temp: new Vector2};
 var Pa = "#000000";
 var c_bildiri_ar = [];
 var c_bildiri_id = [];
 var Sfreeze = false;
-(function (safwa, adelayda) {
-  var annunziata = "ffa-1-public.iogames.icu:443";
-  var nashoba = "./skins/";
-  function darleny(arija, moncerrad, sinaya, arrick, nastassia, aviraaj) {
-    if (arija <= nastassia && nastassia <= sinaya && moncerrad <= aviraaj && aviraaj <= arrick) {
+(function (kimara, carnes) {
+  var bethan = "ffa-1-public.iogames.icu:443";
+  var windie = "./skins/";
+  function kenzia(jonte, maklin, dasai, janayiah, pansy, tuere) {
+    if (jonte <= pansy && pansy <= dasai && maklin <= tuere && tuere <= janayiah) {
       return true;
     }
+    ;
     return false;
   }
-  var jozalyn = "createTouch" in document, znyah = [];
-  var shaquel = -1, kinser = new Vector2(0, 0), falena = new Vector2(0, 0), kihana = new Vector2(0, 0);
-  var holger = "ontouchstart" in self && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-  function amabel() {
-    kenard = true;
+  var kaelo, tracer, jamonie = "createTouch" in document, tatton = [];
+  var valicia = -1, loueen = new Vector2(0, 0), kshawn = new Vector2(0, 0), sheletha = new Vector2(0, 0);
+  var mussa = 0;
+  var jonnye = true;
+  var beresford = "ontouchstart" in self && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  function rebecka() {
+    ajahnae = true;
     document.getElementById("canvas").focus();
-    var cyenna = false;
-    var jobyna;
-    marlaena = naielle = document.getElementById("canvas");
-    mytisha = marlaena.getContext("2d");
-    marlaena.onmousemove = function (romero) {
-      thaily = romero.clientX;
-      sherryl = romero.clientY;
-      daisymarie();
+    var kimbla = false;
+    var claudius;
+    shaquira = doletha = document.getElementById("canvas");
+    jovonie = shaquira.getContext("2d");
+    shaquira.onmousemove = function (abigai) {
+      oluwatamilore = abigai.clientX;
+      onel = abigai.clientY;
+      chelsee();
     };
-    if (jozalyn) {
-      marlaena.addEventListener("touchstart", jamarris, false);
-      marlaena.addEventListener("touchmove", larnce, false);
-      marlaena.addEventListener("touchend", barlow, false);
+    if (jamonie) {
+      shaquira.addEventListener("touchstart", jessicca, false);
+      shaquira.addEventListener("touchmove", alhaji, false);
+      shaquira.addEventListener("touchend", quita, false);
     }
-    marlaena.onmouseup = function () {};
+    ;
+    shaquira.onmouseup = function () {};
     if (/firefox/i.test(navigator.userAgent)) {
-      document.addEventListener("DOMMouseScroll", taleigha, false);
+      document.addEventListener("DOMMouseScroll", shantiana, false);
     } else {
-      document.body.onmousewheel = taleigha;
+      document.body.onmousewheel = shantiana;
     }
-    marlaena.onfocus = function () {
-      cyenna = false;
+    ;
+    shaquira.onfocus = function () {
+      kimbla = false;
     };
     document.getElementById("chat_textbox").onblur = function () {
-      cyenna = false;
+      kimbla = false;
     };
     document.getElementById("chat_textbox").onfocus = function () {
-      cyenna = true;
+      kimbla = true;
     };
-    var charron = false, emreigh = false, bridney = false;
-    safwa.onkeydown = function (zerlene) {
-      switch (zerlene.keyCode) {
+    var grayland = false, markevious = false, taquita = false, vonshae = false;
+    kimara.onkeydown = function (ulesses) {
+      switch (ulesses.keyCode) {
         case 32:
-          if (!charron && !cyenna) {
-            tossie();
-            yumiko(17);
-            charron = true;
+          if (!grayland && !kimbla) {
+            rhodena();
+            aleander(17);
+            grayland = true;
           }
+          ;
           break;
         case 81:
-          if (!emreigh && !cyenna) {
-            yumiko(18);
-            emreigh = true;
+          if (!markevious && !kimbla) {
+            aleander(18);
+            markevious = true;
           }
+          ;
           break;
         case 87:
-          if (!bridney && !cyenna) {
-            tossie();
-            yumiko(21);
-            bridney = true;
+          if (!taquita && !kimbla) {
+            rhodena();
+            aleander(21);
+            taquita = true;
           }
+          ;
           break;
         case 70:
-          if (!cyenna) {
+          if (!kimbla) {
             if (Sfreeze == false) {
               Sfreeze = true;
-              avari("Game stopped.");
+              estie("Game stopped.");
             } else {
               Sfreeze = false;
-              avari("Game resumed.");
+              estie("Game resumed.");
             }
           }
+          ;
           break;
         case 67:
-          if (!cyenna) {
-            brishana("psx2psx2");
+          if (!kimbla) {
+            jacelin("psx2psx2");
           }
+          ;
           break;
         case 27:
-          grethe(true, 0);
+          altamae(true, 0);
           break;
         case 13:
-          if (cyenna) {
-            cyenna = false;
+          if (kimbla) {
+            kimbla = false;
             document.getElementById("chat_textbox").blur();
-            jobyna = yeilen(document.getElementById("chat_textbox").value);
-            if (jobyna.length > 0) {
-              brishana(jobyna);
+            claudius = drashawn(document.getElementById("chat_textbox").value);
+            if (claudius.length > 0) {
+              jacelin(claudius);
             }
+            ;
             document.getElementById("chat_textbox").value = "";
           } else {
-            if (!rohil) {
+            if (!zaynab) {
               document.getElementById("chat_textbox").focus();
-              cyenna = true;
+              kimbla = true;
             }
           }
+          ;
           break;
       }
     };
-    safwa.onkeyup = function (garson) {
-      switch (garson.keyCode) {
+    kimara.onkeyup = function (zavdiel) {
+      switch (zavdiel.keyCode) {
         case 32:
-          charron = false;
+          grayland = false;
           break;
         case 87:
-          bridney = false;
+          taquita = false;
           break;
         case 81:
-          if (emreigh) {
-            yumiko(19);
-            emreigh = false;
+          if (markevious) {
+            aleander(19);
+            markevious = false;
           }
+          ;
           break;
       }
     };
-    safwa.onblur = function () {
-      yumiko(19);
-      bridney = emreigh = charron = false;
+    kimara.onblur = function () {
+      aleander(19);
+      taquita = markevious = grayland = false;
     };
-    safwa.onresize = henry;
-    henry();
-    if (safwa.requestAnimationFrame) {
-      safwa.requestAnimationFrame(drizzt);
+    kimara.onresize = adrielys;
+    adrielys();
+    if (kimara.requestAnimationFrame) {
+      kimara.requestAnimationFrame(deantrae);
     } else {
-      setInterval(filex, 16.666666666666668);
+      setInterval(marasia, 16.666666666666668);
     }
-    if (lyle) {
-      adelayda("#region").val(lyle);
+    ;
+    if (olline) {
+      carnes("#region").val(olline);
     }
-    shoshanah();
-    seini(adelayda("#region").val());
-    null == shahwaiz && lyle && jacorian();
-    lennyn();
-    adelayda("#overlays").show();
+    ;
+    sheza();
+    jove(carnes("#region").val());
+    null == valentim && olline && genysis();
+    paulina();
+    carnes("#overlays").show();
   }
-  function avari(alberta) {
-    var janayra = "";
-    if (janayra == "") {
-      janayra = alberta;
+  function estie(garrik) {
+    var hjordis = "";
+    if (hjordis == "") {
+      hjordis = garrik;
     }
+    ;
     $("#nn").css("position", "absolute");
     $("#nn").show();
     $("#nn").css("top", "200px");
@@ -221,1231 +229,1326 @@ var Sfreeze = false;
     $("#nn").css("z-index", "2000");
     $("#nn").css("text-align", "center");
     $("#nn").css("width", "100%");
-    $("#nn").html(janayra);
+    $("#nn").html(hjordis);
     $("#nn").animate({opacity: 1, fontSize: "7em"}, 500, function () {
       $("#nn").hide();
     });
   }
-  function yeilen(mariya) {
-    var senay = mariya;
-    senay = senay.replace("piç", "***");
-    senay = senay.replace(":)", String.fromCodePoint(128513));
-    senay = senay.replace(":d", String.fromCodePoint(128513));
-    senay = senay.replace(":D", String.fromCodePoint(128513));
-    senay = senay.replace(":(", String.fromCodePoint(128577));
-    senay = senay.replace(":p", String.fromCodePoint(128541));
-    senay = senay.replace(":o", String.fromCodePoint(128562));
-    senay = senay.replace(";)", String.fromCodePoint(128521));
-    senay = senay.replace(":>", String.fromCodePoint(128535));
-    senay = senay.replace(":$", String.fromCodePoint(129324));
-    senay = senay.replace("love", String.fromCodePoint(128149));
-    senay = senay.replace("okay", String.fromCodePoint(128077));
-    senay = senay.replace("kiss", String.fromCodePoint(128139));
-    senay = senay.replace("porn", String.fromCodePoint(128139));
-    senay = senay.replace("sex", String.fromCodePoint(128139));
-    senay = senay.replace("PORN", String.fromCodePoint(128139));
-    senay = senay.replace("SEX", String.fromCodePoint(128139));
-    senay = senay.replace(".com", String.fromCodePoint(128139));
-    senay = senay.replace(".io", String.fromCodePoint(128139));
-    senay = senay.replace("yarak", "***");
-    senay = senay.replace("amcık", "***");
-    senay = senay.replace("amc1", "***");
-    senay = senay.replace("sikerim", "***");
-    senay = senay.replace("siken", "***");
-    senay = senay.replace("SİKEN", "***");
-    senay = senay.replace("sikerler", "***");
-    senay = senay.replace("xero", "***");
-    senay = senay.replace("XERO", "***");
-    senay = senay.replace("bot", "***");
-    senay = senay.replace("BOT", "***");
-    senay = senay.replace("discord", "***");
-    senay = senay.replace("http", "***");
-    senay = senay.replace("HTTP", "***");
-    senay = senay.replace("orospu", "***");
-    senay = senay.replace("yarrak", "***");
-    senay = senay.replace("s1keyim", "***");
-    senay = senay.replace("s1k", "***");
-    senay = senay.replace("ors", "***");
-    senay = senay.replace("yarrağı", "***");
-    senay = senay.replace("göt", "***");
-    senay = senay.replace("fuck", "***");
-    senay = senay.replace("ATATÜRK", "***");
-    senay = senay.replace("parti", "***");
-    senay = senay.replace("PARTİ", "***");
-    senay = senay.replace("atatürk", "***");
-    senay = senay.replace("fuck", "***");
-    senay = senay.replace("FUCK", "***");
-    senay = senay.replace("FUCK", "***");
-    senay = senay.replace("allah", "***");
-    senay = senay.replace("ALLAH", "***");
-    senay = senay.replace("HZ", "***");
-    senay = senay.replace("hz", "***");
-    senay = senay.replace("TAYYİP", "***");
-    senay = senay.replace("RTE", "***");
-    senay = senay.replace("RECEP", "***");
-    senay = senay.replace("rte", "***");
-    senay = senay.replace("FUCK", "***");
-    senay = senay.replace("FUCK", "***");
-    senay = senay.replace("tayyip", "***");
-    senay = senay.replace("tayyıp", "***");
-    senay = senay.replace("recep", "***");
-    senay = senay.replace("skmek", "***");
-    senay = senay.replace("ananızı", "***");
-    senay = senay.replace("sıkmek", "***");
-    senay = senay.replace("rec", "***");
-    senay = senay.replace("REC", "***");
-    senay = senay.replace("BOK", "***");
-    senay = senay.replace("bok", "***");
-    senay = senay.replace("Ass", "***");
-    senay = senay.replace("Vagina", "***");
-    senay = senay.replace("Bitch", "***");
-    senay = senay.replace("Sucker", "***");
-    senay = senay.replace("meme", "***");
-    senay = senay.replace("yarak", "***");
-    senay = senay.replace("yarağı", "***");
-    senay = senay.replace("sokam", "***");
-    senay = senay.replace("sikem", "***");
-    senay = senay.replace("sik", "***");
-    senay = senay.replace("ANANIZI", "***");
-    senay = senay.replace("gay", "***");
-    senay = senay.replace("oç", "***");
-    senay = senay.replace("o.ç", "***");
-    senay = senay.replace("pkk", "!!!");
-    senay = senay.replace("PKK", "!!!");
-    senay = senay.replace("o.çocuğu", "***");
-    senay = senay.replace("penis", "***");
-    senay = senay.replace("ananı", "***");
-    senay = senay.replace("anasını", "***");
-    senay = senay.replace("amına", "***");
-    senay = senay.replace("Siken", "***");
-    senay = senay.replace("iken", "***");
-    senay = senay.replace("İKEN", "***");
-    senay = senay.replace("sıktıgım", "***");
-    senay = senay.replace("sıkıyım", "***");
-    senay = senay.replace("orspu", "***");
-    senay = senay.replace("annenızın", "***");
-    senay = senay.replace("anneni", "***");
-    senay = senay.replace("skym", "***");
-    senay = senay.replace("sikeyim", "***");
-    senay = senay.replace("SİKEN", "***");
-    senay = senay.replace("sikeyim", "***");
-    senay = senay.replace("sikeyim", "***");
-    senay = senay.replace("vagina", "***");
-    return senay;
+  function drashawn(kimaria) {
+    var hydi = kimaria;
+    hydi = hydi.replace("piç", "***");
+    hydi = hydi.replace(":)", String.fromCodePoint(128513));
+    hydi = hydi.replace(":d", String.fromCodePoint(128513));
+    hydi = hydi.replace(":D", String.fromCodePoint(128513));
+    hydi = hydi.replace(":(", String.fromCodePoint(128577));
+    hydi = hydi.replace(":p", String.fromCodePoint(128541));
+    hydi = hydi.replace(":o", String.fromCodePoint(128562));
+    hydi = hydi.replace(";)", String.fromCodePoint(128521));
+    hydi = hydi.replace(":>", String.fromCodePoint(128535));
+    hydi = hydi.replace(":$", String.fromCodePoint(129324));
+    hydi = hydi.replace("love", String.fromCodePoint(128149));
+    hydi = hydi.replace("okay", String.fromCodePoint(128077));
+    hydi = hydi.replace("kiss", String.fromCodePoint(128139));
+    hydi = hydi.replace("porn", String.fromCodePoint(128139));
+    hydi = hydi.replace("sex", String.fromCodePoint(128139));
+    hydi = hydi.replace("PORN", String.fromCodePoint(128139));
+    hydi = hydi.replace("SEX", String.fromCodePoint(128139));
+    hydi = hydi.replace(".com", String.fromCodePoint(128139));
+    hydi = hydi.replace(".io", String.fromCodePoint(128139));
+    hydi = hydi.replace("yarak", "***");
+    hydi = hydi.replace("amcık", "***");
+    hydi = hydi.replace("amc1", "***");
+    hydi = hydi.replace("sikerim", "***");
+    hydi = hydi.replace("siken", "***");
+    hydi = hydi.replace("SİKEN", "***");
+    hydi = hydi.replace("sikerler", "***");
+    hydi = hydi.replace("xero", "***");
+    hydi = hydi.replace("XERO", "***");
+    hydi = hydi.replace("bot", "***");
+    hydi = hydi.replace("BOT", "***");
+    hydi = hydi.replace("discord", "***");
+    hydi = hydi.replace("http", "***");
+    hydi = hydi.replace("HTTP", "***");
+    hydi = hydi.replace("orospu", "***");
+    hydi = hydi.replace("yarrak", "***");
+    hydi = hydi.replace("s1keyim", "***");
+    hydi = hydi.replace("s1k", "***");
+    hydi = hydi.replace("ors", "***");
+    hydi = hydi.replace("yarrağı", "***");
+    hydi = hydi.replace("göt", "***");
+    hydi = hydi.replace("fuck", "***");
+    hydi = hydi.replace("ATATÜRK", "***");
+    hydi = hydi.replace("parti", "***");
+    hydi = hydi.replace("PARTİ", "***");
+    hydi = hydi.replace("atatürk", "***");
+    hydi = hydi.replace("fuck", "***");
+    hydi = hydi.replace("FUCK", "***");
+    hydi = hydi.replace("FUCK", "***");
+    hydi = hydi.replace("allah", "***");
+    hydi = hydi.replace("ALLAH", "***");
+    hydi = hydi.replace("HZ", "***");
+    hydi = hydi.replace("hz", "***");
+    hydi = hydi.replace("TAYYİP", "***");
+    hydi = hydi.replace("RTE", "***");
+    hydi = hydi.replace("RECEP", "***");
+    hydi = hydi.replace("rte", "***");
+    hydi = hydi.replace("FUCK", "***");
+    hydi = hydi.replace("FUCK", "***");
+    hydi = hydi.replace("tayyip", "***");
+    hydi = hydi.replace("tayyıp", "***");
+    hydi = hydi.replace("recep", "***");
+    hydi = hydi.replace("skmek", "***");
+    hydi = hydi.replace("ananızı", "***");
+    hydi = hydi.replace("sıkmek", "***");
+    hydi = hydi.replace("rec", "***");
+    hydi = hydi.replace("REC", "***");
+    hydi = hydi.replace("BOK", "***");
+    hydi = hydi.replace("bok", "***");
+    hydi = hydi.replace("Ass", "***");
+    hydi = hydi.replace("Vagina", "***");
+    hydi = hydi.replace("Bitch", "***");
+    hydi = hydi.replace("Sucker", "***");
+    hydi = hydi.replace("meme", "***");
+    hydi = hydi.replace("yarak", "***");
+    hydi = hydi.replace("yarağı", "***");
+    hydi = hydi.replace("sokam", "***");
+    hydi = hydi.replace("sikem", "***");
+    hydi = hydi.replace("sik", "***");
+    hydi = hydi.replace("ANANIZI", "***");
+    hydi = hydi.replace("gay", "***");
+    hydi = hydi.replace("oç", "***");
+    hydi = hydi.replace("o.ç", "***");
+    hydi = hydi.replace("pkk", "!!!");
+    hydi = hydi.replace("PKK", "!!!");
+    hydi = hydi.replace("o.çocuğu", "***");
+    hydi = hydi.replace("penis", "***");
+    hydi = hydi.replace("ananı", "***");
+    hydi = hydi.replace("anasını", "***");
+    hydi = hydi.replace("amına", "***");
+    hydi = hydi.replace("Siken", "***");
+    hydi = hydi.replace("iken", "***");
+    hydi = hydi.replace("İKEN", "***");
+    hydi = hydi.replace("sıktıgım", "***");
+    hydi = hydi.replace("sıkıyım", "***");
+    hydi = hydi.replace("orspu", "***");
+    hydi = hydi.replace("annenızın", "***");
+    hydi = hydi.replace("anneni", "***");
+    hydi = hydi.replace("skym", "***");
+    hydi = hydi.replace("sikeyim", "***");
+    hydi = hydi.replace("SİKEN", "***");
+    hydi = hydi.replace("sikeyim", "***");
+    hydi = hydi.replace("sikeyim", "***");
+    hydi = hydi.replace("vagina", "***");
+    return hydi;
   }
-  ;
   (function () {
-    var krag = function (cardyn) {
-      if (cardyn.keyCode === 69) {
-        for (var bashawn = 0; bashawn < 10; ++bashawn) {
+    var laurisa = 10;
+    var henoch = 50;
+    var linnell = function (gwinevere) {
+      if (gwinevere.keyCode === 69) {
+        for (var maryon = 0; maryon < laurisa; ++maryon) {
           setTimeout(function () {
             window.onkeydown({keyCode: 87});
             window.onkeyup({keyCode: 87});
-          }, bashawn * 50);
+          }, maryon * henoch);
         }
       }
     };
-    window.addEventListener("keydown", krag);
+    window.addEventListener("keydown", linnell);
   }());
-  function jamarris(brenton) {}
-  function larnce(judylynn) {}
-  function barlow(amirrah) {}
-  function taleigha(jameswilliam) {
-    if (!rumina) {
-      trishalana *= Math.pow(.9, jameswilliam.wheelDelta / -120 || jameswilliam.detail || 0);
-      .4 > trishalana && (trishalana = .4);
-      trishalana > 10 / bresha && (trishalana = 10 / bresha);
+  function jessicca(hashir) {}
+  function alhaji(bobak) {}
+  function quita(ery) {}
+  function shantiana(lodine) {
+    if (!bryndon) {
+      lareena *= Math.pow(.9, lodine.wheelDelta / -120 || lodine.detail || 0);
+      .4 > lareena && (lareena = .4);
+      lareena > 10 / neketa && (lareena = 10 / neketa);
     } else {
-      trishalana *= Math.pow(.9, jameswilliam.wheelDelta / -120 || jameswilliam.detail || 0);
-      .1 > trishalana && (trishalana = .1);
-      trishalana > 4 / bresha && (trishalana = 4 / bresha);
+      lareena *= Math.pow(.9, lodine.wheelDelta / -120 || lodine.detail || 0);
+      .1 > lareena && (lareena = .1);
+      lareena > 4 / neketa && (lareena = 4 / neketa);
     }
   }
-  function brooklin() {
-    if (.4 > bresha) {
-      mehmet = null;
+  function kolade() {
+    if (.4 > neketa) {
+      yerly = null;
     } else {
-      var maegan = Number.POSITIVE_INFINITY, pauleth = Number.POSITIVE_INFINITY, senta = Number.NEGATIVE_INFINITY, kinuko = Number.NEGATIVE_INFINITY, anaida = 0;
-      for (var leella = 0; leella < mizani.length; leella++) {
-        var masson = mizani[leella];
-        if (masson.shouldRender() && !masson.prepareData && 20 < masson.size * bresha) {
-          anaida = Math.max(masson.size, anaida);
-          maegan = Math.min(masson.x, maegan);
-          pauleth = Math.min(masson.y, pauleth);
-          senta = Math.max(masson.x, senta);
-          kinuko = Math.max(masson.y, kinuko);
+      var cheyenne = Number.POSITIVE_INFINITY, quentisha = Number.POSITIVE_INFINITY, hussam = Number.NEGATIVE_INFINITY, inna = Number.NEGATIVE_INFINITY, casmir = 0;
+      for (var mylz = 0; mylz < floki.length; mylz++) {
+        var jenevieve = floki[mylz];
+        if (jenevieve.shouldRender() && !jenevieve.prepareData && 20 < jenevieve.size * neketa) {
+          casmir = Math.max(jenevieve.size, casmir);
+          cheyenne = Math.min(jenevieve.x, cheyenne);
+          quentisha = Math.min(jenevieve.y, quentisha);
+          hussam = Math.max(jenevieve.x, hussam);
+          inna = Math.max(jenevieve.y, inna);
         }
       }
-      mehmet = layland.init({minX: maegan - (anaida + 100), minY: pauleth - (anaida + 100), maxX: senta + (anaida + 100), maxY: kinuko + (anaida + 100), maxChildren: 2, maxDepth: 4});
-      for (leella = 0; leella < mizani.length; leella++) {
-        masson = mizani[leella];
-        if (masson.shouldRender() && !(20 >= masson.size * bresha)) {
-          for (maegan = 0; maegan < masson.points.length; ++maegan) {
-            pauleth = masson.points[maegan].x;
-            senta = masson.points[maegan].y;
-            pauleth < jeresa - bellamarie / 2 / bresha || senta < ronniel - whitton / 2 / bresha || pauleth > jeresa + bellamarie / 2 / bresha || senta > ronniel + whitton / 2 / bresha || mehmet.insert(masson.points[maegan]);
+      ;
+      yerly = zacorey.init({minX: cheyenne - (casmir + 100), minY: quentisha - (casmir + 100), maxX: hussam + (casmir + 100), maxY: inna + (casmir + 100), maxChildren: 2, maxDepth: 4});
+      for (mylz = 0; mylz < floki.length; mylz++) {
+        jenevieve = floki[mylz];
+        if (jenevieve.shouldRender() && !(20 >= jenevieve.size * neketa)) {
+          for (cheyenne = 0; cheyenne < jenevieve.points.length; ++cheyenne) {
+            quentisha = jenevieve.points[cheyenne].x;
+            hussam = jenevieve.points[cheyenne].y;
+            quentisha < azad - danyette / 2 / neketa || hussam < rickelle - orland / 2 / neketa || quentisha > azad + danyette / 2 / neketa || hussam > rickelle + orland / 2 / neketa || yerly.insert(jenevieve.points[cheyenne]);
           }
         }
       }
     }
   }
-  function daisymarie() {
-    srinithya = (thaily - bellamarie / 2) / bresha + jeresa;
-    jasiana = (sherryl - whitton / 2) / bresha + ronniel;
+  function chelsee() {
+    setayesh = (oluwatamilore - danyette / 2) / neketa + azad;
+    syniah = (onel - orland / 2) / neketa + rickelle;
   }
-  function slade() {
-    rohil = false;
-    adelayda("#adsBottom").hide();
-    adelayda("#overlays").hide();
-    shoshanah();
+  function comer() {
+    zaynab = false;
+    carnes("#adsBottom").hide();
+    carnes("#overlays").hide();
+    sheza();
   }
-  function luciele(eusebio) {
+  function britteni(earvin) {
     if (!SCodes) {
       return alert("Hata !");
     }
-    zA = eusebio;
-    if (eusebio != born) {
-      annunziata = eusebio;
-      born = zA;
-      jacorian();
+    ;
+    zA = earvin;
+    if (earvin != kode) {
+      bethan = earvin;
+      kode = zA;
+      genysis();
     }
-    adelayda("#helloContainer").attr("data-gamemode", zA);
+    ;
+    carnes("#helloContainer").attr("data-gamemode", zA);
   }
-  function seini(lorra) {
-    if (lorra && lorra != lyle) {
-      if (adelayda("#region").val() != lorra) {
-        adelayda("#region").val(lorra);
+  function jove(jodhveer) {
+    if (jodhveer && jodhveer != olline) {
+      if (carnes("#region").val() != jodhveer) {
+        carnes("#region").val(jodhveer);
       }
-      lyle = safwa.localStorage.location = lorra;
-      adelayda(".btn-needs-server").prop("disabled", false);
-      kenard && jacorian();
+      ;
+      olline = kimara.localStorage.location = jodhveer;
+      carnes(".btn-needs-server").prop("disabled", false);
+      ajahnae && genysis();
     }
   }
-  function _0xd11ex41(aubriaunna) {
-    rohil = true;
-    sohan = null;
-    adelayda("#overlays").fadeIn(aubriaunna ? 200 : 3e3);
-    aubriaunna || adelayda("#adsBottom").fadeIn(3e3);
+  function _0x524dx41(rystal) {
+    zaynab = true;
+    winnifred = null;
+    carnes("#overlays").fadeIn(rystal ? 200 : 3e3);
+    rystal || carnes("#adsBottom").fadeIn(3e3);
   }
-  function dillonger(kowana) {
-    kowana = ~~kowana;
-    var laquanta = (kowana % 60).toString();
-    kowana = (~~(kowana / 60)).toString();
-    2 > laquanta.length && (laquanta = "0" + laquanta);
-    return kowana + ":" + laquanta;
+  function sebaztian(lauretta) {
+    lauretta = ~~lauretta;
+    var janeka = (lauretta % 60).toString();
+    lauretta = (~~(lauretta / 60)).toString();
+    2 > janeka.length && (janeka = "0" + janeka);
+    return lauretta + ":" + janeka;
   }
-  function abaddon() {
-    if (null == khyzir) {
+  function kyelin() {
+    if (null == aaronda) {
       return 0;
     }
-    for (var enri = 0; enri < khyzir.length; ++enri) {
-      if (-1 != tyara.indexOf(khyzir[enri].id)) {
-        return enri + 1;
+    ;
+    for (var odester = 0; odester < aaronda.length; ++odester) {
+      if (-1 != regan.indexOf(aaronda[odester].id)) {
+        return odester + 1;
       }
     }
+    ;
     return 0;
   }
-  function jakhia(lyjah, eliani) {
-    var azzan = -1 != tyara.indexOf(lyjah.id), haidin = -1 != tyara.indexOf(eliani.id), shontaye = 30 > eliani.size;
-    azzan && shontaye && ++shyniece;
-    shontaye || !azzan || haidin || ++rekha;
-    shontaye || !azzan || haidin;
+  function quashun(lakecha, regenal) {
+    var jasly = -1 != regan.indexOf(lakecha.id), alwin = -1 != regan.indexOf(regenal.id), kupaa = 30 > regenal.size;
+    jasly && kupaa && ++zinachimdi;
+    kupaa || !jasly || alwin || ++usha;
+    kupaa || !jasly || alwin;
   }
-  function demar(deyontae, mathai) {
-    if (deyontae.indexOf("{") != -1 && deyontae.indexOf("}") != -1) {
-      var merdith = deyontae.indexOf("{");
-      var cathay = deyontae.indexOf("}");
-      var sochil = deyontae.slice(cathay + 1);
-      if (mathai) {
-        if (sochil == "") {
-          sochil = "Unnamed Cell";
+  function taleaha(malonie, shetera) {
+    if (malonie.indexOf("{") != -1 && malonie.indexOf("}") != -1) {
+      var ginae = malonie.indexOf("{");
+      var jaielle = malonie.indexOf("}");
+      var meah = malonie.slice(jaielle + 1);
+      if (shetera) {
+        if (meah == "") {
+          meah = "Unnamed Cell";
         } else {
-          sochil = deyontae.slice(cathay + 1);
+          meah = malonie.slice(jaielle + 1);
         }
       }
-      return [deyontae.slice(merdith + 1, cathay), sochil];
+      ;
+      return [malonie.slice(ginae + 1, jaielle), meah];
     } else {
-      return ["", deyontae];
+      return ["", malonie];
     }
   }
-  function wendelin() {
-    adelayda(".stats-leaderboard-time").text(dillonger(calisa));
-    adelayda(".stats-food-eaten").text(shyniece);
-    adelayda(".stats-highest-mass").text(~~(ellynor / 100));
-    adelayda(".stats-time-alive").text(dillonger((Date.now() - pepsi) / 1e3));
-    adelayda(".stats-cells-eaten").text(rekha);
-    adelayda(".stats-top-position").text(0 == rickel ? ":(" : rickel);
-    var briton = document.getElementById("statsGraph");
-    if (briton) {
-      var jervon = briton.getContext("2d"), mikeal = briton.width, briton = briton.height;
-      jervon.clearRect(0, 0, mikeal, briton);
-      if (2 < jakhari.length) {
-        for (var avon = 200, naomy = 0; naomy < jakhari.length; naomy++) {
-          avon = Math.max(jakhari[naomy], avon);
+  function reydon() {
+    carnes(".stats-leaderboard-time").text(sebaztian(jovar));
+    carnes(".stats-food-eaten").text(zinachimdi);
+    carnes(".stats-highest-mass").text(~~(antrese / 100));
+    carnes(".stats-time-alive").text(sebaztian((Date.now() - izai) / 1e3));
+    carnes(".stats-cells-eaten").text(usha);
+    carnes(".stats-top-position").text(0 == alysiah ? ":(" : alysiah);
+    var fayte = document.getElementById("statsGraph");
+    if (fayte) {
+      var sofian = fayte.getContext("2d"), tagen = fayte.width, fayte = fayte.height;
+      sofian.clearRect(0, 0, tagen, fayte);
+      if (2 < ichard.length) {
+        for (var hazelmae = 200, nazeem = 0; nazeem < ichard.length; nazeem++) {
+          hazelmae = Math.max(ichard[nazeem], hazelmae);
         }
-        jervon.lineWidth = 3;
-        jervon.lineCap = "round";
-        jervon.lineJoin = "round";
-        jervon.strokeStyle = Pa;
-        jervon.fillStyle = Pa;
-        jervon.beginPath();
-        jervon.moveTo(0, briton - jakhari[0] / avon * (briton - 10) + 10);
-        for (naomy = 1; naomy < jakhari.length; naomy += Math.max(~~(jakhari.length / mikeal), 1)) {
-          for (var darreon = naomy / (jakhari.length - 1) * mikeal, devente = [], samra = -20; 20 >= samra; ++samra) {
-            0 > naomy + samra || naomy + samra >= jakhari.length || devente.push(jakhari[naomy + samra]);
+        ;
+        sofian.lineWidth = 3;
+        sofian.lineCap = "round";
+        sofian.lineJoin = "round";
+        sofian.strokeStyle = Pa;
+        sofian.fillStyle = Pa;
+        sofian.beginPath();
+        sofian.moveTo(0, fayte - ichard[0] / hazelmae * (fayte - 10) + 10);
+        for (nazeem = 1; nazeem < ichard.length; nazeem += Math.max(~~(ichard.length / tagen), 1)) {
+          for (var onolee = nazeem / (ichard.length - 1) * tagen, dynalee = [], tynasia = -20; 20 >= tynasia; ++tynasia) {
+            0 > nazeem + tynasia || nazeem + tynasia >= ichard.length || dynalee.push(ichard[nazeem + tynasia]);
           }
-          devente = devente.reduce(function (tyreion, dianah) {
-            return tyreion + dianah;
-          }) / devente.length / avon;
-          jervon.lineTo(darreon, briton - devente * (briton - 10) + 10);
+          ;
+          dynalee = dynalee.reduce(function (marina, kaleena) {
+            return marina + kaleena;
+          }) / dynalee.length / hazelmae;
+          sofian.lineTo(onolee, fayte - dynalee * (fayte - 10) + 10);
         }
-        jervon.stroke();
-        jervon.globalAlpha = .5;
-        jervon.lineTo(mikeal, briton);
-        jervon.lineTo(0, briton);
-        jervon.fill();
-        jervon.globalAlpha = 1;
+        ;
+        sofian.stroke();
+        sofian.globalAlpha = .5;
+        sofian.lineTo(tagen, fayte);
+        sofian.lineTo(0, fayte);
+        sofian.fill();
+        sofian.globalAlpha = 1;
       }
     }
   }
-  function grethe(shawnah, gerardette) {
-    rohil = true;
-    if (gerardette == 1) {
-      if (hosna == false) {
-        wendelin();
-        adelayda("#statoverlay").show();
-        adelayda("#stats").fadeIn(shawnah ? 200 : 3e3);
+  function altamae(coleby, drako) {
+    zaynab = true;
+    if (drako == 1) {
+      if (jahbari == false) {
+        reydon();
+        carnes("#statoverlay").show();
+        carnes("#stats").fadeIn(coleby ? 200 : 3e3);
       } else {
-        adelayda("#overlays").fadeIn(shawnah ? 200 : 3e3);
+        carnes("#overlays").fadeIn(coleby ? 200 : 3e3);
       }
     } else {
-      adelayda("#overlays").fadeIn(shawnah ? 200 : 3e3);
+      carnes("#overlays").fadeIn(coleby ? 200 : 3e3);
     }
-    sohan = null;
+    ;
+    winnifred = null;
   }
-  function shoshanah() {
-    adelayda("#region").val() ? safwa.localStorage.location = adelayda("#region").val() : safwa.localStorage.location && adelayda("#region").val(safwa.localStorage.location);
-    adelayda("#region").val() ? adelayda(".locationKnown").append(adelayda("#region")) : adelayda("#locationUnknown").append(adelayda("#region"));
+  function sheza() {
+    carnes("#region").val() ? kimara.localStorage.location = carnes("#region").val() : kimara.localStorage.location && carnes("#region").val(kimara.localStorage.location);
+    carnes("#region").val() ? carnes(".locationKnown").append(carnes("#region")) : carnes("#locationUnknown").append(carnes("#region"));
   }
-  function henderson() {
-    fritzie("wss://" + annunziata);
+  function leiyani() {
+    terisha("wss://" + bethan);
   }
-  function jacorian() {
-    if (kenard && lyle) {
-      adelayda("#connecting").show();
-      henderson();
+  function genysis() {
+    if (ajahnae && olline) {
+      carnes("#connecting").show();
+      leiyani();
     }
   }
-  function fritzie(cassanda) {
-    if (shahwaiz) {
-      shahwaiz.onopen = null;
-      shahwaiz.onmessage = null;
-      shahwaiz.onclose = null;
+  function terisha(cesario) {
+    if (valentim) {
+      valentim.onopen = null;
+      valentim.onmessage = null;
+      valentim.onclose = null;
       try {
-        shahwaiz.close();
+        valentim.close();
       } catch (b) {}
-      shahwaiz = null;
+      ;
+      valentim = null;
     }
-    var jaleah = annunziata;
-    cassanda = "wss://" + jaleah + "?SCode=" + SCodes;
-    tyara = [];
-    lakshitha = [];
-    mikaela = {};
-    mizani = [];
-    caprise = [];
-    khyzir = [];
-    marlaena = khylia = null;
-    ellynor = 0;
+    ;
+    var kova = bethan;
+    cesario = "wss://" + kova + "?SCode=" + SCodes;
+    regan = [];
+    coley = [];
+    dayne = {};
+    floki = [];
+    shyneka = [];
+    aaronda = [];
+    shaquira = kamin = null;
+    antrese = 0;
     this.leaderdefault = "Leaderboard";
     this.lastWinner = "Leaderboard";
     this.countdown = 3600;
-    shyniece = 0;
-    jakhari = [];
-    rekha = 0;
-    rickel = 0;
-    calisa = 0;
-    shahwaiz = new WebSocket(cassanda);
-    shahwaiz.binaryType = "arraybuffer";
-    shahwaiz.onopen = jiacheng;
-    shahwaiz.onmessage = delano;
-    shahwaiz.onclose = kiauna;
-    shahwaiz.onerror = function (zymiah) {
-      console.log("socket error" + zymiah);
+    zinachimdi = 0;
+    ichard = [];
+    usha = 0;
+    alysiah = 0;
+    jovar = 0;
+    valentim = new WebSocket(cesario);
+    valentim.binaryType = "arraybuffer";
+    valentim.onopen = sinchana;
+    valentim.onmessage = serenety;
+    valentim.onclose = suly;
+    valentim.onerror = function (tekayla) {
+      console.log("socket error" + tekayla);
     };
   }
-  function akena(darrione) {
-    return new DataView(new ArrayBuffer(darrione));
+  function srihan(bettianne) {
+    return new DataView(new ArrayBuffer(bettianne));
   }
-  function vernay(zion) {
-    shahwaiz.send(zion.buffer);
+  function rosser(jaterria) {
+    valentim.send(jaterria.buffer);
   }
-  function jiacheng() {
-    var cadey;
-    kaillou = 100;
-    adelayda("#connecting").hide();
+  function sinchana() {
+    var letisha;
+    ayva = 100;
+    carnes("#connecting").hide();
     console.log("socket open");
-    cadey = akena(5);
-    cadey.setUint8(0, 254);
-    cadey.setUint32(1, 5, true);
-    vernay(cadey);
-    cadey = akena(5);
-    cadey.setUint8(0, 255);
-    cadey.setUint32(1, 123456789, true);
-    vernay(cadey);
-    saaral();
+    letisha = srihan(5);
+    letisha.setUint8(0, 254);
+    letisha.setUint32(1, 5, true);
+    rosser(letisha);
+    letisha = srihan(5);
+    letisha.setUint8(0, 255);
+    letisha.setUint32(1, 123456789, true);
+    rosser(letisha);
   }
-  function kiauna() {
+  function suly() {
     console.log("socket close");
-    setTimeout(jacorian, 500);
-    kaillou *= 1.5;
+    setTimeout(genysis, 500);
+    ayva *= 1.5;
   }
-  function delano(demaurie) {
-    aunika(new DataView(demaurie.data));
+  function serenety(valrea) {
+    akif(new DataView(valrea.data));
   }
-  function aunika(dominion) {
-    function shaelin() {
-      var anvita = "", mariapaula;
-      while ((mariapaula = dominion.getUint16(jahzlynn, true)) != 0) {
-        jahzlynn += 2;
-        anvita += String.fromCharCode(mariapaula);
+  function akif(kowana) {
+    function faeryn() {
+      var laquel = "", azelia;
+      while ((azelia = kowana.getUint16(ifeoluwa, true)) != 0) {
+        ifeoluwa += 2;
+        laquel += String.fromCharCode(azelia);
       }
-      jahzlynn += 2;
-      return anvita;
+      ;
+      ifeoluwa += 2;
+      return laquel;
     }
-    var jahzlynn = 0, joahnna = false;
-    240 == dominion.getUint8(jahzlynn) && (jahzlynn += 5);
-    switch (dominion.getUint8(jahzlynn++)) {
+    var ifeoluwa = 0, jkai = false;
+    240 == kowana.getUint8(ifeoluwa) && (ifeoluwa += 5);
+    switch (kowana.getUint8(ifeoluwa++)) {
       case 185:
-        thavy(dominion, jahzlynn);
+        haileymarie(kowana, ifeoluwa);
         break;
       case 17:
-        ann = dominion.getFloat32(jahzlynn, true);
-        jahzlynn += 4;
-        tasiya = dominion.getFloat32(jahzlynn, true);
-        jahzlynn += 4;
-        thos = dominion.getFloat32(jahzlynn, true);
-        jahzlynn += 4;
+        brunelle = kowana.getFloat32(ifeoluwa, true);
+        ifeoluwa += 4;
+        gimena = kowana.getFloat32(ifeoluwa, true);
+        ifeoluwa += 4;
+        lekia = kowana.getFloat32(ifeoluwa, true);
+        ifeoluwa += 4;
         break;
       case 20:
-        lakshitha = [];
-        tyara = [];
+        coley = [];
+        regan = [];
         break;
       case 21:
-        laryn = dominion.getInt16(jahzlynn, true);
-        jahzlynn += 2;
-        treniti = dominion.getInt16(jahzlynn, true);
-        jahzlynn += 2;
-        if (!marquavis) {
-          marquavis = true;
-          jamiann = laryn;
-          preana = treniti;
+        petria = kowana.getInt16(ifeoluwa, true);
+        ifeoluwa += 2;
+        khaleil = kowana.getInt16(ifeoluwa, true);
+        ifeoluwa += 2;
+        if (!senequa) {
+          senequa = true;
+          zayvier = petria;
+          kymiyah = khaleil;
         }
+        ;
         break;
       case 32:
-        tyara.push(dominion.getUint32(jahzlynn, true));
-        jahzlynn += 4;
+        regan.push(kowana.getUint32(ifeoluwa, true));
+        ifeoluwa += 4;
         break;
       case 48:
-        joahnna = true;
-        martell = true;
+        jkai = true;
+        garyn = true;
         break;
       case 49:
-        if (!joahnna) {
-          martell = false;
+        if (!jkai) {
+          garyn = false;
         }
-        khylia = null;
-        var yukia = dominion.getUint32(jahzlynn, true);
-        jahzlynn += 4;
-        khyzir = [];
-        for (malchijah = 0; malchijah < yukia; ++malchijah) {
-          var stafford = dominion.getUint32(jahzlynn, true);
-          jahzlynn += 4;
-          khyzir.push({id: stafford, name: shaelin()});
+        ;
+        kamin = null;
+        var zaron = kowana.getUint32(ifeoluwa, true);
+        ifeoluwa += 4;
+        aaronda = [];
+        for (dartez = 0; dartez < zaron; ++dartez) {
+          var wood = kowana.getUint32(ifeoluwa, true);
+          ifeoluwa += 4;
+          aaronda.push({id: wood, name: faeryn()});
         }
-        madelis();
+        ;
+        queston();
         break;
       case 50:
-        khylia = [];
-        var similoluwa = dominion.getUint32(jahzlynn, true);
-        jahzlynn += 4;
-        for (var malchijah = 0; malchijah < similoluwa; ++malchijah) {
-          khylia.push(dominion.getFloat32(jahzlynn, true));
-          jahzlynn += 4;
+        kamin = [];
+        var jamaal = kowana.getUint32(ifeoluwa, true);
+        ifeoluwa += 4;
+        for (var dartez = 0; dartez < jamaal; ++dartez) {
+          kamin.push(kowana.getFloat32(ifeoluwa, true));
+          ifeoluwa += 4;
         }
-        madelis();
+        ;
+        queston();
         break;
       case 64:
-        dekoven = dominion.getFloat64(jahzlynn, true);
-        jahzlynn += 8;
-        glenroy = dominion.getFloat64(jahzlynn, true);
-        jahzlynn += 8;
-        bertie = dominion.getFloat64(jahzlynn, true);
-        jahzlynn += 8;
-        evnika = dominion.getFloat64(jahzlynn, true);
-        jahzlynn += 8;
-        ann = (bertie + dekoven) / 2;
-        tasiya = (evnika + glenroy) / 2;
-        thos = 1;
-        if (0 == lakshitha.length) {
-          jeresa = ann;
-          ronniel = tasiya;
-          bresha = thos;
+        taleesha = kowana.getFloat64(ifeoluwa, true);
+        ifeoluwa += 8;
+        aseer = kowana.getFloat64(ifeoluwa, true);
+        ifeoluwa += 8;
+        mahaley = kowana.getFloat64(ifeoluwa, true);
+        ifeoluwa += 8;
+        keanne = kowana.getFloat64(ifeoluwa, true);
+        ifeoluwa += 8;
+        brunelle = (mahaley + taleesha) / 2;
+        gimena = (keanne + aseer) / 2;
+        lekia = 1;
+        if (0 == coley.length) {
+          azad = brunelle;
+          rickelle = gimena;
+          neketa = lekia;
         }
+        ;
         break;
       case 90:
-        var kiaya = new Date - latency;
-        $("#latency").html("Latency " + kiaya + " ms;");
-        var jacorrion = dominion.getFloat64(jahzlynn, true);
-        jahzlynn += 8;
-        $("#uptime").html("Uptime " + jacorrion + " sec;");
-        var jenci = dominion.getFloat64(jahzlynn, true);
-        jahzlynn += 8;
-        $("#onlineplayers").html("Players " + jenci + ";");
+        var marichelle = new Date - latency;
+        $("#latency").html("Latency " + marichelle + " ms;");
+        var taggart = kowana.getFloat64(ifeoluwa, true);
+        ifeoluwa += 8;
+        $("#uptime").html("Uptime " + taggart + " sec;");
+        var mitt = kowana.getFloat64(ifeoluwa, true);
+        ifeoluwa += 8;
+        $("#onlineplayers").html("Players " + mitt + ";");
         break;
       case 199:
-        nyosha(dominion, jahzlynn);
+        diti(kowana, ifeoluwa);
         break;
       case 96:
-        this.countdown = dominion.getUint16(jahzlynn, true);
+        this.countdown = kowana.getUint16(ifeoluwa, true);
         break;
       case 97:
         this.lastWinner = "";
-        this.lastWinner = shaelin();
+        var dominie;
+        this.lastWinner = faeryn();
         if (this.lastWinner == "") {
           this.lastWinner = this.leaderdefault;
         }
-        this.lastWinner = demar(this.lastWinner.split("*")[0])[1];
+        ;
+        this.lastWinner = taleaha(this.lastWinner.split("*")[0])[1];
         break;
     }
   }
-  function nyosha(rashiyah, jazzi) {
-    function adalen() {
-      var juelle = "", tayjon;
-      while ((tayjon = rashiyah.getUint16(jazzi, true)) != 0) {
-        jazzi += 2;
-        juelle += String.fromCharCode(tayjon);
+  function diti(nicanora, baasil) {
+    function shonetta() {
+      var anayansi = "", jessabella;
+      while ((jessabella = nicanora.getUint16(baasil, true)) != 0) {
+        baasil += 2;
+        anayansi += String.fromCharCode(jessabella);
       }
-      jazzi += 2;
-      return juelle;
+      ;
+      baasil += 2;
+      return anayansi;
     }
-    var deagon = rashiyah.getUint8(jazzi++);
-    if (deagon & 2) {
-      jazzi += 4;
+    var filza = nicanora.getUint8(baasil++);
+    if (filza & 2) {
+      baasil += 4;
     }
-    if (deagon & 4) {
-      jazzi += 8;
+    ;
+    if (filza & 4) {
+      baasil += 8;
     }
-    if (deagon & 8) {
-      jazzi += 16;
+    ;
+    if (filza & 8) {
+      baasil += 16;
     }
-    var manada = rashiyah.getUint8(jazzi++), steed = rashiyah.getUint8(jazzi++), teres = rashiyah.getUint8(jazzi++), dayeli = (manada << 16 | steed << 8 | teres).toString(16);
-    while (dayeli.length > 6) {
-      dayeli = "0" + dayeli;
+    ;
+    var tsosie = nicanora.getUint8(baasil++), larren = nicanora.getUint8(baasil++), ziyad = nicanora.getUint8(baasil++), adeolu = (tsosie << 16 | larren << 8 | ziyad).toString(16);
+    while (adeolu.length > 6) {
+      adeolu = "0" + adeolu;
     }
-    dayeli = "#" + dayeli;
-    name = demar(adalen())[1];
+    ;
+    adeolu = "#" + adeolu;
+    name = taleaha(shonetta())[1];
     if (name == "") {
       name = "Unnamed Cell";
     }
-    sheddrick.push({name: name, color: dayeli, message: adalen(), time: Date.now()});
+    ;
+    calijah.push({name: name, color: adeolu, message: shonetta(), time: Date.now()});
   }
-  function thavy(boback, trinnie) {
-    davod = +new Date;
-    var viraaj = Math.random();
-    nalla = false;
-    var romi = boback.getUint16(trinnie, true);
-    trinnie += 2;
-    for (laurieanne = 0; laurieanne < romi; ++laurieanne) {
-      var voula = mikaela[boback.getUint32(trinnie, true)], melvalene = mikaela[boback.getUint32(trinnie + 4, true)];
-      trinnie += 8;
-      if (voula && melvalene) {
-        melvalene.destroy();
-        melvalene.ox = melvalene.x;
-        melvalene.oy = melvalene.y;
-        melvalene.oSize = melvalene.size;
-        melvalene.nx = voula.x;
-        melvalene.ny = voula.y;
-        melvalene.nSize = melvalene.size;
-        melvalene.updateTime = davod;
-        jakhia(voula, melvalene);
+  function haileymarie(bartholomew, den) {
+    rusti = +new Date;
+    var takwon = Math.random();
+    jenice = false;
+    var taja = bartholomew.getUint16(den, true);
+    den += 2;
+    for (eita = 0; eita < taja; ++eita) {
+      var lashonya = dayne[bartholomew.getUint32(den, true)], gertrude = dayne[bartholomew.getUint32(den + 4, true)];
+      den += 8;
+      if (lashonya && gertrude) {
+        gertrude.destroy();
+        gertrude.ox = gertrude.x;
+        gertrude.oy = gertrude.y;
+        gertrude.oSize = gertrude.size;
+        gertrude.nx = lashonya.x;
+        gertrude.ny = lashonya.y;
+        gertrude.nSize = gertrude.size;
+        gertrude.updateTime = rusti;
+        quashun(lashonya, gertrude);
       }
     }
-    for (var laurieanne = 0;;) {
-      var stevenson = boback.getUint32(trinnie, true);
-      trinnie += 4;
-      if (0 == stevenson) {
+    ;
+    for (var eita = 0;;) {
+      var athan = bartholomew.getUint32(den, true);
+      den += 4;
+      if (0 == athan) {
         break;
       }
-      ++laurieanne;
-      var migna, teniqua, makkiyah = boback.getInt16(trinnie, true);
-      trinnie += 2;
-      teniqua = boback.getInt16(trinnie, true);
-      trinnie += 2;
-      migna = boback.getInt16(trinnie, true);
-      trinnie += 2;
-      for (var jayzion = boback.getUint8(trinnie++), daejanae = boback.getUint8(trinnie++), kamielle = boback.getUint8(trinnie++), aerabella = (jayzion << 16 | daejanae << 8 | kamielle).toString(16); 6 > aerabella.length;) {
-        aerabella = "0" + aerabella;
+      ;
+      ++eita;
+      var lakista, yakeline, niklaus = bartholomew.getInt16(den, true);
+      den += 2;
+      yakeline = bartholomew.getInt16(den, true);
+      den += 2;
+      lakista = bartholomew.getInt16(den, true);
+      den += 2;
+      for (var zenetta = bartholomew.getUint8(den++), tahlor = bartholomew.getUint8(den++), nicolly = bartholomew.getUint8(den++), aaleiah = (zenetta << 16 | tahlor << 8 | nicolly).toString(16); 6 > aaleiah.length;) {
+        aaleiah = "0" + aaleiah;
       }
-      var trinidee = "#" + aerabella, devondrick = boback.getUint8(trinnie++), calondra = !!(devondrick & 1), mahogany = !!(devondrick & 16);
-      devondrick & 2 && (trinnie += 4);
-      devondrick & 4 && (trinnie += 8);
-      devondrick & 8 && (trinnie += 16);
-      for (var srikanth, syleena = "";;) {
-        srikanth = boback.getUint16(trinnie, true);
-        trinnie += 2;
-        if (0 == srikanth) {
+      ;
+      var be = "#" + aaleiah, karlissa = bartholomew.getUint8(den++), antowne = !!(karlissa & 1), homer = !!(karlissa & 16);
+      karlissa & 2 && (den += 4);
+      karlissa & 4 && (den += 8);
+      karlissa & 8 && (den += 16);
+      for (var gayanne, hartli = "";;) {
+        gayanne = bartholomew.getUint16(den, true);
+        den += 2;
+        if (0 == gayanne) {
           break;
         }
-        syleena += String.fromCharCode(srikanth);
+        ;
+        hartli += String.fromCharCode(gayanne);
       }
-      var naailah = null;
-      if (mikaela.hasOwnProperty(stevenson)) {
-        naailah = mikaela[stevenson];
-        naailah.updatePos();
-        naailah.ox = naailah.x;
-        naailah.oy = naailah.y;
-        naailah.oSize = naailah.size;
-        naailah.color = trinidee;
+      ;
+      var eulojia = null;
+      if (dayne.hasOwnProperty(athan)) {
+        eulojia = dayne[athan];
+        eulojia.updatePos();
+        eulojia.ox = eulojia.x;
+        eulojia.oy = eulojia.y;
+        eulojia.oSize = eulojia.size;
+        eulojia.color = be;
       } else {
-        naailah = new antonica(stevenson, makkiyah, teniqua, migna, trinidee, syleena);
-        mizani.push(naailah);
-        naailah.ka = makkiyah;
-        naailah.la = teniqua;
+        eulojia = new jerauld(athan, niklaus, yakeline, lakista, be, hartli);
+        floki.push(eulojia);
+        dayne[athan] = eulojia;
+        eulojia.ka = niklaus;
+        eulojia.la = yakeline;
       }
-      naailah.isVirus = calondra;
-      naailah.isAgitated = mahogany;
-      naailah.nx = makkiyah;
-      naailah.ny = teniqua;
-      naailah.nSize = migna;
-      naailah.updateCode = viraaj;
-      naailah.updateTime = davod;
-      naailah.flag = devondrick;
-      syleena && naailah.setName(syleena);
-      if (-1 != tyara.indexOf(stevenson) && -1 == lakshitha.indexOf(naailah)) {
+      ;
+      eulojia.isVirus = antowne;
+      eulojia.isAgitated = homer;
+      eulojia.nx = niklaus;
+      eulojia.ny = yakeline;
+      eulojia.nSize = lakista;
+      eulojia.updateCode = takwon;
+      eulojia.updateTime = rusti;
+      eulojia.flag = karlissa;
+      hartli && eulojia.setName(hartli);
+      if (-1 != regan.indexOf(athan) && -1 == coley.indexOf(eulojia)) {
         document.getElementById("overlays").style.display = "none";
-        lakshitha.push(naailah);
-        if (1 == lakshitha.length) {
-          jeresa = naailah.x;
-          ronniel = naailah.y;
+        coley.push(eulojia);
+        if (1 == coley.length) {
+          azad = eulojia.x;
+          rickelle = eulojia.y;
         }
       }
     }
-    romi = boback.getUint32(trinnie, true);
-    trinnie += 4;
-    for (laurieanne = 0; laurieanne < romi; laurieanne++) {
-      var adrieanna = boback.getUint32(trinnie, true);
-      trinnie += 4;
-      naailah = mikaela[adrieanna];
-      null != naailah && naailah.destroy();
+    ;
+    taja = bartholomew.getUint32(den, true);
+    den += 4;
+    for (eita = 0; eita < taja; eita++) {
+      var zulmy = bartholomew.getUint32(den, true);
+      den += 4;
+      eulojia = dayne[zulmy];
+      null != eulojia && eulojia.destroy();
     }
-    nalla && 0 == lakshitha.length && grethe(false, 1);
+    ;
+    jenice && 0 == coley.length && altamae(false, 1);
   }
-  function tossie() {
-    var blessed;
-    if (null != shahwaiz && shahwaiz.readyState == shahwaiz.OPEN && Sfreeze != true) {
-      blessed = thaily - bellamarie / 2;
-      var randeisha = sherryl - whitton / 2;
-      if (64 <= blessed * blessed + randeisha * randeisha && !(.01 > Math.abs(jazleen - srinithya) && .01 > Math.abs(roldan - jasiana))) {
-        jazleen = srinithya;
-        roldan = jasiana;
-        blessed = akena(21);
-        blessed.setUint8(0, 185);
-        blessed.setFloat64(1, srinithya, true);
-        blessed.setFloat64(9, jasiana, true);
-        blessed.setUint32(17, 0, true);
-        vernay(blessed);
+  function rhodena() {
+    var abhiraam;
+    if (null != valentim && valentim.readyState == valentim.OPEN && Sfreeze != true) {
+      abhiraam = oluwatamilore - danyette / 2;
+      var breale = onel - orland / 2;
+      if (64 <= abhiraam * abhiraam + breale * breale && !(.01 > Math.abs(marilyn - setayesh) && .01 > Math.abs(ewan - syniah))) {
+        marilyn = setayesh;
+        ewan = syniah;
+        abhiraam = srihan(21);
+        abhiraam.setUint8(0, 185);
+        abhiraam.setFloat64(1, setayesh, true);
+        abhiraam.setFloat64(9, syniah, true);
+        abhiraam.setUint32(17, 0, true);
+        rosser(abhiraam);
       }
     }
   }
-  function saaral() {
-    sohan = yeilen(sohan);
-    if (null != shahwaiz && shahwaiz.readyState == shahwaiz.OPEN && null != sohan) {
-      var khora = akena(1 + 2 * sohan.length);
-      khora.setUint8(0, 129);
-      for (var vahan = 0; vahan < sohan.length; ++vahan) {
-        khora.setUint16(1 + 2 * vahan, sohan.charCodeAt(vahan), true);
+  function hajira() {
+    winnifred = drashawn(winnifred);
+    if (null != valentim && valentim.readyState == valentim.OPEN && null != winnifred) {
+      var koe = srihan(1 + 2 * winnifred.length);
+      koe.setUint8(0, 129);
+      for (var brendaly = 0; brendaly < winnifred.length; ++brendaly) {
+        koe.setUint16(1 + 2 * brendaly, winnifred.charCodeAt(brendaly), true);
       }
-      vernay(khora);
+      ;
+      rosser(koe);
     }
   }
-  function lennyn() {
-    m = safwa.innerWidth;
-    q = safwa.innerHeight;
+  function paulina() {
+    m = kimara.innerWidth;
+    q = kimara.innerHeight;
     canvas.width = canvas.width = m;
     canvas.height = canvas.height = q;
-    var busra = adelayda("#helloContainer");
-    busra.css("transform", "none");
-    var giovanna = safwa.innerHeight;
-    660 > giovanna / 1.1 ? busra.css("transform", "translate(-50%, -50%) scale(" + giovanna / 660 / 1.1 + ")") : busra.css("transform", "translate(-50%, -50%)");
+    var layanie = carnes("#helloContainer");
+    layanie.css("transform", "none");
+    var shayna = 660, mylaya = kimara.innerHeight;
+    shayna > mylaya / 1.1 ? layanie.css("transform", "translate(-50%, -50%) scale(" + mylaya / shayna / 1.1 + ")") : layanie.css("transform", "translate(-50%, -50%)");
   }
-  function brishana(dondra) {
-    if (null != shahwaiz && shahwaiz.readyState == shahwaiz.OPEN && dondra.length < 200 && dondra.length > 0) {
-      var karrin = akena(4 + 2 * dondra.length);
-      var ayatt = 0;
-      karrin.setUint8(ayatt++, 199);
-      karrin.setUint8(ayatt++, 0);
-      for (var karrell = 0; karrell < dondra.length; ++karrell) {
-        karrin.setUint16(ayatt, dondra.charCodeAt(karrell), true);
-        ayatt += 2;
+  function jacelin(naida) {
+    if (null != valentim && valentim.readyState == valentim.OPEN && naida.length < 200 && naida.length > 0) {
+      var alrick = srihan(4 + 2 * naida.length);
+      var katalea = 0;
+      var keiji = 57344;
+      alrick.setUint8(katalea++, 199);
+      alrick.setUint8(katalea++, 0);
+      for (var jearl = 0; jearl < naida.length; ++jearl) {
+        alrick.setUint16(katalea, naida.charCodeAt(jearl), true);
+        katalea += 2;
       }
-      karrin.setUint16(ayatt, 57344, true);
-      vernay(karrin);
+      ;
+      alrick.setUint16(katalea, keiji, true);
+      rosser(alrick);
     }
   }
-  function yumiko(knoll) {
-    if (null != shahwaiz && shahwaiz.readyState == shahwaiz.OPEN) {
-      var ndea = akena(1);
-      ndea.setUint8(0, knoll);
-      vernay(ndea);
+  function aleander(koron) {
+    if (null != valentim && valentim.readyState == valentim.OPEN) {
+      var rushika = srihan(1);
+      rushika.setUint8(0, koron);
+      rosser(rushika);
     }
   }
-  function drizzt() {
-    filex();
-    safwa.requestAnimationFrame(drizzt);
+  function deantrae() {
+    marasia();
+    kimara.requestAnimationFrame(deantrae);
   }
-  function henry() {
+  function adrielys() {
     window.scrollTo(0, 0);
-    bellamarie = safwa.innerWidth;
-    whitton = safwa.innerHeight;
-    naielle.width = bellamarie;
-    naielle.height = whitton;
-    var ilyas = adelayda("#helloDialog");
-    ilyas.css("transform", "none");
-    var mlak = ilyas.height();
-    mlak > whitton / 1.1 ? ilyas.css("transform", "translate(-50%, -50%) scale(" + whitton / mlak / 1.1 + ")") : ilyas.css("transform", "translate(-50%, -50%)");
-    filex();
+    danyette = kimara.innerWidth;
+    orland = kimara.innerHeight;
+    doletha.width = danyette;
+    doletha.height = orland;
+    var kiaro = carnes("#helloDialog");
+    kiaro.css("transform", "none");
+    var breionna = kiaro.height();
+    breionna > orland / 1.1 ? kiaro.css("transform", "translate(-50%, -50%) scale(" + orland / breionna / 1.1 + ")") : kiaro.css("transform", "translate(-50%, -50%)");
+    marasia();
   }
-  function sidhanth() {
-    var brigitt;
-    brigitt = Math.max(whitton / 1080, bellamarie / 1920);
-    return brigitt * trishalana;
+  function janneli() {
+    var margart;
+    margart = Math.max(orland / 1080, danyette / 1920);
+    return margart * lareena;
   }
-  function creek() {
-    if (0 != lakshitha.length) {
-      for (var kish = 0, malachias = 0; malachias < lakshitha.length; malachias++) {
-        kish += lakshitha[malachias].size;
+  function noellie() {
+    if (0 != coley.length) {
+      for (var leelynn = 0, kemira = 0; kemira < coley.length; kemira++) {
+        leelynn += coley[kemira].size;
       }
-      kish = Math.pow(Math.min(64 / kish, 1), .4) * sidhanth();
-      bresha = (9 * bresha + kish) / 10;
+      ;
+      leelynn = Math.pow(Math.min(64 / leelynn, 1), .4) * janneli();
+      neketa = (9 * neketa + leelynn) / 10;
     }
   }
-  function filex() {
-    var ineshia, neppie = Date.now();
-    ++swanzetta;
-    var syd = Date.now() - rinyah;
-    if (syd > 50) {
-      rinyah = Date.now();
-      tossie();
+  function marasia() {
+    var shalandra, nenette = Date.now();
+    ++dhananjay;
+    var aminta = Date.now() - donaciana;
+    if (aminta > 50) {
+      donaciana = Date.now();
+      rhodena();
     }
-    davod = neppie;
-    if (0 < lakshitha.length) {
-      creek();
-      var power = ineshia = 0;
-      for (var cecelie = 0; cecelie < lakshitha.length; cecelie++) {
-        lakshitha[cecelie].updatePos();
-        ineshia += lakshitha[cecelie].x / lakshitha.length;
-        power += lakshitha[cecelie].y / lakshitha.length;
+    ;
+    rusti = nenette;
+    if (0 < coley.length) {
+      noellie();
+      var aoibheann = shalandra = 0;
+      for (var alexader = 0; alexader < coley.length; alexader++) {
+        coley[alexader].updatePos();
+        shalandra += coley[alexader].x / coley.length;
+        aoibheann += coley[alexader].y / coley.length;
       }
-      ann = ineshia;
-      tasiya = power;
-      thos = bresha;
-      jeresa = (jeresa + ineshia) / 2;
-      ronniel = (ronniel + power) / 2;
+      ;
+      brunelle = shalandra;
+      gimena = aoibheann;
+      lekia = neketa;
+      azad = (azad + shalandra) / 2;
+      rickelle = (rickelle + aoibheann) / 2;
     } else {
-      jeresa = (29 * jeresa + ann) / 30;
-      ronniel = (29 * ronniel + tasiya) / 30;
-      bresha = (9 * bresha + thos * sidhanth()) / 10;
+      azad = (29 * azad + brunelle) / 30;
+      rickelle = (29 * rickelle + gimena) / 30;
+      neketa = (9 * neketa + lekia * janneli()) / 10;
     }
-    brooklin();
-    daisymarie();
-    mytisha.fillStyle = kerra ? "#111111" : "#F2FBFF";
-    mytisha.fillRect(0, 0, bellamarie, whitton);
-    mizani.sort(function (dekara, sendi) {
-      return dekara.size == sendi.size ? dekara.id - sendi.id : dekara.size - sendi.size;
+    ;
+    kolade();
+    chelsee();
+    jovonie.fillStyle = stancel ? "#111111" : "#F2FBFF";
+    jovonie.fillRect(0, 0, danyette, orland);
+    floki.sort(function (safiyya, tyara) {
+      return safiyya.size == tyara.size ? safiyya.id - tyara.id : safiyya.size - tyara.size;
     });
-    mytisha.save();
-    mytisha.translate(bellamarie / 2, whitton / 2);
-    mytisha.scale(bresha, bresha);
-    mytisha.translate(-jeresa, -ronniel);
-    if (keonda == true) {
-      mytisha.globalAlpha = .6;
+    jovonie.save();
+    jovonie.translate(danyette / 2, orland / 2);
+    jovonie.scale(neketa, neketa);
+    jovonie.translate(-azad, -rickelle);
+    if (antonique == true) {
+      jovonie.globalAlpha = .6;
     } else {
-      mytisha.globalAlpha = 1;
+      jovonie.globalAlpha = 1;
     }
-    for (cecelie = 0; cecelie < mizani.length; cecelie++) {
-      mizani[cecelie].drawOneCell(mytisha);
+    ;
+    for (alexader = 0; alexader < floki.length; alexader++) {
+      floki[alexader].drawOneCell(jovonie);
     }
-    if (marquavis) {
-      jamiann = (3 * jamiann + laryn) / 4;
-      preana = (3 * preana + treniti) / 4;
-      mytisha.save();
-      mytisha.strokeStyle = "#FFAAAA";
-      mytisha.lineWidth = 10;
-      mytisha.lineCap = "round";
-      mytisha.lineJoin = "round";
-      mytisha.globalAlpha = .5;
-      mytisha.beginPath();
-      for (cecelie = 0; cecelie < lakshitha.length; cecelie++) {
-        mytisha.moveTo(lakshitha[cecelie].x, lakshitha[cecelie].y);
-        mytisha.lineTo(jamiann, preana);
+    ;
+    if (senequa) {
+      zayvier = (3 * zayvier + petria) / 4;
+      kymiyah = (3 * kymiyah + khaleil) / 4;
+      jovonie.save();
+      jovonie.strokeStyle = "#FFAAAA";
+      jovonie.lineWidth = 10;
+      jovonie.lineCap = "round";
+      jovonie.lineJoin = "round";
+      jovonie.globalAlpha = .5;
+      jovonie.beginPath();
+      for (alexader = 0; alexader < coley.length; alexader++) {
+        jovonie.moveTo(coley[alexader].x, coley[alexader].y);
+        jovonie.lineTo(zayvier, kymiyah);
       }
-      mytisha.restore();
+      ;
+      jovonie.restore();
     }
-    mytisha.strokeStyle = "#FF0000";
-    mytisha.lineWidth = 50;
-    mytisha.lineCap = "round";
-    mytisha.lineJoin = "round";
-    mytisha.beginPath();
-    mytisha.moveTo(dekoven, glenroy);
-    mytisha.lineTo(bertie, glenroy);
-    mytisha.lineTo(bertie, evnika);
-    mytisha.lineTo(dekoven, evnika);
-    mytisha.closePath();
-    mytisha.stroke();
-    mytisha.restore();
-    mytisha.globalAlpha = 1;
-    mytisha.fillStyle = "#0000FF";
-    mytisha.font = "bold 32px Ubuntu";
+    ;
+    jovonie.strokeStyle = "#FF0000";
+    jovonie.lineWidth = 50;
+    jovonie.lineCap = "round";
+    jovonie.lineJoin = "round";
+    jovonie.beginPath();
+    jovonie.moveTo(taleesha, aseer);
+    jovonie.lineTo(mahaley, aseer);
+    jovonie.lineTo(mahaley, keanne);
+    jovonie.lineTo(taleesha, keanne);
+    jovonie.closePath();
+    jovonie.stroke();
+    jovonie.restore();
+    jovonie.globalAlpha = 1;
+    jovonie.fillStyle = "#0000FF";
+    jovonie.font = "bold 32px Ubuntu";
     if (this.countdown < 3600) {
-      var remya = "";
-      var herschell = "";
-      var hunter = Math.floor(this.countdown / 60);
-      if (hunter < 10) {
-        remya += "0";
+      var ciley = "";
+      var zahro = "";
+      var eulean = Math.floor(this.countdown / 60);
+      if (eulean < 10) {
+        ciley += "0";
       }
-      remya += hunter + ":";
-      var richana = this.countdown % 60;
-      if (richana < 10) {
-        remya += "0";
+      ;
+      ciley += eulean + ":";
+      var mykeisha = this.countdown % 60;
+      if (mykeisha < 10) {
+        ciley += "0";
       }
-      remya += richana;
+      ;
+      ciley += mykeisha;
       if (this.countdown < 60) {
-        herschell = " sec";
+        zahro = " sec";
       } else {
-        herschell = " min";
+        zahro = " min";
       }
-      $("#countdown").html("Restart in " + remya + herschell);
+      ;
+      $("#countdown").html("Restart in " + ciley + zahro);
     }
-    otway && otway.width && mytisha.drawImage(otway, bellamarie - otway.width - 10, 10);
-    if (!raigan) {
-      if (shadena != null && shadena.width > 0) {
-        mytisha.drawImage(shadena, 0, whitton - shadena.height - 50);
-      }
-    }
-    var onterrio = chatara();
-    ellynor = Math.max(ellynor, chatara());
-    if (0 != ellynor) {
-      mytisha.globalAlpha = .8;
-      if (kerra == true) {
-        mytisha.fillStyle = "#FFFFFF";
-      } else {
-        mytisha.fillStyle = "#000000";
-      }
-      mytisha.font = "bold 24px Ubuntu";
-      var jovonnie = document.getElementsByTagName("html")[0].getAttribute("lang");
-      if (jovonnie == "tr") {
-        mytisha.fillText("Skor: " + ~~(onterrio / 100), 10, 34);
-        mytisha.fillText("Max.: " + ~~(ellynor / 100), 10, 60);
-      } else {
-        mytisha.fillText("Score: " + ~~(onterrio / 100), 10, 34);
-        mytisha.fillText("Max.: " + ~~(ellynor / 100), 10, 60);
+    ;
+    daughn && daughn.width && jovonie.drawImage(daughn, danyette - daughn.width - 10, 10);
+    if (!pranith) {
+      if (latrinia != null && latrinia.width > 0) {
+        jovonie.drawImage(latrinia, 0, orland - latrinia.height - 50);
       }
     }
-    if (!raigan) {
-      var sevena = 0;
-      for (var elorah = sheddrick.length - 1; elorah >= 0; elorah--) {
-        sevena++;
-        if (sevena > 15) {
+    ;
+    var revansh = rysa();
+    antrese = Math.max(antrese, rysa());
+    if (0 != antrese) {
+      jovonie.globalAlpha = .8;
+      if (stancel == true) {
+        jovonie.fillStyle = "#FFFFFF";
+      } else {
+        jovonie.fillStyle = "#000000";
+      }
+      ;
+      jovonie.font = "bold 24px Ubuntu";
+      var cuahutemoc = document.getElementsByTagName("html")[0].getAttribute("lang");
+      if (cuahutemoc == "tr") {
+        jovonie.fillText("Skor: " + ~~(revansh / 100), 10, 34);
+        jovonie.fillText("Max.: " + ~~(antrese / 100), 10, 60);
+      } else {
+        jovonie.fillText("Score: " + ~~(revansh / 100), 10, 34);
+        jovonie.fillText("Max.: " + ~~(antrese / 100), 10, 60);
+      }
+    }
+    ;
+    if (!pranith) {
+      var navar = 0;
+      for (var caiman = calijah.length - 1; caiman >= 0; caiman--) {
+        navar++;
+        if (navar > 15) {
           break;
         }
-        var damontre = sheddrick[elorah].name.trim();
-        if (damontre == "") {
-          damontre = "Unnamed Cell";
+        ;
+        var dashyra = calijah[caiman].name.trim();
+        if (dashyra == "") {
+          dashyra = "Unnamed Cell";
         }
-        var lukyan = sheddrick[elorah].message.trim();
-        var kaiann = lukyan.toLowerCase();
-        var chrisley = " : " + kaiann;
-        mytisha.font = "17px Arial";
-        sheddrick[elorah].name_x = 15;
-        sheddrick[elorah].name_y = whitton - 30 - 20 * sevena;
-        sheddrick[elorah].name_w = mytisha.measureText(damontre).width;
-        sheddrick[elorah].name_h = 18;
-        sheddrick[elorah].msg_x = 15 + sheddrick[elorah].name_w;
-        sheddrick[elorah].msg_y = sheddrick[elorah].name_y;
-        sheddrick[elorah].msg_w = mytisha.measureText(chrisley).width;
-        sheddrick[elorah].msg_h = sheddrick[elorah].name_h;
-        mytisha.fillStyle = sheddrick[elorah].color;
-        mytisha.fillText(damontre, sheddrick[elorah].name_x, sheddrick[elorah].name_y);
-        if (kerra == true) {
-          mytisha.fillStyle = "#FFFFFF";
+        ;
+        var kyeana = calijah[caiman].message.trim();
+        var unnamed = kyeana.toLowerCase();
+        var naami = " : " + unnamed;
+        jovonie.font = "17px Arial";
+        calijah[caiman].name_x = 15;
+        calijah[caiman].name_y = orland - 30 - 20 * navar;
+        calijah[caiman].name_w = jovonie.measureText(dashyra).width;
+        calijah[caiman].name_h = 18;
+        calijah[caiman].msg_x = 15 + calijah[caiman].name_w;
+        calijah[caiman].msg_y = calijah[caiman].name_y;
+        calijah[caiman].msg_w = jovonie.measureText(naami).width;
+        calijah[caiman].msg_h = calijah[caiman].name_h;
+        jovonie.fillStyle = calijah[caiman].color;
+        jovonie.fillText(dashyra, calijah[caiman].name_x, calijah[caiman].name_y);
+        if (stancel == true) {
+          jovonie.fillStyle = "#FFFFFF";
         } else {
-          mytisha.fillStyle = "#000000";
+          jovonie.fillStyle = "#000000";
         }
-        mytisha.fillText(chrisley, sheddrick[elorah].msg_x, sheddrick[elorah].msg_y);
+        ;
+        jovonie.fillText(naami, calijah[caiman].msg_x, calijah[caiman].msg_y);
       }
     }
-    if (!holger) {
-      navin();
+    ;
+    if (!beresford) {
+      caige();
     }
-    var giancarlo = Date.now() - neppie;
-    giancarlo > 16.666666666666668 ? chesa -= .01 : giancarlo < 15.384615384615385 && (chesa += .01);
-    .4 > chesa && (chesa = .4);
-    1 < chesa && (chesa = 1);
+    ;
+    var paulisha = Date.now() - nenette;
+    paulisha > 16.666666666666668 ? arish -= .01 : paulisha < 15.384615384615385 && (arish += .01);
+    .4 > arish && (arish = .4);
+    1 < arish && (arish = 1);
   }
-  function navin() {
-    if (lakshitha.length == 0 || false) {
+  function caige() {
+    if (coley.length == 0 || !jonnye) {
       return;
     }
-    mytisha.save();
-    function rhyanna(ishea, ruxin) {
-      return !ruxin ? ishea : rhyanna(ruxin, ishea % ruxin);
+    ;
+    jovonie.save();
+    function ciaria(drago, hallah) {
+      return !hallah ? drago : ciaria(hallah, drago % hallah);
     }
-    mytisha.beginPath();
-    mytisha.fillStyle = "rgba(0,0,0,.25)";
-    var michaelin = holger ? 150 : 200;
-    mytisha.lineWidth = 1.5;
-    var andrell = bellamarie - michaelin - 10;
-    var jahleil = whitton - michaelin - 5;
-    mytisha.rect(andrell, jahleil, michaelin, michaelin);
-    mytisha.lineWidth = 1.25;
-    var shailah = jeresa / (bertie - dekoven);
-    var feliberto = ronniel / (evnika - glenroy);
-    var farren = shailah * michaelin + andrell + michaelin / 2 - 100;
-    var carleene = feliberto * michaelin + jahleil + michaelin / 2 - 100;
-    var shariece = bh = michaelin;
-    var suvi = -1;
-    var azareah = -1;
-    for (var sehana = 0; sehana <= shariece; sehana += 40) {
-      if (sehana != shariece) {
-        var mirei = .5 + sehana + andrell;
-        var naresh = jahleil;
-        if (darleny(mirei, naresh, mirei + 40, naresh + bh, farren, carleene)) {
-          suvi = mirei;
+    jovonie.beginPath();
+    jovonie.fillStyle = "rgba(0,0,0,.25)";
+    var helina = beresford ? 150 : 200;
+    jovonie.lineWidth = 1.5;
+    var trevorjames = danyette - helina - 10;
+    var asil = orland - helina - 5;
+    jovonie.rect(trevorjames, asil, helina, helina);
+    jovonie.lineWidth = 1.25;
+    var lankford = azad / (mahaley - taleesha);
+    var harrel = rickelle / (keanne - aseer);
+    var jamarquez = lankford * helina + trevorjames + helina / 2 - 100;
+    var angelou = harrel * helina + asil + helina / 2 - 100;
+    var keerica = bh = helina;
+    var naana = -1;
+    var bethzabel = -1;
+    for (var vivan = 0; vivan <= keerica; vivan += 40) {
+      if (vivan != keerica) {
+        var tegan = .5 + vivan + trevorjames;
+        var heide = asil;
+        if (kenzia(tegan, heide, tegan + 40, heide + bh, jamarquez, angelou)) {
+          naana = tegan;
         }
-        if (sehana == 0) {
+        ;
+        if (vivan == 0) {
           continue;
         }
-        mytisha.moveTo(.5 + sehana + andrell, jahleil);
-        mytisha.lineTo(.5 + sehana + andrell, bh + jahleil);
+        ;
+        jovonie.moveTo(.5 + vivan + trevorjames, asil);
+        jovonie.lineTo(.5 + vivan + trevorjames, bh + asil);
       }
-      if (kerra == true) {
-        mytisha.fillStyle = "#FFFFFF";
+      ;
+      if (stancel == true) {
+        jovonie.fillStyle = "#FFFFFF";
       } else {
-        mytisha.fillStyle = "#000000";
+        jovonie.fillStyle = "#000000";
       }
-      mytisha.font = "700 18px nunito";
-      mytisha.textAlign = "center";
-      mytisha.strokeStyle = "white";
-      mytisha.lineWidth = 1;
-      mytisha.globalAlpha = .35;
-      for (var kweli = 0; kweli < 5; kweli++) {
-        mytisha.fillText(String.fromCharCode(kweli + 65) + sehana / 40, .5 + sehana + andrell - 20, jahleil + 25.5 + kweli * 40);
+      ;
+      jovonie.font = "700 18px nunito";
+      jovonie.textAlign = "center";
+      jovonie.strokeStyle = "white";
+      jovonie.lineWidth = 1;
+      jovonie.globalAlpha = .35;
+      for (var khase = 0; khase < 5; khase++) {
+        jovonie.fillText(String.fromCharCode(khase + 65) + vivan / 40, .5 + vivan + trevorjames - 20, asil + 25.5 + khase * 40);
       }
     }
-    for (var chasteen = 0; chasteen <= bh; chasteen += 40) {
-      if (chasteen != bh) {
-        var mirei = andrell;
-        var naresh = .5 + chasteen + jahleil;
-        if (darleny(mirei, naresh, mirei + shariece, naresh + 40, farren, carleene)) {
-          azareah = naresh;
+    ;
+    for (var kristupas = 0; kristupas <= bh; kristupas += 40) {
+      if (kristupas != bh) {
+        var tegan = trevorjames;
+        var heide = .5 + kristupas + asil;
+        if (kenzia(tegan, heide, tegan + keerica, heide + 40, jamarquez, angelou)) {
+          bethzabel = heide;
         }
-        if (chasteen == 0) {
+        ;
+        if (kristupas == 0) {
           continue;
         }
-        mytisha.moveTo(andrell, .5 + chasteen + jahleil);
-        mytisha.lineTo(shariece + andrell, .5 + chasteen + jahleil);
+        ;
+        jovonie.moveTo(trevorjames, .5 + kristupas + asil);
+        jovonie.lineTo(keerica + trevorjames, .5 + kristupas + asil);
       }
     }
-    if (lakshitha.length > 0 && suvi > -1 && azareah > -1) {
-      mytisha.fillStyle = "#ccff00";
-      mytisha.globalAlpha = .3;
-      mytisha.fillRect(suvi, azareah, 40, 40);
+    ;
+    if (coley.length > 0 && naana > -1 && bethzabel > -1) {
+      jovonie.fillStyle = "#ccff00";
+      jovonie.globalAlpha = .3;
+      jovonie.fillRect(naana, bethzabel, 40, 40);
     }
-    mytisha.globalAlpha = 1;
-    mytisha.strokeStyle = "rgba(238,0,17,.2)";
-    mytisha.stroke();
-    mytisha.closePath();
-    for (var kweli = 0; kweli < lakshitha.length; kweli++) {
-      var shantania = lakshitha[kweli];
-      var morwenna = shantania.ox / (bertie - dekoven);
-      var aunisty = shantania.oy / (evnika - glenroy);
-      var sehana = morwenna * michaelin + andrell + michaelin / 2 - 100;
-      var chasteen = aunisty * michaelin + jahleil + michaelin / 2 - 100;
-      var martravious = Math.max(2, shantania.size / (michaelin / 2));
-      mytisha.fillStyle = shantania.color;
-      if (kweli == 0) {
-        mytisha.font = "bold " + (14 + martravious) + "px Ubuntu";
-        var michaelina = mytisha.measureText(shantania.name);
-        mytisha.strokestyle = "black";
+    ;
+    jovonie.globalAlpha = 1;
+    jovonie.strokeStyle = "rgba(238,0,17,.2)";
+    jovonie.stroke();
+    jovonie.closePath();
+    for (var khase = 0; khase < coley.length; khase++) {
+      var jayzon = coley[khase];
+      var alysin = jayzon.ox / (mahaley - taleesha);
+      var doremus = jayzon.oy / (keanne - aseer);
+      var vivan = alysin * helina + trevorjames + helina / 2 - 100;
+      var kristupas = doremus * helina + asil + helina / 2 - 100;
+      var shaanvi = Math.max(2, jayzon.size / (helina / 2));
+      jovonie.fillStyle = jayzon.color;
+      if (khase == 0) {
+        jovonie.font = "bold " + (14 + shaanvi) + "px Ubuntu";
+        var alesi = jovonie.measureText(jayzon.name);
+        jovonie.strokestyle = "black";
       }
-      mytisha.beginPath();
-      mytisha.strokeStyle = "black";
-      mytisha.lineWidth = 1;
-      mytisha.globalAlpha = 1;
-      mytisha.arc(sehana, chasteen, martravious, 0, 2 * Math.PI);
-      mytisha.stroke();
-      mytisha.fill();
-      mytisha.closePath();
+      ;
+      jovonie.beginPath();
+      jovonie.strokeStyle = "black";
+      jovonie.lineWidth = 1;
+      jovonie.globalAlpha = 1;
+      jovonie.arc(vivan, kristupas, shaanvi, 0, 2 * Math.PI);
+      jovonie.stroke();
+      jovonie.fill();
+      jovonie.closePath();
     }
-    mytisha.restore();
+    ;
+    jovonie.restore();
   }
-  function nikeem() {
-    if (kerra) {
-      mytisha.fillStyle = "#111111";
-    } else {}
-    mytisha.fillRect(0, 0, bellamarie, whitton);
-    mytisha.save();
-    if (kerra) {
-      mytisha.strokeStyle = "#AAAAAA";
-    } else {}
-    mytisha.globalAlpha = .2;
-    mytisha.scale(bresha, bresha);
-    var derrico = bellamarie / bresha, leoda = whitton / bresha;
-    mytisha.restore();
-  }
-  function chatara() {
-    for (var abella = 0, nabhan = 0; nabhan < lakshitha.length; nabhan++) {
-      abella += lakshitha[nabhan].nSize * lakshitha[nabhan].nSize;
+  function nayelis() {
+    if (stancel) {
+      jovonie.fillStyle = "#111111";
+    } else {
+      if (wiktoria) {
+        jovonie.fillStyle = "#F2FBFF";
+        ;
+      }
     }
-    return abella;
+    ;
+    jovonie.fillRect(0, 0, danyette, orland);
+    jovonie.save();
+    if (stancel) {
+      jovonie.strokeStyle = "#AAAAAA";
+    } else {
+      if (wiktoria) {
+        jovonie.strokeStyle = "#000000";
+      }
+    }
+    ;
+    jovonie.globalAlpha = .2;
+    jovonie.scale(neketa, neketa);
+    var anjely = danyette / neketa, kerl = orland / neketa;
+    jovonie.restore();
   }
-  function roxette() {
-    var mckalee;
-    mckalee = 1 * Math.max(q / 1080, m / 1920);
-    return mckalee *= M;
+  function rysa() {
+    for (var eyler = 0, millison = 0; millison < coley.length; millison++) {
+      eyler += coley[millison].nSize * coley[millison].nSize;
+    }
+    ;
+    return eyler;
   }
-  function elliemay(maleke) {
-    for (var mayze = maleke.length, janessia, nissen; 0 < mayze;) {
-      nissen = Math.floor(Math.random() * mayze);
-      mayze--;
-      janessia = maleke[mayze];
-      maleke[mayze] = maleke[nissen];
-      maleke[nissen] = janessia;
+  function zuleyca() {
+    var makynzie;
+    makynzie = 1 * Math.max(q / 1080, m / 1920);
+    return makynzie *= M;
+  }
+  function lamisha(shenille) {
+    for (var ardelle = shenille.length, savar, letetia; 0 < ardelle;) {
+      letetia = Math.floor(Math.random() * ardelle), ardelle--, savar = shenille[ardelle], shenille[ardelle] = shenille[letetia], shenille[letetia] = savar;
     }
   }
-  function madelis() {
-    otway = null;
-    var tasanee = 140;
-    if (null != khylia) {
-      tasanee = 200;
+  function queston() {
+    var madlyne = 110;
+    var kalai = 80;
+    var quennie = 125;
+    daughn = null;
+    var atzhiri = 140;
+    if (null != kamin) {
+      atzhiri = 200;
     }
-    if (null != khylia || 0 != khyzir.length) {
-      otway = document.createElement("canvas");
+    ;
+    if (null != kamin || 0 != aaronda.length) {
+      daughn = document.createElement("canvas");
     }
-    var dionicia = otway.getContext("2d"), bassheva = 110;
-    bassheva = null == khylia ? bassheva + 24 * khyzir.length : bassheva + 180;
-    var tiant = Math.min(.22 * whitton, Math.min(200, .3 * bellamarie)) / 200;
-    otway.width = tasanee * tiant;
-    otway.height = bassheva * tiant;
-    dionicia.scale(tiant, tiant);
-    dionicia.globalAlpha = .4;
-    dionicia.fillStyle = "#000000";
-    dionicia.fillRect(0, 0, 200, bassheva);
-    dionicia.globalAlpha = 1;
-    dionicia.fillStyle = "#FFFFFF";
-    var indiah;
-    var margueritte = ["#E6339B", "#FFD700", "#33E660", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"];
-    if (null == khylia) {
-      dionicia.fillStyle = "yellow";
-      dionicia.font = "12px Ubuntu";
-      var romeisha = new Image;
-      romeisha.onload = function () {
-        dionicia.drawImage(romeisha, 40, 0);
+    ;
+    var akosita = daughn.getContext("2d"), vichelle = madlyne;
+    vichelle = null == kamin ? vichelle + 24 * aaronda.length : vichelle + 180;
+    var angelise = Math.min(.22 * orland, Math.min(200, .3 * danyette)) / 200;
+    daughn.width = atzhiri * angelise;
+    daughn.height = vichelle * angelise;
+    akosita.scale(angelise, angelise);
+    akosita.globalAlpha = .4;
+    akosita.fillStyle = "#000000";
+    akosita.fillRect(0, 0, 200, vichelle);
+    akosita.globalAlpha = 1;
+    akosita.fillStyle = "#FFFFFF";
+    var arty;
+    var araya = ["#E6339B", "#FFD700", "#33E660", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"];
+    if (null == kamin) {
+      akosita.fillStyle = "yellow";
+      akosita.font = "12px Ubuntu";
+      var niloufar = new Image;
+      niloufar.onload = function () {
+        akosita.drawImage(niloufar, 40, 0);
       };
-      romeisha.src = "/img/lbfirst.png";
-      dionicia.fillText(this.lastWinner, 70 - dionicia.measureText(this.lastWinner).width / 2, 80);
-      for (indiah = 0; indiah < khyzir.length; ++indiah) {
-        c = khyzir[indiah].name.split("*")[0] || "Unnamed Cell";
-        c = demar(c)[1];
+      niloufar.src = "/img/lbfirst.png";
+      akosita.fillText(this.lastWinner, 70 - akosita.measureText(this.lastWinner).width / 2, kalai);
+      for (arty = 0; arty < aaronda.length; ++arty) {
+        c = aaronda[arty].name.split("*")[0] || "Unnamed Cell";
+        c = taleaha(c)[1];
         if (c == "") {
           c = "Unnamed Cell";
         }
-        if (-1 != tyara.indexOf(khyzir[indiah].id)) {
-          lakshitha[0].name && (c = demar(lakshitha[0].name)[1]);
+        ;
+        if (-1 != regan.indexOf(aaronda[arty].id)) {
+          coley[0].name && (c = taleaha(coley[0].name)[1]);
           if (c == "") {
             c = "Unnamed Cell";
           }
-          dionicia.fillStyle = "#FFAAAA";
-          if (!martell) {
-            c = indiah + 1 + ". " + c;
+          ;
+          akosita.fillStyle = "#FFAAAA";
+          if (!garyn) {
+            c = arty + 1 + ". " + c;
           }
-          dionicia.fillText(c, 70 - dionicia.measureText(c).width / 2, 125 + 23 * indiah);
+          ;
+          akosita.fillText(c, 70 - akosita.measureText(c).width / 2, quennie + 23 * arty);
         } else {
-          dionicia.fillStyle = margueritte[indiah];
-          if (!martell) {
-            c = indiah + 1 + ". " + c;
+          akosita.fillStyle = araya[arty];
+          if (!garyn) {
+            c = arty + 1 + ". " + c;
           }
-          dionicia.fillText(c, 70 - dionicia.measureText(c).width / 2, 125 + 23 * indiah);
+          ;
+          akosita.fillText(c, 70 - akosita.measureText(c).width / 2, quennie + 23 * arty);
         }
       }
     } else {
-      for (indiah = c = 0; indiah < khylia.length; ++indiah) {
-        var yanill = c + khylia[indiah] * Math.PI * 2;
-        dionicia.fillStyle = naol[indiah + 1];
-        dionicia.beginPath();
-        dionicia.moveTo(100, 140);
-        dionicia.arc(100, 140, 80, c, yanill, false);
-        dionicia.fill();
-        c = yanill;
+      for (arty = c = 0; arty < kamin.length; ++arty) {
+        var galatea = c + kamin[arty] * Math.PI * 2;
+        akosita.fillStyle = fayez[arty + 1];
+        akosita.beginPath();
+        akosita.moveTo(100, 140);
+        akosita.arc(100, 140, 80, c, galatea, false);
+        akosita.fill();
+        c = galatea;
       }
     }
   }
-  function antonica(ross, devonaire, cherlyl, alhan, dyland, lelu) {
-    this.id = ross;
-    this.ox = this.x = devonaire;
-    this.oy = this.y = cherlyl;
-    this.oSize = this.size = alhan;
-    this.color = dyland;
+  function jerauld(macaulay, raima, neelah, gamila, falba, quian) {
+    this.id = macaulay;
+    this.ox = this.x = raima;
+    this.oy = this.y = neelah;
+    this.oSize = this.size = gamila;
+    this.color = falba;
     this.points = [];
     this.pointsAcc = [];
     this.createPoints();
-    this.setName(lelu);
+    this.setName(quian);
   }
-  function leudy(aubreah, uswa, dimani, vihaas) {
-    aubreah && (this._size = aubreah);
-    uswa && (this._color = uswa);
-    this._stroke = !!dimani;
-    vihaas && (this._strokeColor = vihaas);
+  function aunesty(lavanna, rogelio, citlalic, aydali) {
+    lavanna && (this._size = lavanna);
+    rogelio && (this._color = rogelio);
+    this._stroke = !!citlalic;
+    aydali && (this._strokeColor = aydali);
   }
-  var yoseli = safwa.location.protocol, nataliya = "https:" == yoseli;
-  var naielle, mytisha, marlaena, otway, shadena, bellamarie, whitton, mehmet = null, shahwaiz = null, jeresa = 0, ronniel = 0, tyara = [], lakshitha = [], mikaela = {_0xd11ex6e: _0xd11ex3c}, mizani = [], caprise = [], khyzir = [], sheddrick = [], thaily = 0, sherryl = 0, srinithya = -1, jasiana = -1, swanzetta = 0, davod = 0, sohan = null, dekoven = 0, glenroy = 0, bertie = 1e4, evnika = 1e4, bresha = .1, lyle = null, monelle = true, athens = true, aaris = false, nalla = false, ellynor = 0, shyniece = 0, rekha = 0, rickel = 0, calisa = 0, kerra = false, juli = false, rumina = false, echoe = .9, keonda = false, raigan = false, hosna = false, ann = jeresa = ~~((dekoven + bertie) / 2), tasiya = ronniel = ~~((glenroy + evnika) / 2), thos = 1, born = "", khylia = null, kenard = false, rohil = true, marquavis = false, laryn = 0, treniti = 0, jamiann = 0, preana = 0, jakhari = [], pepsi = Date.now(), rekha = 0, naol = ["#333333", "#FF3333", "#33FF33", "#3333FF"], trishalana = .7, matha = "ontouchstart" in safwa && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent), friend = new Image, rickyy = new Image, martell = false;
-  friend.src = "../img/images/split.png";
-  rickyy.src = "../img/images/feed.png";
-  var trinty = document.createElement("canvas");
-  var rinyah = Date.now();
-  safwa.isSpectating = false;
-  var rinyah = Date.now();
-  safwa.setNick = function (aarya, rubens) {
-    if (aarya == null || !aarya || aarya == "") {
+  var janson = kimara.location.protocol, lujuana = "https:" == janson;
+  var doletha, jovonie, shaquira, daughn, latrinia, danyette, orland, yerly = null, valentim = null, azad = 0, rickelle = 0, regan = [], coley = [], dayne = {}, floki = [], shyneka = [], aaronda = [], calijah = [], oluwatamilore = 0, onel = 0, setayesh = -1, syniah = -1, dhananjay = 0, rusti = 0, winnifred = null, taleesha = 0, aseer = 0, mahaley = 1e4, keanne = 1e4, neketa = .1, olline = null, monreaux = true, stassi = true, laderion = false, jenice = false, antrese = 0, zinachimdi = 0, usha = 0, alysiah = 0, jovar = 0, stancel = false, wiktoria = false, amilya = false, bryndon = false, sidora = .9, antonique = false, pranith = false, jahbari = false, brunelle = azad = ~~((taleesha + mahaley) / 2), gimena = rickelle = ~~((aseer + keanne) / 2), lekia = 1, kode = "", kamin = null, ajahnae = false, zaynab = true, senequa = false, petria = 0, khaleil = 0, zayvier = 0, kymiyah = 0, ichard = [], izai = Date.now(), usha = 0, fayez = ["#333333", "#FF3333", "#33FF33", "#3333FF"], lareena = .7, antoniya = "ontouchstart" in kimara && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent), latreena = new Image, maislee = new Image, garyn = false;
+  latreena.src = "../img/images/split.png";
+  maislee.src = "../img/images/feed.png";
+  var garion = document.createElement("canvas");
+  var teaona = null;
+  var donaciana = Date.now();
+  kimara.isSpectating = false;
+  var donaciana = Date.now();
+  kimara.setNick = function (demitry, taneysha) {
+    if (demitry == null || !demitry || demitry == "") {
       alert("Enter Nick / Invalid Nick Input");
     } else {
-      aarya = aarya.replace(/[|&;+,]/g, ":)");
-      slade();
-      sohan = "{" + rubens + "}" + aarya;
-      saaral();
-      ellynor = 0;
-      jakhari = [];
-      shyniece = 0;
-      pepsi = Date.now();
-      rickel = 0;
-      calisa = 0;
-      rekha = 0;
+      demitry = demitry.replace(/[|&;+,]/g, ":)");
+      comer();
+      winnifred = "{" + taneysha + "}" + demitry;
+      hajira();
+      antrese = 0;
+      ichard = [];
+      zinachimdi = 0;
+      izai = Date.now();
+      alysiah = 0;
+      jovar = 0;
+      usha = 0;
     }
   };
-  safwa.setRegion = seini;
-  safwa.setSkins = function (juwanna) {
-    monelle = juwanna;
+  kimara.setRegion = jove;
+  kimara.setSkins = function (xxavier) {
+    monreaux = xxavier;
   };
-  safwa.setNames = function (keyashia) {
-    athens = keyashia;
+  kimara.setNames = function (cresencia) {
+    stassi = cresencia;
   };
-  safwa.setDarkTheme = function (rjay) {
-    kerra = rjay;
+  kimara.setDarkTheme = function (allex) {
+    stancel = allex;
   };
-  safwa.setColors = function (deora) {
-    aaris = deora;
+  kimara.setColors = function (modestine) {
+    laderion = modestine;
   };
-  safwa.setShowMass = function (imre) {
-    juli = imre;
+  kimara.setShowMass = function (afrika) {
+    amilya = afrika;
   };
-  safwa.setTransparent = function (valdine) {
-    keonda = valdine;
+  kimara.setTransparent = function (tarif) {
+    antonique = tarif;
   };
-  safwa.setSmooth = function (kisha) {
-    echoe = kisha ? 2 : .4;
+  kimara.setSmooth = function (tomias) {
+    sidora = tomias ? 2 : .4;
   };
-  safwa.setZoom = function (juniel) {
-    rumina = juniel;
+  kimara.setZoom = function (donel) {
+    bryndon = donel;
   };
-  safwa.setHideChat = function (tomicko) {
-    raigan = tomicko;
-    if (tomicko) {
-      adelayda("#chat_textbox").hide();
+  kimara.setHideChat = function (benesha) {
+    pranith = benesha;
+    if (benesha) {
+      carnes("#chat_textbox").hide();
     } else {
-      adelayda("#chat_textbox").show();
+      carnes("#chat_textbox").show();
     }
   };
-  safwa.setSkipStats = function (abigaelle) {
-    hosna = abigaelle;
+  kimara.setSkipStats = function (shinia) {
+    jahbari = shinia;
   };
-  safwa.closeStats = function () {
-    adelayda("#statoverlay").hide();
-    adelayda("#stats").hide();
-    adelayda("#overlays").fadeIn(200);
+  kimara.closeStats = function () {
+    carnes("#statoverlay").hide();
+    carnes("#stats").hide();
+    carnes("#overlays").fadeIn(200);
   };
-  safwa.ClearChat = function () {
-    sheddrick = [];
+  kimara.ClearChat = function () {
+    calijah = [];
   };
-  safwa.SendMap = function () {
-    brishana("psx2psx2");
+  kimara.SendMap = function () {
+    jacelin("psx2psx2");
   };
-  safwa.spectate = function () {
-    sohan = null;
-    safwa.isSpectating = true;
-    yumiko(1);
-    slade();
+  kimara.spectate = function () {
+    winnifred = null;
+    kimara.isSpectating = true;
+    aleander(1);
+    comer();
   };
-  safwa.setGameMode = function (jemila) {
-    luciele(jemila);
+  kimara.setGameMode = function (keemon) {
+    britteni(keemon);
   };
-  if (null != safwa.localStorage) {
-    if (null == safwa.localStorage.AB8) {
-      safwa.localStorage.AB8 = ~~(100 * Math.random());
+  if (null != kimara.localStorage) {
+    if (null == kimara.localStorage.AB8) {
+      kimara.localStorage.AB8 = ~~(100 * Math.random());
     }
-    rekha = +safwa.localStorage.AB8;
-    safwa.ABGroup = rekha;
+    ;
+    usha = +kimara.localStorage.AB8;
+    kimara.ABGroup = usha;
   }
+  ;
   setInterval(function () {
-    var zailynn = abaddon();
-    if (0 != zailynn) {
-      ++calisa;
-      if (0 == rickel) {
-        rickel = zailynn;
+    var andriette = kyelin();
+    if (0 != andriette) {
+      ++jovar;
+      if (0 == alysiah) {
+        alysiah = andriette;
       }
-      rickel = Math.min(rickel, zailynn);
+      ;
+      alysiah = Math.min(alysiah, andriette);
     }
   }, 1e3);
   setInterval(function () {
-    if (null != shahwaiz && shahwaiz.readyState == shahwaiz.OPEN) {
-      msg = akena(5);
+    if (null != valentim && valentim.readyState == valentim.OPEN) {
+      msg = srihan(5);
       msg.setUint8(0, 90);
       msg.setUint32(1, 123456789, true);
       latency = new Date;
-      vernay(msg);
+      rosser(msg);
     }
   }, 1e3);
   setInterval(function () {
-    jakhari.push(chatara() / 100);
+    ichard.push(rysa() / 100);
   }, 16.666666666666668);
-  var marcanthony = {ZW: "EU-London"};
-  safwa.connect = fritzie;
-  var kaillou = 500, jazleen = -1, roldan = -1, chesa = 1, rehanna = {_0xd11ex117: new Image}, frayah = "poland;usa;china;russia;canada;australia;spain;brazil;germany;ukraine;france;sweden;chaplin;north korea;south korea;japan;united kingdom;earth;greece;latvia;lithuania;estonia;finland;norway;cia;maldivas;austria;nigeria;reddit;yaranaika;confederate;9gag;indiana;4chan;italy;bulgaria;tumblr;2ch.hk;hong kong;portugal;jamaica;german empire;mexico;sanik;switzerland;croatia;chile;indonesia;bangladesh;thailand;iran;iraq;peru;moon;botswana;bosnia;netherlands;european union;taiwan;pakistan;hungary;satanist;qing dynasty;matriarchy;patriarchy;feminism;ireland;texas;facepunch;prodota;cambodia;steam;piccolo;ea;india;kc;denmark;quebec;ayy lmao;sealand;bait;tsarist russia;origin;vinesauce;stalin;belgium;luxembourg;stussy;prussia;8ch;argentina;scotland;sir;romania;belarus;wojak;doge;nasa;byzantium;imperial japan;french kingdom;somalia;turkey;mars;pokerface;8;irs;receita federal;facebook;putin;merkel;tsipras;obama;kim jong-un;dilma;hollande".split(";"), josilyne = "8;nasa;putin;merkel;tsipras;obama;kim jong-un;dilma;hollande".split(";"), wondra = ["_canvas'blob"];
-  antonica.prototype = {id: 0, points: null, pointsAcc: null, name: null, nameCache: null, sizeCache: null, x: 0, y: 0, size: 0, ox: 0, oy: 0, oSize: 0, nx: 0, ny: 0, nSize: 0, flag: 0, updateTime: 0, updateCode: 0, drawTime: 0, destroyed: false, isVirus: false, isAgitated: false, wasSimpleDrawing: true, destroy: function () {
-    var jahnai;
-    for (jahnai = 0; jahnai < mizani.length; jahnai++) {
-      if (mizani[jahnai] == this) {
-        mizani.splice(jahnai, 1);
+  var kane = {ZW: "EU-London"};
+  kimara.connect = terisha;
+  var ayva = 500, marilyn = -1, ewan = -1, ezralynn = null, arish = 1, tellys = null, mahleek = {}, cynthina = "poland;usa;china;russia;canada;australia;spain;brazil;germany;ukraine;france;sweden;chaplin;north korea;south korea;japan;united kingdom;earth;greece;latvia;lithuania;estonia;finland;norway;cia;maldivas;austria;nigeria;reddit;yaranaika;confederate;9gag;indiana;4chan;italy;bulgaria;tumblr;2ch.hk;hong kong;portugal;jamaica;german empire;mexico;sanik;switzerland;croatia;chile;indonesia;bangladesh;thailand;iran;iraq;peru;moon;botswana;bosnia;netherlands;european union;taiwan;pakistan;hungary;satanist;qing dynasty;matriarchy;patriarchy;feminism;ireland;texas;facepunch;prodota;cambodia;steam;piccolo;ea;india;kc;denmark;quebec;ayy lmao;sealand;bait;tsarist russia;origin;vinesauce;stalin;belgium;luxembourg;stussy;prussia;8ch;argentina;scotland;sir;romania;belarus;wojak;doge;nasa;byzantium;imperial japan;french kingdom;somalia;turkey;mars;pokerface;8;irs;receita federal;facebook;putin;merkel;tsipras;obama;kim jong-un;dilma;hollande".split(";"), rayen = "8;nasa;putin;merkel;tsipras;obama;kim jong-un;dilma;hollande".split(";"), nevea = ["_canvas'blob"];
+  jerauld.prototype = {id: 0, points: null, pointsAcc: null, name: null, nameCache: null, sizeCache: null, x: 0, y: 0, size: 0, ox: 0, oy: 0, oSize: 0, nx: 0, ny: 0, nSize: 0, flag: 0, updateTime: 0, updateCode: 0, drawTime: 0, destroyed: false, isVirus: false, isAgitated: false, wasSimpleDrawing: true, destroy: function () {
+    var idalina;
+    for (idalina = 0; idalina < floki.length; idalina++) {
+      if (floki[idalina] == this) {
+        floki.splice(idalina, 1);
         break;
       }
     }
-    delete mikaela[this.id];
-    jahnai = lakshitha.indexOf(this);
-    if (-1 != jahnai) {
-      nalla = true;
-      lakshitha.splice(jahnai, 1);
+    ;
+    delete dayne[this.id];
+    idalina = coley.indexOf(this);
+    if (-1 != idalina) {
+      jenice = true;
+      coley.splice(idalina, 1);
     }
-    jahnai = tyara.indexOf(this.id);
-    if (-1 != jahnai) {
-      tyara.splice(jahnai, 1);
+    ;
+    idalina = regan.indexOf(this.id);
+    if (-1 != idalina) {
+      regan.splice(idalina, 1);
     }
+    ;
     this.destroyed = true;
-    caprise.push(this);
+    shyneka.push(this);
   }, getNameSize: function () {
     return Math.max(~~(.3 * this.size), 24);
-  }, setName: function (dineisha) {
-    if (this.name = dineisha) {
+  }, setName: function (raeesah) {
+    if (this.name = raeesah) {
       if (null == this.nameCache) {
-        this.nameCache = new leudy(this.getNameSize(), "#FFFFFF", true, "#000000");
+        this.nameCache = new aunesty(this.getNameSize(), "#FFFFFF", true, "#000000");
         this.nameCache.setValue(this.name);
       } else {
         this.nameCache.setSize(this.getNameSize());
@@ -1453,223 +1556,252 @@ var Sfreeze = false;
       }
     }
   }, createPoints: function () {
-    for (var suraya = this.getNumPoints(); this.points.length > suraya;) {
-      var bryasia = ~~(Math.random() * this.points.length);
-      this.points.splice(bryasia, 1);
-      this.pointsAcc.splice(bryasia, 1);
+    for (var darlenys = this.getNumPoints(); this.points.length > darlenys;) {
+      var iqra = ~~(Math.random() * this.points.length);
+      this.points.splice(iqra, 1);
+      this.pointsAcc.splice(iqra, 1);
     }
-    if (0 == this.points.length && 0 < suraya) {
+    ;
+    if (0 == this.points.length && 0 < darlenys) {
       this.points.push({ref: this, size: this.size, x: this.x, y: this.y});
       this.pointsAcc.push(Math.random() - .5);
     }
-    while (this.points.length < suraya) {
-      var raydrick = ~~(Math.random() * this.points.length), belarmino = this.points[raydrick];
-      this.points.splice(raydrick, 0, {ref: this, size: belarmino.size, x: belarmino.x, y: belarmino.y});
-      this.pointsAcc.splice(raydrick, 0, this.pointsAcc[raydrick]);
+    ;
+    while (this.points.length < darlenys) {
+      var lakel = ~~(Math.random() * this.points.length), shakila = this.points[lakel];
+      this.points.splice(lakel, 0, {ref: this, size: shakila.size, x: shakila.x, y: shakila.y});
+      this.pointsAcc.splice(lakel, 0, this.pointsAcc[lakel]);
     }
   }, getNumPoints: function () {
     if (0 == this.id) {
       return 16;
     }
-    var kensington = 10;
+    ;
+    var havynn = 10;
     if (20 > this.size) {
-      kensington = 0;
+      havynn = 0;
     }
+    ;
     if (this.isVirus) {
-      kensington = 30;
+      havynn = 30;
     }
-    var johansel = this.size;
+    ;
+    var hoor = this.size;
     if (!this.isVirus) {
-      johansel *= bresha;
+      hoor *= neketa;
     }
-    johansel *= chesa;
+    ;
+    hoor *= arish;
     if (this.flag & 32) {
-      johansel *= .25;
+      hoor *= .25;
     }
-    return ~~Math.max(johansel, kensington);
+    ;
+    return ~~Math.max(hoor, havynn);
   }, movePoints: function () {
     this.createPoints();
-    var kelty = this.points;
-    var jeannete = this.pointsAcc;
-    var rosella = kelty.length;
-    var elisiah = 0;
-    for (; elisiah < rosella; ++elisiah) {
-      var bezalel = jeannete[(elisiah - 1 + rosella) % rosella];
-      var shmeil = jeannete[(elisiah + 1) % rosella];
-      jeannete[elisiah] += (Math.random() - .5) * (this.isAgitated ? 3 : 1);
-      jeannete[elisiah] *= .7;
-      if (10 < jeannete[elisiah]) {
-        jeannete[elisiah] = 10;
+    var ardath = this.points;
+    var yeidan = this.pointsAcc;
+    var otavious = ardath.length;
+    var valesta = 0;
+    for (; valesta < otavious; ++valesta) {
+      var wiltz = yeidan[(valesta - 1 + otavious) % otavious];
+      var raymere = yeidan[(valesta + 1) % otavious];
+      yeidan[valesta] += (Math.random() - .5) * (this.isAgitated ? 3 : 1);
+      yeidan[valesta] *= .7;
+      if (10 < yeidan[valesta]) {
+        yeidan[valesta] = 10;
       }
-      if (-10 > jeannete[elisiah]) {
-        jeannete[elisiah] = -10;
+      ;
+      if (-10 > yeidan[valesta]) {
+        yeidan[valesta] = -10;
       }
-      jeannete[elisiah] = (bezalel + shmeil + 8 * jeannete[elisiah]) / 10;
+      ;
+      yeidan[valesta] = (wiltz + raymere + 8 * yeidan[valesta]) / 10;
     }
-    var mariyonna = this;
-    var brennan = this.isVirus ? 0 : (this.id / 1e3 + davod / 1e4) % (2 * Math.PI);
-    var hudaifa = 0;
-    for (; hudaifa < rosella; ++hudaifa) {
-      var yajaida = kelty[hudaifa].size;
-      var zealyn = kelty[(hudaifa - 1 + rosella) % rosella].size;
-      var aiylah = kelty[(hudaifa + 1) % rosella].size;
-      if (15 < this.size && null != mehmet && 20 < this.size * bresha && 0 != this.id) {
-        var kateland = false;
-        var oen = kelty[hudaifa].x;
-        var jakilah = kelty[hudaifa].y;
-        mehmet.retrieve2(oen - 5, jakilah - 5, 10, 10, function (zelilah) {
-          if (zelilah.ref != mariyonna && 25 > (oen - zelilah.x) * (oen - zelilah.x) + (jakilah - zelilah.y) * (jakilah - zelilah.y)) {
-            kateland = true;
+    ;
+    var kinganthony = this;
+    var alekai = this.isVirus ? 0 : (this.id / 1e3 + rusti / 1e4) % (2 * Math.PI);
+    var rhodia = 0;
+    for (; rhodia < otavious; ++rhodia) {
+      var draedyn = ardath[rhodia].size;
+      var jatoria = ardath[(rhodia - 1 + otavious) % otavious].size;
+      var qaiden = ardath[(rhodia + 1) % otavious].size;
+      if (15 < this.size && null != yerly && 20 < this.size * neketa && 0 != this.id) {
+        var jalese = false;
+        var dontarius = ardath[rhodia].x;
+        var jasleene = ardath[rhodia].y;
+        yerly.retrieve2(dontarius - 5, jasleene - 5, 10, 10, function (tyshell) {
+          if (tyshell.ref != kinganthony && 25 > (dontarius - tyshell.x) * (dontarius - tyshell.x) + (jasleene - tyshell.y) * (jasleene - tyshell.y)) {
+            jalese = true;
           }
         });
-        if (!kateland && kelty[hudaifa].x < dekoven || kelty[hudaifa].y < glenroy || kelty[hudaifa].x > bertie || kelty[hudaifa].y > evnika) {
-          kateland = true;
+        if (!jalese && ardath[rhodia].x < taleesha || ardath[rhodia].y < aseer || ardath[rhodia].x > mahaley || ardath[rhodia].y > keanne) {
+          jalese = true;
         }
-        if (kateland) {
-          if (0 < jeannete[hudaifa]) {
-            jeannete[hudaifa] = 0;
+        ;
+        if (jalese) {
+          if (0 < yeidan[rhodia]) {
+            yeidan[rhodia] = 0;
           }
-          jeannete[hudaifa] -= 1;
+          ;
+          yeidan[rhodia] -= 1;
         }
       }
-      yajaida = yajaida + jeannete[hudaifa];
-      if (0 > yajaida) {
-        yajaida = 0;
+      ;
+      draedyn = draedyn + yeidan[rhodia];
+      if (0 > draedyn) {
+        draedyn = 0;
       }
-      yajaida = this.isAgitated ? (19 * yajaida + this.size) / 20 : (12 * yajaida + this.size) / 13;
-      kelty[hudaifa].size = (zealyn + aiylah + 8 * yajaida) / 10;
-      zealyn = 2 * Math.PI / rosella;
-      aiylah = this.points[hudaifa].size;
-      if (this.isVirus && 0 == hudaifa % 2) {
-        aiylah = aiylah + 5;
+      ;
+      draedyn = this.isAgitated ? (19 * draedyn + this.size) / 20 : (12 * draedyn + this.size) / 13;
+      ardath[rhodia].size = (jatoria + qaiden + 8 * draedyn) / 10;
+      jatoria = 2 * Math.PI / otavious;
+      qaiden = this.points[rhodia].size;
+      if (this.isVirus && 0 == rhodia % 2) {
+        qaiden = qaiden + 5;
       }
-      kelty[hudaifa].x = this.x + Math.cos(zealyn * hudaifa + brennan) * aiylah;
-      kelty[hudaifa].y = this.y + Math.sin(zealyn * hudaifa + brennan) * aiylah;
+      ;
+      ardath[rhodia].x = this.x + Math.cos(jatoria * rhodia + alekai) * qaiden;
+      ardath[rhodia].y = this.y + Math.sin(jatoria * rhodia + alekai) * qaiden;
     }
   }, updatePos: function () {
     if (0 == this.id) {
       return 1;
     }
-    var dequavion;
-    dequavion = (davod - this.updateTime) / 120;
-    dequavion = 0 > dequavion ? 0 : 1 < dequavion ? 1 : dequavion;
-    var makaylyn = 0 > dequavion ? 0 : 1 < dequavion ? 1 : dequavion;
+    ;
+    var owan;
+    owan = (rusti - this.updateTime) / 120;
+    owan = 0 > owan ? 0 : 1 < owan ? 1 : owan;
+    var samiyyah = 0 > owan ? 0 : 1 < owan ? 1 : owan;
     this.getNameSize();
-    if (this.destroyed && 1 <= makaylyn) {
-      var cristyl = caprise.indexOf(this);
-      -1 != cristyl && caprise.splice(cristyl, 1);
+    if (this.destroyed && 1 <= samiyyah) {
+      var makyah = shyneka.indexOf(this);
+      -1 != makyah && shyneka.splice(makyah, 1);
     }
-    this.x = dequavion * (this.nx - this.ox) + this.ox;
-    this.y = dequavion * (this.ny - this.oy) + this.oy;
-    this.size = makaylyn * (this.nSize - this.oSize) + this.oSize;
-    return makaylyn;
+    ;
+    this.x = owan * (this.nx - this.ox) + this.ox;
+    this.y = owan * (this.ny - this.oy) + this.oy;
+    this.size = samiyyah * (this.nSize - this.oSize) + this.oSize;
+    return samiyyah;
   }, shouldRender: function () {
     if (0 == this.id) {
       return true;
     } else {
-      return !(this.x + this.size + 40 < jeresa - bellamarie / 2 / bresha || this.y + this.size + 40 < ronniel - whitton / 2 / bresha || this.x - this.size - 40 > jeresa + bellamarie / 2 / bresha || this.y - this.size - 40 > ronniel + whitton / 2 / bresha);
+      return !(this.x + this.size + 40 < azad - danyette / 2 / neketa || this.y + this.size + 40 < rickelle - orland / 2 / neketa || this.x - this.size - 40 > azad + danyette / 2 / neketa || this.y - this.size - 40 > rickelle + orland / 2 / neketa);
     }
-  }, drawOneCell: function (shea) {
+  }, drawOneCell: function (alema) {
     if (this.shouldRender()) {
-      var storie = 0 != this.id && !this.isVirus && !this.isAgitated && echoe > bresha;
+      var quavonte = 0 != this.id && !this.isVirus && !this.isAgitated && sidora > neketa;
       if (5 > this.getNumPoints()) {
-        storie = true;
+        quavonte = true;
       }
-      if (this.wasSimpleDrawing && !storie) {
-        for (var kamaire = 0; kamaire < this.points.length; kamaire++) {
-          this.points[kamaire].size = this.size;
+      ;
+      if (this.wasSimpleDrawing && !quavonte) {
+        for (var yaz = 0; yaz < this.points.length; yaz++) {
+          this.points[yaz].size = this.size;
         }
       }
-      this.wasSimpleDrawing = storie;
-      shea.save();
-      this.drawTime = davod;
-      kamaire = this.updatePos();
-      this.destroyed && (shea.globalAlpha *= 1 - kamaire);
-      shea.lineWidth = 10;
-      shea.lineCap = "round";
-      shea.lineJoin = this.isVirus ? "miter" : "round";
-      if (aaris) {
-        shea.fillStyle = "#FFFFFF";
-        shea.strokeStyle = "#AAAAAA";
+      ;
+      this.wasSimpleDrawing = quavonte;
+      alema.save();
+      this.drawTime = rusti;
+      yaz = this.updatePos();
+      this.destroyed && (alema.globalAlpha *= 1 - yaz);
+      alema.lineWidth = 10;
+      alema.lineCap = "round";
+      alema.lineJoin = this.isVirus ? "miter" : "round";
+      if (laderion) {
+        alema.fillStyle = "#FFFFFF";
+        alema.strokeStyle = "#AAAAAA";
       } else {
-        shea.fillStyle = this.color;
-        shea.strokeStyle = this.color;
+        alema.fillStyle = this.color;
+        alema.strokeStyle = this.color;
       }
-      shea.beginPath();
-      shea.arc(this.x, this.y, this.size, 0, 2 * Math.PI, false);
-      shea.closePath();
-      var lakeyshia = this.name.toLowerCase();
-      li = demar(lakeyshia);
-      if (lakeyshia.indexOf("[") != -1) {
-        var salwa = lakeyshia.indexOf("[");
-        var aalinah = lakeyshia.indexOf("]");
-        lakeyshia = lakeyshia.slice(salwa + 1, aalinah);
+      ;
+      alema.beginPath();
+      alema.arc(this.x, this.y, this.size, 0, 2 * Math.PI, false);
+      alema.closePath();
+      var karmell = this.name.toLowerCase();
+      li = taleaha(karmell);
+      if (karmell.indexOf("[") != -1) {
+        var shazad = karmell.indexOf("[");
+        var cleone = karmell.indexOf("]");
+        karmell = karmell.slice(shazad + 1, cleone);
       }
-      if (!this.isAgitated && monelle && "teams-public.iogames.icu:443" != annunziata) {
-        if (!rehanna.hasOwnProperty(lakeyshia)) {
-          rehanna[lakeyshia].src = nashoba + li[0] + ".png";
+      ;
+      if (!this.isAgitated && monreaux && "teams-public.iogames.icu:443" != bethan) {
+        if (!mahleek.hasOwnProperty(karmell)) {
+          mahleek[karmell] = new Image;
+          mahleek[karmell].src = windie + li[0] + ".png";
         }
-        if (0 != rehanna[lakeyshia].width && rehanna[lakeyshia].complete) {
-          kamaire = rehanna[lakeyshia];
+        ;
+        if (0 != mahleek[karmell].width && mahleek[karmell].complete) {
+          yaz = mahleek[karmell];
         } else {
-          kamaire = null;
+          yaz = null;
         }
       } else {
-        kamaire = null;
+        yaz = null;
       }
-      kamaire = (e = kamaire) ? -1 != wondra.indexOf(lakeyshia) : false;
-      storie || shea.stroke();
-      shea.fill();
-      if (!(null == e || kamaire)) {
-        shea.save();
-        shea.clip();
-        shea.drawImage(e, this.x - this.size, this.y - this.size, 2 * this.size, 2 * this.size);
-        shea.restore();
+      ;
+      yaz = (e = yaz) ? -1 != nevea.indexOf(karmell) : false;
+      quavonte || alema.stroke();
+      alema.fill();
+      if (!(null == e || yaz)) {
+        alema.save();
+        alema.clip();
+        alema.drawImage(e, this.x - this.size, this.y - this.size, 2 * this.size, 2 * this.size);
+        alema.restore();
       }
-      shea.globalAlpha = 1;
-      if (null != e && kamaire) {
-        shea.drawImage(e, this.x - 2 * this.size, this.y - 2 * this.size, 4 * this.size, 4 * this.size);
+      ;
+      alema.globalAlpha = 1;
+      if (null != e && yaz) {
+        alema.drawImage(e, this.x - 2 * this.size, this.y - 2 * this.size, 4 * this.size, 4 * this.size);
       }
-      kamaire = -1 != lakshitha.indexOf(this);
+      ;
+      yaz = -1 != coley.indexOf(this);
+      var deenah;
       if (0 != this.id) {
-        var storie = ~~this.y;
-        if ((athens || kamaire) && this.name && this.nameCache && (null == e || -1 == josilyne.indexOf(lakeyshia))) {
-          shea.globalAlpha = 1;
-          shea.font = "bold " + Math.max(~~(.3 * this.size), 24) + "px Ubuntu";
-          shea.fillStyle = "#FFF";
-          shea.textAlign = "center";
-          shea.fillText(demar(this.name.split("*")[0])[1], this.x, this.y);
+        var quavonte = ~~this.y;
+        if ((stassi || yaz) && this.name && this.nameCache && (null == e || -1 == rayen.indexOf(karmell))) {
+          alema.globalAlpha = 1;
+          alema.font = "bold " + Math.max(~~(.3 * this.size), 24) + "px Ubuntu";
+          alema.fillStyle = "#FFF";
+          alema.textAlign = "center";
+          alema.fillText(taleaha(this.name.split("*")[0])[1], this.x, this.y);
         }
-        if (juli == true && !this.isVirus && ~~(this.nSize * this.nSize / 100) > 40) {
-          shea.fillStyle = "#FFFFFF";
-          shea.font = "bold " + this.getNameSize() / 2 + "px Ubuntu";
-          var mysha = ~~(this.nSize * this.nSize / 100);
-          var salone = shea.measureText(mysha).width;
-          var kei = this.x - salone * .07;
-          shea.fillText(mysha, kei, this.y + this.getNameSize() + 6);
+        ;
+        if (amilya == true && !this.isVirus && ~~(this.nSize * this.nSize / 100) > 40) {
+          alema.fillStyle = "#FFFFFF";
+          alema.font = "bold " + this.getNameSize() / 2 + "px Ubuntu";
+          var anaka = ~~(this.nSize * this.nSize / 100);
+          var brexleigh = alema.measureText(anaka).width;
+          var kemaury = this.x - brexleigh * .07;
+          alema.fillText(anaka, kemaury, this.y + this.getNameSize() + 6);
         }
       }
-      shea.restore();
+      ;
+      alema.restore();
     }
   }};
-  leudy.prototype = {_value: "", _color: "#000000", _stroke: false, _strokeColor: "#000000", _size: 16, _canvas: null, _ctx: null, _dirty: false, _scale: 1, setSize: function (silina) {
-    if (this._size != silina) {
-      this._size = silina;
+  aunesty.prototype = {_value: "", _color: "#000000", _stroke: false, _strokeColor: "#000000", _size: 16, _canvas: null, _ctx: null, _dirty: false, _scale: 1, setSize: function (retal) {
+    if (this._size != retal) {
+      this._size = retal;
       this._dirty = true;
     }
-  }, setScale: function (maricelys) {
-    if (this._scale != maricelys) {
-      this._scale = maricelys;
+  }, setScale: function (kinder) {
+    if (this._scale != kinder) {
+      this._scale = kinder;
       this._dirty = true;
     }
-  }, setStrokeColor: function (caliya) {
-    if (this._strokeColor != caliya) {
-      this._strokeColor = caliya;
+  }, setStrokeColor: function (necole) {
+    if (this._strokeColor != necole) {
+      this._strokeColor = necole;
       this._dirty = true;
     }
-  }, setValue: function (quienten) {
-    if (quienten != this._value) {
-      this._value = quienten;
+  }, setValue: function (korrah) {
+    if (korrah != this._value) {
+      this._value = korrah;
       this._dirty = true;
     }
   }, render: function () {
@@ -1677,148 +1809,139 @@ var Sfreeze = false;
       this._canvas = document.createElement("canvas");
       this._ctx = this._canvas.getContext("2d");
     }
+    ;
     if (this._dirty) {
       this._dirty = false;
-      var dvonte = this._canvas, elahi = this._ctx, maryjayne = this._value, diablo = this._scale, terrae = this._size, martajah = "700 " + terrae + "px nunito";
-      elahi.font = martajah;
-      var joslynne = ~~(.2 * terrae);
-      dvonte.width = (elahi.measureText(maryjayne).width + 6) * diablo;
-      dvonte.height = (terrae + joslynne) * diablo;
-      elahi.font = martajah;
-      elahi.scale(diablo, diablo);
-      elahi.globalAlpha = 1;
-      elahi.lineWidth = 3;
-      elahi.strokeStyle = this._strokeColor;
-      elahi.fillStyle = this._color;
-      this._stroke && elahi.strokeText(maryjayne, 3, terrae - joslynne / 2);
-      elahi.fillText(maryjayne, 3, terrae - joslynne / 2);
+      var tolulope = this._canvas, yoann = this._ctx, chrisandra = this._value, trimeka = this._scale, ayvie = this._size, chanc = "700 " + ayvie + "px nunito";
+      yoann.font = chanc;
+      var nobert = ~~(.2 * ayvie);
+      tolulope.width = (yoann.measureText(chrisandra).width + 6) * trimeka;
+      tolulope.height = (ayvie + nobert) * trimeka;
+      yoann.font = chanc;
+      yoann.scale(trimeka, trimeka);
+      yoann.globalAlpha = 1;
+      yoann.lineWidth = 3;
+      yoann.strokeStyle = this._strokeColor;
+      yoann.fillStyle = this._color;
+      this._stroke && yoann.strokeText(chrisandra, 3, ayvie - nobert / 2);
+      yoann.fillText(chrisandra, 3, ayvie - nobert / 2);
     }
+    ;
     return this._canvas;
   }, getWidth: function () {
-    return mytisha.measureText(this._value).width + 6;
+    return jovonie.measureText(this._value).width + 6;
   }};
   Date.now || (Date.now = function () {
     return (new Date).getTime();
   });
-  var layland = {init: function (avaclaire) {
-    function tumekia(jeannea, jenyssa, savvas, savone, monifa) {
-      this.x = jeannea;
-      this.y = jenyssa;
-      this.w = savvas;
-      this.h = savone;
-      this.depth = monifa;
+  var zacorey = {init: function (marticia) {
+    function kelhani(laden, johnathan, shiann, lexington, rhodney) {
+      this.x = laden;
+      this.y = johnathan;
+      this.w = shiann;
+      this.h = lexington;
+      this.depth = rhodney;
       this.items = [];
       this.nodes = [];
     }
-    var jawaher = avaclaire.maxChildren || 2, anariah = avaclaire.maxDepth || 4;
-    tumekia.prototype = {x: 0, y: 0, w: 0, h: 0, depth: 0, items: null, nodes: null, exists: function (doran) {
-      for (var daelan = 0; daelan < this.items.length; ++daelan) {
-        var delajah = this.items[daelan];
-        if (delajah.x >= doran.x && delajah.y >= doran.y && delajah.x < doran.x + doran.w && delajah.y < doran.y + doran.h) {
+    var erris = marticia.maxChildren || 2, mirandy = marticia.maxDepth || 4;
+    kelhani.prototype = {x: 0, y: 0, w: 0, h: 0, depth: 0, items: null, nodes: null, exists: function (syles) {
+      for (var taveah = 0; taveah < this.items.length; ++taveah) {
+        var zuli = this.items[taveah];
+        if (zuli.x >= syles.x && zuli.y >= syles.y && zuli.x < syles.x + syles.w && zuli.y < syles.y + syles.h) {
           return true;
         }
       }
+      ;
       if (0 != this.nodes.length) {
-        var shyler = this;
-        return this.findOverlappingNodes(doran, function (frabian) {
-          return shyler.nodes[frabian].exists(doran);
+        var carlyann = this;
+        return this.findOverlappingNodes(syles, function (deeana) {
+          return carlyann.nodes[deeana].exists(syles);
         });
       }
+      ;
       return false;
-    }, retrieve: function (priansh, analysse) {
-      for (var envie = 0; envie < this.items.length; ++envie) {
-        analysse(this.items[envie]);
+    }, retrieve: function (lucie, krischan) {
+      for (var hayllie = 0; hayllie < this.items.length; ++hayllie) {
+        krischan(this.items[hayllie]);
       }
+      ;
       if (0 != this.nodes.length) {
-        var sami = this;
-        this.findOverlappingNodes(priansh, function (natica) {
-          sami.nodes[natica].retrieve(priansh, analysse);
+        var melannie = this;
+        this.findOverlappingNodes(lucie, function (ryma) {
+          melannie.nodes[ryma].retrieve(lucie, krischan);
         });
       }
-    }, insert: function (phox) {
+    }, insert: function (doralynn) {
       if (0 != this.nodes.length) {
-        this.nodes[this.findInsertNode(phox)].insert(phox);
+        this.nodes[this.findInsertNode(doralynn)].insert(doralynn);
       } else {
-        if (this.items.length >= jawaher && this.depth < anariah) {
+        if (this.items.length >= erris && this.depth < mirandy) {
           this.devide();
-          this.nodes[this.findInsertNode(phox)].insert(phox);
+          this.nodes[this.findInsertNode(doralynn)].insert(doralynn);
         } else {
-          this.items.push(phox);
+          this.items.push(doralynn);
         }
       }
-    }, findInsertNode: function (anaceli) {
-      return anaceli.x < this.x + this.w / 2 ? anaceli.y < this.y + this.h / 2 ? 0 : 2 : anaceli.y < this.y + this.h / 2 ? 1 : 3;
-    }, findOverlappingNodes: function (natajah, tashie) {
-      return natajah.x < this.x + this.w / 2 && (natajah.y < this.y + this.h / 2 && tashie(0) || natajah.y >= this.y + this.h / 2 && tashie(2)) || natajah.x >= this.x + this.w / 2 && (natajah.y < this.y + this.h / 2 && tashie(1) || natajah.y >= this.y + this.h / 2 && tashie(3)) ? true : false;
+    }, findInsertNode: function (lakiyah) {
+      return lakiyah.x < this.x + this.w / 2 ? lakiyah.y < this.y + this.h / 2 ? 0 : 2 : lakiyah.y < this.y + this.h / 2 ? 1 : 3;
+    }, findOverlappingNodes: function (thyrome, geidi) {
+      return thyrome.x < this.x + this.w / 2 && (thyrome.y < this.y + this.h / 2 && geidi(0) || thyrome.y >= this.y + this.h / 2 && geidi(2)) || thyrome.x >= this.x + this.w / 2 && (thyrome.y < this.y + this.h / 2 && geidi(1) || thyrome.y >= this.y + this.h / 2 && geidi(3)) ? true : false;
     }, devide: function () {
-      var khilee = this.depth + 1, hassani = this.w / 2, najahwan = this.h / 2;
-      this.nodes.push(new tumekia(this.x, this.y, hassani, najahwan, khilee));
-      this.nodes.push(new tumekia(this.x + hassani, this.y, hassani, najahwan, khilee));
-      this.nodes.push(new tumekia(this.x, this.y + najahwan, hassani, najahwan, khilee));
-      this.nodes.push(new tumekia(this.x + hassani, this.y + najahwan, hassani, najahwan, khilee));
-      khilee = this.items;
+      var ramayah = this.depth + 1, amarpreet = this.w / 2, soffia = this.h / 2;
+      this.nodes.push(new kelhani(this.x, this.y, amarpreet, soffia, ramayah));
+      this.nodes.push(new kelhani(this.x + amarpreet, this.y, amarpreet, soffia, ramayah));
+      this.nodes.push(new kelhani(this.x, this.y + soffia, amarpreet, soffia, ramayah));
+      this.nodes.push(new kelhani(this.x + amarpreet, this.y + soffia, amarpreet, soffia, ramayah));
+      ramayah = this.items;
       this.items = [];
-      for (hassani = 0; hassani < khilee.length; hassani++) {
-        this.insert(khilee[hassani]);
+      for (amarpreet = 0; amarpreet < ramayah.length; amarpreet++) {
+        this.insert(ramayah[amarpreet]);
       }
     }, clear: function () {
-      for (var dural = 0; dural < this.nodes.length; dural++) {
-        this.nodes[dural].clear();
+      for (var tatiauna = 0; tatiauna < this.nodes.length; tatiauna++) {
+        this.nodes[tatiauna].clear();
       }
+      ;
       this.items.length = 0;
       this.nodes.length = 0;
     }};
-    return {root: new tumekia(avaclaire.minX, avaclaire.minY, avaclaire.maxX - avaclaire.minX, avaclaire.maxY - avaclaire.minY, 0), insert: function (danetra) {
-      this.root.insert(danetra);
-    }, retrieve: function (beyah, dolorese) {
-      this.root.retrieve(beyah, dolorese);
-    }, retrieve2: function (aile, orsola, maveryck, michaelann, rishan) {
-      _0xd11ex12b.x = aile;
-      _0xd11ex12b.y = orsola;
-      _0xd11ex12b.w = maveryck;
-      _0xd11ex12b.h = michaelann;
-      this.root.retrieve(_0xd11ex12b, rishan);
-    }, exists: function (martita) {
-      return this.root.exists(martita);
+    var lanelda = {x: 0, y: 0, w: 0, h: 0};
+    return {root: new kelhani(marticia.minX, marticia.minY, marticia.maxX - marticia.minX, marticia.maxY - marticia.minY, 0), insert: function (sharnise) {
+      this.root.insert(sharnise);
+    }, retrieve: function (darelene, jakaylon) {
+      this.root.retrieve(darelene, jakaylon);
+    }, retrieve2: function (dalhart, nashton, lizbett, manuel, jyasia) {
+      lanelda.x = dalhart;
+      lanelda.y = nashton;
+      lanelda.w = lizbett;
+      lanelda.h = manuel;
+      this.root.retrieve(lanelda, jyasia);
+    }, exists: function (isaul) {
+      return this.root.exists(isaul);
     }, clear: function () {
       this.root.clear();
     }};
   }};
-  safwa.onload = amabel;
+  kimara.onload = rebecka;
 }(window, window.jQuery));
 $(document).ready(function () {
-  $("#chat_textbox").bind("cut copy paste", function (randeep) {
-    randeep.preventDefault();
+  $("#chat_textbox").bind("cut copy paste", function (jeneane) {
+    jeneane.preventDefault();
   });
 });
 (function () {
-  var domenique = function (kamyia) {
-    if (kamyia.keyCode === 17) {
-      for (var johnie = 0; johnie < 4; ++johnie) {
+  var danieljohn = 4;
+  var landin = 50;
+  var jaafar = function (lanaia) {
+    if (lanaia.keyCode === 17) {
+      for (var cendy = 0; cendy < danieljohn; ++cendy) {
         setTimeout(function () {
           window.onkeydown({keyCode: 32});
           window.onkeyup({keyCode: 32});
-        }, johnie * 50);
+        }, cendy * landin);
       }
     }
   };
-  window.addEventListener("keydown", domenique);
+  window.addEventListener("keydown", jaafar);
 }());
-(function () {
-  var delan = function (jahzion) {
-    if (jahzion.keyCode === 69) {
-      for (var clione = 0; clione < 10; ++clione) {
-        setTimeout(function () {
-          window.onkeydown({keyCode: 87});
-          window.onkeyup({keyCode: 87});
-        }, clione * 50);
-      }
-    }
-  };
-  window.addEventListener("keydown", delan);
-}());
-window.onbeforeunload = function () {
-  if (Play == true) {
-    return confirm();
-  }
-};
