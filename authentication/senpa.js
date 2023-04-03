@@ -1,3 +1,6 @@
+// Game: https://senpa.io/web/
+// Protection (dir): https://senpa.io/web/static/js/bundle.wasm
+
 class Senpa {
   constructor() {
     // Same guy who did tricksplit's anti-bot probably did senpa's as well, based off similar auths.
