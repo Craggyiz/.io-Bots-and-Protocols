@@ -29,7 +29,7 @@ class TricksplitIO {
     result[2] = (crypto.getRandomValues(new Uint32Array(1))[0] ^ ((timeVal / 4) | 0)) ^ (result[1] >> 4) ^ 69; // Funny number :V
 
     // Return the authentication packet as a Uint32Array buffer as done in the WASM file
-    return new Uint32Array(result.buffer);
+    return result.buffer;
   }
 
   // Layer 2:
