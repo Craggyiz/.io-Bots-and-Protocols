@@ -1,33 +1,38 @@
 
 // Game: https://tricksplit.io/
-// Protection (dir): https://tricksplit.io/bundle.wasm
+// Protection (dir): https://tricksplit.io/bundle.wasm?v2/
 
-class Tricksplit {
+class TricksplitIO {
   constructor() {}
 
-  // Method to generate a buffer of three 32-bit unsigned integers
-  $first() {
-    // WASM
-    // Get the current time in seconds and generate a seeded value
-    var currentSeconds = Date.now() / 1.0e3;
-    var seededValue = Math.abs(currentSeconds) < 2147483648 ? Math.trunc(currentSeconds) : -2147483648;
+  // Layer 1:
+  // Sent after 255 and 254 packet
+  static $first() {
+    // Tricksplit.io checks the validity of the auth packet by checking the time it was created.
+    // I assume the time tolerance is -5 seconds, although this is sent instantly, so I never checked.
+    const result = new Uint32Array(3);
+    const nowTime = Date.now() / 1000.0;
+    let timeVal = 0;
 
-    // Generate the three unsigned integers using a custom encryption scheme
-    return new Uint32Array([
-      seededValue ^ 267506326,
-      (this.$generateCryptoKey() ^ ((seededValue ^ 267501985) / 2)) ^ 420, // Nice :V
-      (this.$generateCryptoKey() ^ ((seededValue ^ 267501985) / 4)) ^ 69 // Nice :V
-    ])['buffer'];
+    // Ensure that the time value is within a valid range
+    // Basic WASM function
+    if (Math.abs(nowTime) < 2147483648.0) {
+      timeVal = Math.trunc(nowTime);
+    } else {
+      timeVal = -2147483648;
+    }
+
+    // Generate the authentication packet by performing bitwise operations on the
+    // time value and using the result to generate a sequence of random numbers.
+    result[0] = timeVal ^ 267506326;
+    result[1] = (crypto.getRandomValues(new Uint32Array(1))[0] ^ 267501985) ^ (result[0] >> 2) ^ 420; // Funny number :V
+    result[2] = (crypto.getRandomValues(new Uint32Array(1))[0] ^ ((timeVal / 4) | 0)) ^ (result[1] >> 4) ^ 69; // Funny number :V
+
+    // Return the authentication packet as a Uint32Array buffer as done in the WASM file
+    return new Uint32Array(result.buffer);
   }
 
-  // Method to generate a random 32-bit unsigned integer using the Web Crypto API
-  $generateCryptoKey(length = 1) {
-    // WASM
-    const secureKey = crypto.getRandomValues(new Uint32Array(length))[0];
-    // Ensure that the generated value is within the range of 0 to 4294967295
-    return (secureKey < 4294967296 && secureKey >= 0) ? Math.trunc(secureKey) >>> 0 : 0;
-  }
-
+  // Layer 2:
   // Method to decrypt data using the Advanced Encryption Standard (AES) algorithm
   $vm(AES_256_SECRET) {
     // WASM
