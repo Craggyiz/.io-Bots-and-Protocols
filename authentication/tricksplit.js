@@ -7,7 +7,7 @@ class TricksplitIO {
 
   // Layer 1:
   // Sent after 255 and 254 packet
-  static $first() {
+  $first() {
     // Tricksplit.io checks the validity of the auth packet by checking the time it was created.
     // I assume the time tolerance is -5 seconds, although this is sent instantly, so I never checked.
     const result = new Uint32Array(3);
