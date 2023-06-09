@@ -1,14 +1,14 @@
 import WebSocket from "ws";
 import { grabConfig } from "../server/index.js";
-import { SmartBuffer } from "smart-buffer";
-import { generateHeaders } from '../utils/headers.js';
 import { grab_proxy } from "../utils/proxys.js";
+import { generateHeaders } from '../utils/headers.js';
 
 export class Minion {
     constructor() {
         this.agent = grab_proxy();
         this.startedBots = false;
-        this.needPing = false
+        this.useID = false;
+
         this.snakeID = null
         this.snakeX = 0
         this.snakeY = 0
@@ -20,7 +20,6 @@ export class Minion {
         this.hasConnected = false
         this.xPos = 0;
         this.yPos = 0;
-        this.reconnectionAttempts = 0;
     }
 
     connect(url) {
@@ -29,84 +28,82 @@ export class Minion {
 
         this.ws = new WebSocket(url, {
             agent: this.agent,
-            rejectUnauthorized: true,
+            rejectUnauthorized: false,
             headers: generateHeaders('http://slither.io')
         });
 
-        this.ws.binaryType = "nodebuffer";
+        this.ws.binaryType = 'arraybuffer';
+
         this.ws.onmessage = this.onMessage.bind(this);
         this.ws.onopen = this.onOpen.bind(this);
         this.ws.onclose = this.onClose.bind(this);
         this.ws.onerror = this.onError.bind(this);
 
         this.id = Math.floor(Math.pow(2, 14) * Math.random()).toString(36);
-        this.name = grabConfig().botOptions.getName() + ' | ' + this.id;
+        this.name = grabConfig().botOptions.getName() + (this.useID ? ' | ' + this.id : '');
     }
 
-    onMessage(msg) {
-        var view = new Uint8Array(msg.data);
-        var decodeView = String.fromCharCode(view[2]);
+    onMessage(message) {
         var snakeSpeed, lastPacket;
-        if (2 <= view.length) {
-            if ("6" == decodeView) {
-                var e = 165;
+        var b = new Uint8Array(message.data);
+        if (2 <= b.length) {
+            var f = String.fromCharCode(b[2]);
+            if ("6" == f) {
+                var h;
                 var c = 3;
-                var h = "";
-                for (h = ""; c < e;) {
-                    h += String.fromCharCode(view[c]), c++;
-                }
-                this.send(this.rotateKey(view));
-                this.send([115, 10, 7, 5, 108, 117, 107, 97, 115]);
-            } else if ("p" == decodeView) {
-                this.needPing = true;
-            } else if ("a" == decodeView) {
-                this.spawnTimeout = setInterval(() => {
-                    this.moveTo(this.xPos, this.yPos);
-                }, 100);
+                var e = 165;
+                for (h = ""; c < e;) h += String.fromCharCode(b[c]), c++;
+                //console.log('Hell yea brother: ' + h);
+                this.gotServerVersion(h);
+            } else if ("p" == f) {
+                this.pingNeeded = true;
                 this.pingInterval = setInterval(() => {
-                    this.send([251]);
+                    this.send(new Uint8Array([251]));
                 }, 250);
-            } else if ("v" == decodeView) {
+                this.spawnTimeout = setInterval(() => {
+                    //this.moveTo(this.xPos, this.yPos);
+                }, 100);
+            } else if ("v" == f) {
                 this.haveSnakeID = false;
                 this.onClose();
-            } else if ("g" == decodeView) {
-                if ((view[3] << 8 | view[4]) == this.snakeID) {
-                    this.snakeX = view[5] << 8 | view[6];
-                    this.snakeY = view[7] << 8 | view[8];
+            } else if ("g" == f) {
+                if ((b[3] << 8 | b[4]) == this.snakeID) {
+                    this.snakeX = b[5] << 8 | b[6];
+                    this.snakeY = b[7] << 8 | b[8];
                 }
-            } else if ("n" == decodeView) {
-                if ((view[3] << 8 | view[4]) == this.snakeID) {
-                    this.snakeX = view[5] << 8 | view[6];
-                    this.snakeY = view[7] << 8 | view[8];
+            } else if ("n" == f) {
+                if ((b[3] << 8 | b[4]) == this.snakeID) {
+                    this.snakeX = b[5] << 8 | b[6];
+                    this.snakeY = b[7] << 8 | b[8];
                 }
-            } else if ("G" == decodeView) {
-                if ((view[3] << 8 | view[4]) == this.snakeID) {
-                    this.snakeX = this.snakeX + view[5] - 128;
-                    this.snakeY = this.snakeY + view[6] - 128;
+            } else if ("G" == f) {
+                if ((b[3] << 8 | b[4]) == this.snakeID) {
+                    this.snakeX = this.snakeX + b[5] - 128;
+                    this.snakeY = this.snakeY + b[6] - 128;
                 }
-            } else if ("N" == decodeView) {
-                if ((view[3] << 8 | view[4]) == this.snakeID) {
-                    this.snakeX = this.snakeX + view[5] - 128;
-                    this.snakeY = this.snakeY + view[6] - 128;
+            } else if ("N" == f) {
+                if ((b[3] << 8 | b[4]) == this.snakeID) {
+                    this.snakeX = this.snakeX + b[5] - 128;
+                    this.snakeY = this.snakeY + b[6] - 128;
                 }
 
-            } else if ("s" == decodeView) {
+            } else if ("s" == f) {
                 if (!this.haveSnakeID) {
-                    this.snakeID = view[3] << 8 | view[4];
+                    this.snakeID = b[3] << 8 | b[4];
                     this.haveSnakeID = true;
                 }
-                if ((view[3] << 8 | view[4]) == this.snakeID) {
-                    if (view.length >= 31) {
-                        snakeSpeed = (view[12] << 8 | view[13]) / 1e3;
+                if ((b[3] << 8 | b[4]) == this.snakeID) {
+                    if (b.length >= 31) {
+                        snakeSpeed = (b[12] << 8 | b[13]) / 1e3;
 
                     }
-                    if (view.length >= 31 && (((((view[18] << 16) | (view[19] << 8) | view[20]) / 5.0) > 99) || ((((view[21] << 16) | (view[22] << 8) | view[23]) / 5.0) > 99))) {
-                        this.snakeX = ((view[18] << 16) | (view[19] << 8) | view[20]) / 5.0;
-                        this.snakeY = ((view[21] << 16) | (view[22] << 8) | view[23]) / 5.0;
+                    if (b.length >= 31 && (((((b[18] << 16) | (b[19] << 8) | b[20]) / 5.0) > 99) || ((((b[21] << 16) | (b[22] << 8) | b[23]) / 5.0) > 99))) {
+                        this.snakeX = ((b[18] << 16) | (b[19] << 8) | b[20]) / 5.0;
+                        this.snakeY = ((b[21] << 16) | (b[22] << 8) | b[23]) / 5.0;
                     }
                 }
 
-            } else if ("g" || "n" || "G" || "N" && (view[3] << 8 | view[4]) === this.snakeID) {
+            } else if ("g" || "n" || "G" || "N" && (b[3] << 8 | b[4]) === this.snakeID) {
 
                 if (lastPacket != null) {
                     var deltaTime = Date.now() - lastPacket;
@@ -122,41 +119,6 @@ export class Minion {
         }
     }
 
-    rotateKey(secret) {
-        var result = new Uint8Array(24);
-        var globalValue = 0;
-        for (var i = 0; i < 24; i++) {
-            var value1 = secret[17 + i * 2];
-            if (value1 <= 96) {
-                value1 += 32;
-            }
-            value1 = (value1 - 98 - i * 34) % 26;
-            if (value1 < 0) {
-                value1 += 26;
-            }
-
-            var value2 = secret[18 + i * 2];
-            if (value2 <= 96) {
-                value2 += 32;
-            }
-            value2 = (value2 - 115 - i * 34) % 26;
-            if (value2 < 0) {
-                value2 += 26;
-            }
-
-            var interimResult = (value1 << 4) | value2;
-            var offset = interimResult >= 97 ? 97 : 65;
-            interimResult -= offset;
-            if (i == 0) {
-                globalValue = 2 + interimResult;
-            }
-            result[i] = ((interimResult + globalValue) % 26 + offset);
-            globalValue += 3 + interimResult;
-        }
-
-        return result;
-    }
-
     moveTo(x, y) {
         var value = this.getValue(this.snakeX, this.snakeY, x, y);
         this.snakeAngle = value;
@@ -165,7 +127,7 @@ export class Minion {
             console.log("Error!");
         }
 
-        this.send([~~value]);
+        this.send(new Uint8Array([~~value]));
     }
 
     getValue(originX, originY, targetX, targetY) {
@@ -181,20 +143,119 @@ export class Minion {
         return theta;
     }
 
+    _isValidVersion(versionString) {
+        var versionNumber = 0;
+        var addend = 23;
+        var characterCode;
+        var digitsSoFar = 0;
+        var versionChars = '';
+
+        for (var index = 0; index < versionString.length; index++) {
+            characterCode = versionString.charCodeAt(index);
+            if (characterCode <= 96) {
+                characterCode += 32;
+            }
+            characterCode = (characterCode - 97 - addend) % 26;
+            if (characterCode < 0) {
+                characterCode += 26;
+            }
+            versionNumber *= 16;
+            versionNumber += characterCode;
+            addend += 17;
+            if (1 === digitsSoFar) {
+                versionChars += String.fromCharCode(versionNumber);
+                digitsSoFar = versionNumber = 0;
+            } else {
+                digitsSoFar++;
+            }
+        }
+
+        var extractedToken = versionChars.slice(versionChars.indexOf("'") + 1, versionChars.lastIndexOf("'"));
+        //console.log('Got Token: ' + extractedToken);
+        for (var i = 0; i < 24; i++) {
+            this.idba[i] = extractedToken.charCodeAt(i);
+        }
+
+        if (this.idba.length > 0) {
+            var base = 0;
+            for (var charCode, encodedCode, shiftAmount, i = 0; i < this.idba.length; i++) {
+                charCode = 65;
+                encodedCode = this.idba[i];
+                if (97 <= encodedCode) {
+                    charCode += 32;
+                    encodedCode -= 32;
+                }
+                encodedCode -= 65;
+                if (0 === i) {
+                    base = 2 + encodedCode;
+                }
+                shiftAmount = encodedCode + base;
+                shiftAmount %= 26;
+                base += 3 + encodedCode;
+                this.idba[i] = shiftAmount + charCode;
+            }
+        }
+
+        for (index = 0; index < versionString.length; index++) {
+            characterCode = versionString.charCodeAt(index);
+            if (characterCode < 65 || characterCode > 122) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    gotServerVersion(versionKey) {
+        var random_id = "";
+        for (var c = 0; 24 > c; c++) {
+            random_id += String.fromCharCode(65 + (.5 > Math.random() ? 0 : 32) + Math.floor(26 * Math.random()));
+        }
+        this.idba = new Uint8Array(random_id.length);
+        for (c = 0; c < random_id.length; c++) {
+            this.idba[c] = random_id.charCodeAt(c);
+        }
+        if (this._isValidVersion(versionKey)) {
+            this.send(this.idba);
+            this.send(this.sendName());
+
+        } else this.onClose();
+    };
+
+    sendName() {
+        var c = 10; // Color
+        var e = [];
+        var b = 'AUUUUUUUUGHHHHHHHHHH' // Name
+        var q = new Uint8Array(4 + b.length + e.length);
+        q[0] = 115;
+        q[1] = 10;
+        q[2] = c;
+        q[3] = b.length;
+        c = 4;
+        for (var f = 0; f < b.length; f++) q[c] = b.charCodeAt(f), c++;
+        for (var f = 0; f < e.length; f++) q[c] = e[f], c++;
+        return q;
+    }
+
     onOpen() {
-        this.send([99]);
+        this.startLogin();
+    }
+
+    startLogin() {
+        var cstr = 'c';
+        var b = new Uint8Array(cstr.length);
+        for (var c = 0; c < cstr.length; c++) {
+            b[c] = cstr.charCodeAt(c);
+        }
+        this.send(b)
     }
 
     onClose() {
         clearInterval(this.pingInterval);
 
-        clearTimeout(this.spawnTimeout);
+        clearTimeout(this.spawnInterval);
 
-        this.reconnectionAttempts++;
-
-        //if (this.reconnectionAttempts >= 1) {
         this.agent = grab_proxy();
-        //}
 
         if (this.serverUrl && this.startedBots) this.connect(this.serverUrl);
     }
@@ -204,23 +265,22 @@ export class Minion {
     disconnect() {
         if (this.ws) {
             delete this.startedBots;
-            this.ws.close();
+            this.ws.terminate();
             delete this.ws;
         }
 
         clearInterval(this.pingInterval);
 
-        clearTimeout(this.spawnTimeout);
+        clearTimeout(this.spawnInterval);
     }
 
-    spawn() { }
+    spawn() {
+    }
 
     split() {
-        this.send([253]);
     }
 
     eject() {
-        this.send([254]);
     }
 
     sendUint8(offset) {
@@ -240,8 +300,8 @@ export class Minion {
         return this.ws && this.ws.readyState === WebSocket.OPEN;
     }
 
-    Buffer(buf) {
-        return new DataView(new ArrayBuffer(!buf ? 1 : buf))
+    Buffer(buf = 1) {
+        return new DataView(new ArrayBuffer(buf));
     }
 
     send(data) {
