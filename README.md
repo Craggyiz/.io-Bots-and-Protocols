@@ -2,7 +2,7 @@
 All deobfuscated cores to the games I've botted before.
 You can make your own bots using them too.
 
-If you're having any issues contact me on my discord: Tatsuya#9737 or join my discord server: https://discord.com/invite/bAstbAfem9
+If you're having any issues contact me on my discord: secureserver or join my discord server: https://discord.com/invite/bAstbAfem9
 
 If you need any help in any games feel free to contact me there as well.
 
