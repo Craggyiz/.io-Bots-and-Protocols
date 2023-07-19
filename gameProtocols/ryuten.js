@@ -1,6 +1,6 @@
 import WebSocket from "ws";
 import { grabConfig } from "../server/index.js";
-import { grab_proxy } from "../utils/proxys.js";
+import { grab_proxy } from "../utils/proxys/proxyHandler.js";
 import { generateHeaders } from '../utils/headers.js';
 
 export class Minion {
@@ -49,74 +49,72 @@ export class Minion {
             }
         };
 
-        this.Writer = class {
-            constructor(bufferSize) {
-                const buffer = new ArrayBuffer(bufferSize);
-                this.dataView = new DataView(buffer);
-                this.currentOffset = 0;
-                this.bufferSize = bufferSize;
+        this.c_ = class {
+            constructor(t) {
+                const _ = new ArrayBuffer(t);
+                this._1500 = new DataView(_), this._5092 = 0, this._5038 = t
             }
-            writeUint8(value) {
-                this.dataView.setUint8(this.currentOffset, value), this.currentOffset += 1;
+            _6055(t) {
+                this._1500.setUint8(this._5092, t), this._5092 += 1
             }
-            writeInt8(value) {
-                this.dataView.setInt8(this.currentOffset, value), this.currentOffset += 1;
+            _9525(t) {
+                this._1500.setInt8(this._5092, t), this._5092 += 1
             }
-            writeUint16(value) {
-                this.dataView.setUint16(this.currentOffset, value, !0), this.currentOffset += 2;
+            _6100(t) {
+                this._1500.setUint16(this._5092, t, !0), this._5092 += 2
             }
-            writeInt16(value) {
-                this.dataView.setInt16(this.currentOffset, value, !0), this.currentOffset += 2;
+            _3071(t) {
+                this._1500.setInt16(this._5092, t, !0), this._5092 += 2
             }
-            writeUint32(value) {
-                this.dataView.setUint32(this.currentOffset, value, !0), this.currentOffset += 4;
+            _2780(t) {
+                this._1500.setUint32(this._5092, t, !0), this._5092 += 4
             }
-            writeInt32(value) {
-                this.dataView.setInt32(this.currentOffset, value, !0), this.currentOffset += 4;
+            _9027(t) {
+                this._1500.setInt32(this._5092, t, !0), this._5092 += 4
             }
-            writeFloat32(value) {
-                this.dataView.setFloat32(this.currentOffset, value, !0), this.currentOffset += 4;
+            _8042(t) {
+                this._1500.setFloat32(this._5092, t, !0), this._5092 += 4
             }
-            writeFloat64(value) {
-                this.dataView.setFloat64(this.currentOffset, value, !0), this.currentOffset += 8;
+            _1250(t) {
+                this._1500.setFloat64(this._5092, t, !0), this._5092 += 8
             }
-            writeShortString(value) {
-                const length = value.length;
-                this.writeUint8(length);
-                for (let i = 0; i < length; i++) {
-                    const code = value.charCodeAt(i);
-                    this.writeUint8(code);
+            _8976(t) {
+                const _ = t.length;
+                this._6055(_);
+                for (let e = 0; e < _; e++) {
+                    const _ = t.charCodeAt(e);
+                    this._6055(_)
                 }
             }
-            writeString(value) {
-                const length = value.length;
-                this.writeUint16(length);
-                for (let i = 0; i < length; i++) {
-                    const code = value.charCodeAt(i);
-                    this.writeUint8(code);
+            _2126(t) {
+                const _ = t.length;
+                this._6100(_);
+                for (let e = 0; e < _; e++) {
+                    const _ = t.charCodeAt(e);
+                    this._6055(_)
                 }
             }
-            writeShortWideString(value) {
-                const length = value.length;
-                this.writeUint8(length);
-                for (let i = 0; i < length; i++) {
-                    const code = value.charCodeAt(i);
-                    this.writeUint16(code);
+            _4803(t) {
+                const _ = t.length;
+                this._6055(_);
+                for (let e = 0; e < _; e++) {
+                    const _ = t.charCodeAt(e);
+                    this._6100(_)
                 }
             }
-            writeWideString(value) {
-                const length = value.length;
-                this.writeUint16(length);
-                for (let i = 0; i < length; i++) {
-                    const code = value.charCodeAt(i);
-                    this.writeUint16(code);
+            _3399(t) {
+                const _ = t.length;
+                this._6100(_);
+                for (let e = 0; e < _; e++) {
+                    const _ = t.charCodeAt(e);
+                    this._6100(_)
                 }
             }
-            resetOffset() {
-                this.currentOffset = 0;
+            _7060() {
+                this._5092 = 0
             }
-            get buffer() {
-                return this.currentOffset < this.bufferSize ? this.dataView.buffer.slice(0, this.currentOffset) : this.dataView.buffer;
+            get _7441() {
+                return this._5092 < this._5038 ? this._1500.buffer.slice(0, this._5092) : this._1500.buffer
             }
         };
     }
@@ -129,7 +127,7 @@ export class Minion {
 
         this.ws = new WebSocket(url, {
             agent: this.agent,
-            rejectUnauthorized: false,
+            rejectUnauthorized: false, // Do not reject the server's certificate even if it fails verification.
             headers: generateHeaders('https://ryuten.io')
         });
 
@@ -167,6 +165,8 @@ export class Minion {
 
                 this.spawn();
 
+                // Check if it truly does need to be random, if yes then keep but to make sure
+                // that it's not a anti-bot bypass thing
                 this.spawnInterval = setInterval(() => {
                     this.spawn();
                 }, Math.max(500, Math.random() * 1000));
@@ -186,31 +186,31 @@ export class Minion {
         var normalizeTrueFalse = isDocumentHidden ? 1 : 0;
         var isDocumentHiddenOpcode = 42;
 
-        const packet = new this.Writer(2);
-        packet.writeUint8(isDocumentHiddenOpcode);
-        packet.writeUint8(normalizeTrueFalse ? 1 : 0);
+        const packet = new this.c_(2);
+        packet._6055(isDocumentHiddenOpcode);
+        packet._6055(normalizeTrueFalse ? 1 : 0);
 
-        return packet.buffer;
+        return packet._7441;
     }
 
     sendTeamName(teamName) {
         var teamNameOpcode = 21;
 
-        const packet = new this.Writer(1 + 2 * (1 + teamName.length));
-        packet.writeUint8(teamNameOpcode);
-        packet.writeShortWideString(teamName);
+        const packet = new this.c_(1 + 2 * (1 + teamName.length));
+        packet._6055(teamNameOpcode);
+        packet._4803(teamName);
 
-        return packet.buffer;
+        return packet._7441;
     }
 
     sendPin(pin) {
         var sendPinOpcode = 23;
 
-        const packet = new this.Writer(1 + 2 * (1 + pin.length));
-        packet.writeUint8(sendPinOpcode);
-        packet.writeShortWideString(pin);
+        const packet = new this.c_(1 + 2 * (1 + pin.length));
+        packet._6055(sendPinOpcode);
+        packet._4803(pin);
 
-        return packet.buffer;
+        return packet._7441;
     }
 
     sendSkinData(skinIndex, ImgurSkinUrl) {
@@ -225,32 +225,32 @@ export class Minion {
             matchedString = extractedImageIdentifier[1];
         }
 
-        const packet = new this.Writer(3 + (1 + matchedString.length));
-        packet.writeUint8(sendSkinDataOpcode);
-        packet.writeUint8(skinIndex);
-        packet.writeUint8(hasMatch);
-        packet.writeShortString(matchedString);
+        const packet = new this.c_(3 + (1 + matchedString.length));
+        packet._6055(sendSkinDataOpcode);
+        packet._6055(skinIndex);
+        packet._6055(hasMatch);
+        packet._8976(matchedString);
 
-        return packet.buffer;
+        return packet._7441;
     }
 
     sendPing() {
         var sendPingOpcode = 52;
 
-        const packet = new this.Writer(1);
-        packet.writeUint8(sendPingOpcode);
+        const packet = new this.c_(1);
+        packet._6055(sendPingOpcode);
 
-        return packet.buffer;
+        return packet._7441;
     }
 
     sendSpawn(setActivePlayer = 0) {
         var sendSpawnOpcode = 10;
 
-        const packet = new this.Writer(2);
-        packet.writeUint8(sendSpawnOpcode);
-        packet.writeUint8(setActivePlayer);
+        const packet = new this.c_(2);
+        packet._6055(sendSpawnOpcode);
+        packet._6055(setActivePlayer);
 
-        return packet.buffer;
+        return packet._7441;
     }
 
     onClose() {
@@ -278,34 +278,41 @@ export class Minion {
     }
 
     spawn() {
-        this.send(this.sendSpawn());
+        this.send(this.sendSpawn(0));
+        this.send(this.sendSpawn(1));
     }
 
     split() {
-        this.sendSplit();
+        //this.send([31, 0, 1])
+        //this.send([31, 1, 1])
+        this.sendSplit(0, 1);
+        this.sendSplit(1, 1);
     }
 
     eject() {
-        this.sendEject();
+        //this.send([32, 0])
+        //this.send([32, 1])
+        this.sendEject(0);
+        this.sendEject(1);
     }
 
     sendSplit(setActivePlayer = 0, multiplier = 1) {
         // Multiplier = split types: 1, 2, 3, 4, 6x
         var sendSplitOpcode = 31;
 
-        const packet = new this.Writer(3);
-        packet.writeUint8(sendSplitOpcode);
-        packet.writeUint8(setActivePlayer);
-        packet.writeUint8(multiplier);
+        const packet = new this.c_(3);
+        packet._6055(sendSplitOpcode);
+        packet._6055(setActivePlayer);
+        packet._6055(multiplier);
         this.send(packet);
     }
 
     sendEject(setActivePlayer = 0) {
         var sendEjectOpcode = 32;
 
-        const packet = new this.Writer(2);
-        packet.writeUint8(sendEjectOpcode);
-        packet.writeUint8(setActivePlayer);
+        const packet = new this.c_(2);
+        packet._6055(sendEjectOpcode);
+        packet._6055(setActivePlayer);
         this.send(packet);
     }
 
@@ -323,13 +330,13 @@ export class Minion {
     sendMouse(setActivePlayer = 0, x, y) {
         var sendMouseOpcode = 30;
 
-        const packet = new this.Writer(6);
-        packet.writeUint8(sendMouseOpcode);
-        packet.writeUint8(setActivePlayer);
-        packet.writeUint16(x);
-        packet.writeUint16(y);
+        const packet = new this.c_(6);
+        packet._6055(sendMouseOpcode);
+        packet._6055(setActivePlayer);
+        packet._6100(x);
+        packet._6100(y);
 
-        return packet.buffer;
+        return packet._7441;
     }
 
     sendChat(message) { }
