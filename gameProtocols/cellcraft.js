@@ -1,34 +1,37 @@
 import WebSocket from "ws";
-import {grabConfig} from "../index.js";
-import { getAgent } from "../utils/proxys.js";
-import { SmartBuffer} from "smart-buffer";
-import {generateHeaders} from '../utils/headers.js';
+import { grabConfig } from "../server/index.js";
+import { grab_proxy } from "../utils/proxys/proxyHandler.js";
+import { generateHeaders } from '../utils/headers.js';
+import { SmartBuffer } from "smart-buffer";
 
 export class Minion {
     constructor() {
-        this.agent = getAgent();
+        this.agent = grab_proxy();
         this.startedBots = false;
-        this.readyToSpawn = false;
+        this.isReconnecting = false;
+        this.useID = false;
     }
 
     connect(url) {
+        this.startedBots = true;
         this.serverUrl = url;
 
         this.ws = new WebSocket(url, {
             agent: this.agent,
             rejectUnauthorized: false,
-            headers: generateHeaders('https://cellcraft.io/')
+            headers: generateHeaders('https://cellcraft.io'),
+            timeout: 5000
         });
 
-        this.ws.binaryType = 'buffer';
+        this.ws.binaryType = 'nodebuffer';
 
-        this.ws.on('message', this.onMessage.bind(this));
-        this.ws.on('open', this.onOpen.bind(this));
-        this.ws.on('close', this.onClose.bind(this));
-        this.ws.on('error', this.onError.bind(this));
+        this.ws.onmessage = this.onMessage.bind(this);
+        this.ws.onopen = this.onOpen.bind(this);
+        this.ws.onclose = this.onClose.bind(this);
+        this.ws.onerror = this.onError.bind(this);
 
         this.id = Math.floor(Math.pow(2, 14) * Math.random()).toString(36);
-        this.name = grabConfig().getName() + ' | ' + this.id;
+        this.name = '𝐱𝐞𝐫𝐨𝐛𝐨𝐭𝐬.𝐦'//grabConfig().botOptions.getName() + (this.useID ? ' | ' + this.id : '');
 
         this.Definitions = {
             currentTime: -1,
@@ -38,7 +41,7 @@ export class Minion {
     }
 
     onMessage(message) {
-        const reader = SmartBuffer.fromBuffer(message);
+        const reader = SmartBuffer.fromBuffer(message.data);
         let offset = 0;
         switch (reader.readUInt8()) {
             case 64:
@@ -55,7 +58,6 @@ export class Minion {
                     }
                 } else {
                     this.ws.close();
-                    console.log("Err in 64!");
                 }
                 break;
             case 244:
@@ -87,11 +89,7 @@ export class Minion {
         this.pingInterval = setInterval(() => {
             if (this.readyToSpawn) this.send([0x5f]);
         }, 18e3);
-        this.spawnTimeout = setInterval(this.spawn.bind(this), 1000);
-
-        setInterval(() => {
-            this.sendChat("Xero-Bots the best! | " + "discord.gg/bAstbAfem9");
-        }, 15000);
+        this.spawnInterval = setInterval(this.spawn.bind(this), 1000);
     }
 
     writeIndex(data, offset, length, callback) {
@@ -117,6 +115,7 @@ export class Minion {
             expressLE.charCodeAt(5)
         ];
     }
+
     getUpValue() {
         var op = 0;
         var ii = 0;
@@ -129,32 +128,52 @@ export class Minion {
     shiftSixtyFourKey(authkey) {
         const xorKey = this.Buffer(13);
         xorKey.setUint8(0, 2 * (100 + 30) - (this.Definitions.currentTime - 5) % 10 - 5);
-        xorKey.setUint32(1, ~~(this.Definitions.currentTime / 1.84 + 100 / 2 - 2 * (0 ? 0.5 : 1)) 
-        + ~~(~~(21.2 * (~~(this.Definitions.currentTime + 4.42 * this.Definitions.c + 555) % --authkey + 36360)) / 4.2), true)
+        xorKey.setUint32(1, ~~(this.Definitions.currentTime / 1.84 + 100 / 2 - 2 * (0 ? 0.5 : 1))
+            + ~~(~~(21.2 * (~~(this.Definitions.currentTime + 4.42 * this.Definitions.c + 555) % --authkey + 36360)) / 4.2), true)
         xorKey.setUint32(5, this.getUpValue() + 103, true);
         xorKey.setUint32(9, this.writeIndex(xorKey, 0, 9, 255), true);
         this.send(xorKey);
     }
 
     onClose() {
-        clearInterval(this.pingInterval);
-
-        clearTimeout(this.spawnTimeout);
-
-        if (this.serverUrl) this.connect(this.serverUrl);
+        this.handleReconnection();
     }
 
-    onError() { }
+    onError(error) {
+        // No error handling for now.
+        // console.error(error);
+        this.handleReconnection();
+    }
 
     disconnect() {
+        this.startedBots = false;
+        this.clearIntervals();
+
         if (this.ws) {
             this.ws.terminate();
-            delete this.ws;
+            this.ws = null;
         }
+    }
 
+    reconnect() {
+        this.clearIntervals();
+        this.agent = grab_proxy();
+
+        if (this.serverUrl && this.startedBots) {
+            this.connect(this.serverUrl);
+        }
+    }
+
+    clearIntervals() {
         clearInterval(this.pingInterval);
+        clearTimeout(this.spawnInterval);
+    }
 
-        clearTimeout(this.spawnTimeout);
+    handleReconnection() {
+        if (!this.isReconnecting) {
+            this.isReconnecting = true;
+            this.reconnect();
+        }
     }
 
     spawn() {
@@ -167,17 +186,19 @@ export class Minion {
     }
 
     split() {
+        if (!this.readyToSpawn) return;
         this.sendUint8([0x11]);
     }
 
     eject() {
+        if (!this.readyToSpawn) return;
         this.sendUint8([0x15]);
         this.sendUint8([0x24]);
     }
 
     sendUint8(offset) {
-        let onebyte = this.Buffer(1);
-        onebyte.setUint8(0, offset)
+        const onebyte = this.Buffer(1);
+        onebyte.setUint8(0, offset);
         this.send(onebyte);
     }
 
@@ -190,6 +211,7 @@ export class Minion {
     }
 
     sendChat(message) {
+        if (!this.readyToSpawn) return;
         let chatBuffer = Buffer.alloc(2 + Buffer.byteLength(message, 'ucs2'));
         chatBuffer.writeUInt8(0x62, 0);
         chatBuffer[1] = 0x01;
@@ -201,13 +223,13 @@ export class Minion {
         return this.ws && this.ws.readyState === WebSocket.OPEN;
     }
 
-    Buffer(buf) {
-        return new DataView(new ArrayBuffer(!buf ? 1 : buf))
+    Buffer(buf = 1) {
+        return new DataView(new ArrayBuffer(buf));
     }
 
     send(data) {
         if (this.wsOPEN) {
-            this.ws.send(data.buffer);
+            this.ws.send(data['buffer']);
         }
     }
 };
