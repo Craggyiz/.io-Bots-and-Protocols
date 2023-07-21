@@ -1,42 +1,59 @@
-
 // Game: https://tricksplit.io/
 // Protection (dir): https://tricksplit.io/bundle.wasm?v2/
 
-class TricksplitIO {
+
+class Tricksplit {
   constructor() {}
 
-  // Layer 1:
-  // Sent after 255 and 254 packet
   $first() {
-    // Tricksplit.io checks the validity of the auth packet by checking the time it was created.
-    // I assume the time tolerance is -5 seconds, although this is sent instantly, so I never checked.
-    const result = new Uint32Array(3);
-    const nowTime = Date.now() / 1000.0;
-    let timeVal = 0;
+    // This function creates an encryption key for the Tricksplit authentication packet.
+    // This is the first layer of protection in Tricksplit.
+    const dateNow = Date.now();
+    let uVar2 = (dateNow / 0x3E8) < 0x80000000 ? Math.floor(dateNow / 0x3E8) : 0x80000000;
 
-    // Ensure that the time value is within a valid range
-    // Basic WASM function
-    if (Math.abs(nowTime) < 2147483648.0) {
-      timeVal = Math.trunc(nowTime);
-    } else {
-      timeVal = -2147483648;
-    }
+    const getRandomValue = () => crypto.getRandomValues(new Uint32Array(1))[0];
+    let xorKeyPairOne = getRandomValue();
+    let xorKeyPairTwo = getRandomValue();
 
-    // Generate the authentication packet by performing bitwise operations on the
-    // time value and using the result to generate a sequence of random numbers.
-    result[0] = timeVal ^ 267506326;
-    result[1] = (crypto.getRandomValues(new Uint32Array(1))[0] ^ 267501985) ^ (result[0] >> 2) ^ 420; // Funny number :V
-    result[2] = (crypto.getRandomValues(new Uint32Array(1))[0] ^ ((timeVal / 4) | 0)) ^ (result[1] >> 4) ^ 69; // Funny number :V
+    // XOR operation is used to combine two random values to produce an encryption key.
+    // This ensures a unique and unpredictable key for each session.
+    this.encryptionKey = xorKeyPairTwo ^ xorKeyPairOne;
 
-    // Return the authentication packet as a Uint32Array buffer as done in the WASM file
-    return result.buffer;
+    return new Uint32Array([
+      uVar2 ^ 0xff1d296,
+      xorKeyPairOne ^ ((uVar2 ^ 0xff1d296) / 0x2) ^ 0x1a4, // 0x1a4 = 420, a humorously chosen value.
+      xorKeyPairTwo ^ ((uVar2 ^ 0xff1d296) / 0x4) ^ 0x45 // 0x45 = 69, another humorously chosen value.
+    ]).buffer;
   }
 
-  // Layer 2:
-  // Method to decrypt data using the Advanced Encryption Standard (AES) algorithm
-  $vm(AES_256_SECRET) {
-    // WASM
-    // I misplaced where I put this code, but, secret key is sent in a large buffer via a message sent from the server, the CryptoJS library is used to perform the decryption.
-    // Use both CryptoJS.AES.decrypt & CryptoJS.enc.Utf8 to extract both eval'd elementChildFactory functions, run the key through both, then send it back.
+  $vm(buffer) {
+    // In the second layer of protection, the server sends the client a long onmessage buffer.
+    // This function then extracts the AES message from it, and decrypts the data.
+	// Extract both functions "elementChildFactory" from the cipherText after decryption,
+	// run the encryption key through both, and send it back to the server.
+
+    var key;
+    var cipherText = this.extractMessage(buffer);
+    // Decrypting the ciphertext with the previously generated encryption key.
+    var decryptedData = CryptoJS.AES.decrypt(cipherText, this.encryptionKey);
+
+	// Do the rest, it's pretty straight forward.
+    // After sending the key, you can then spawn.
+
+    return key;
+  }
+
+  extractMessage(buffer) {
+    // This function extracts the encrypted message from the server's buffer.
+    // It does this by iterating over the buffer until it finds a specific marker (0x55),
+    // then returns everything after this marker as the encrypted message.
+
+    const offset = 4;
+    let markerIndex = offset;
+    while (buffer[markerIndex] !== 0x55) {
+      markerIndex++;
+    }
+    const message = buffer.slice(markerIndex);
+    return message;
   }
 }
