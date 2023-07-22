@@ -1,7 +1,9 @@
 import WebSocket from "ws";
 import { grabConfig } from "../server/index.js";
-import { grab_proxy } from "../utils/proxys.js";
+import { grab_proxy } from "../utils/proxys/proxyHandler.js";
 import { generateHeaders } from '../utils/headers.js';
+import CryptoJS from "crypto-js";
+import { webcrypto } from 'node:crypto';
 
 class Reader {
     constructor(buffer) {
@@ -167,7 +169,8 @@ export class Minion {
     constructor() {
         this.agent = grab_proxy();
         this.startedBots = false;
-        this.useID = true;
+        this.isReconnecting = false;
+        this.useID = false;
     }
 
     connect(url) {
@@ -176,8 +179,9 @@ export class Minion {
 
         this.ws = new WebSocket(url, {
             agent: this.agent,
-            rejectUnauthorized: false,
-            headers: generateHeaders('https://tricksplit.io')
+            rejectUnauthorized: true,
+            headers: generateHeaders('https://tricksplit.io'),
+            timeout: 5000
         });
 
         this.ws.binaryType = 'arraybuffer';
@@ -224,27 +228,38 @@ export class Minion {
                     reader.readUTF16string();
                 }
 
-                for (var _0x5796d3 = reader.readUInt32(); _0x5796d3--;) {
+                for (var i = reader.readUInt32(); i--;) {
                     reader.readUInt32();
                 }
 
                 if (reader.offset < reader.maxOffset - 1) {
-                    // elementChildFactory eval & CanvasCaptureMediaStreamTrack.contextBufferFactory
                     var AES_256_SECRET = new Uint8Array(reader.dataView.buffer).slice(reader.offset, reader.maxOffset);
-                    this.sendDecodedOutput(this.$vm(AES_256_SECRET));
+                    var CipherText = this.extractMessage(AES_256_SECRET);
+                    this.sendDecodedOutput(this.$vm(CipherText));
                 }
                 break;
         }
     }
 
-    sendDecodedOutput(key) {
-        // "sendMouseMove"
-        var packet = new Writer(13);
-        packet.writeUint8(0x10);
-        packet.writeInt32(key);
-        packet.writeInt32((100000000 * Math.random() + 20000000));
-        packet.writeUint32(0x0);
-        this.send(packet.Buffer);
+    $vm(secret) {
+        var key;
+        var decrypt = CryptoJS.AES.decrypt(secret, this.sessionEncryptionKey); 
+        // Not open sourcing the rest, since it took a long time to figure out, mainly because I'm stupid... 
+        // Just use CryptoJS.enc.Utf8.stringify() and string methods like FromCharcode.
+        // You'll be able to form the true decrypted output, and then get the two elementChildFactory functions from them.
+        // run the two functions by the key and send the output of both functions to the server, and you can spawn.
+
+        return key;
+    }
+
+    extractMessage(buffer) {
+        const offset = 4;
+        let markerIndex = offset;
+        while (buffer[markerIndex] !== 0x55) {
+            markerIndex++;
+        }
+        const message = buffer.slice(markerIndex);
+        return message;
     }
 
     onOpen() {
@@ -276,105 +291,73 @@ export class Minion {
     }
 
     $first() {
-        var currentSeconds = Date.now() / 1.0e3;
-        var seededValue = Math.abs(currentSeconds) < 2147483648 ? Math.trunc(currentSeconds) : -2147483648;
+        // Server checks validity of the packet via a certain time disparity in the Date.now(), then the wasm forms the AES key via the two random values.
+        const dateNow = Date.now();
+        let uVar2 = (dateNow / 0x3E8) < 0x80000000 ? Math.floor(dateNow / 0x3E8) : 0x80000000;
+
+        const getRandomValue = () => webcrypto.getRandomValues(new Uint32Array(1))[0];
+        let xorKeyPairOne = getRandomValue();
+        let xorKeyPairTwo = getRandomValue();
+
+        this.sessionEncryptionKey = xorKeyPairTwo ^ xorKeyPairOne;
 
         return new Uint32Array([
-            seededValue ^ 267506326,
-            (this.$generateCryptoKey() ^ ((seededValue ^ 267501985) / 2)) ^ 420, // Nice :V
-            (this.$generateCryptoKey() ^ ((seededValue ^ 267501985) / 4)) ^ 69 // Nice :V
-        ]);
-    }
-
-    $generateCryptoKey(length = 1) {
-        const secureKey = crypto.getRandomValues(new Uint32Array(length))[0];
-        return (secureKey < 4294967296 && secureKey >= 0) ? Math.trunc(secureKey) >>> 0 : 0;
-    }
-
-    $vm(AES_256_SECRET) {
-        /* You thought I would post the most important part of the code fully?
-        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡴⢶⡖⠒⠂⠒⠒⠶⢦⣀⠀⠀⠀⠀⠀⠀⣠⣤⠴⠤⠶⢤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⡿⠙⠋⠉⠀⠀⠀⠀⠀⠈⠀⠪⣵⣤⣤⠖⡺⠿⠋⠀⠀⠀⠀⠀⠺⣝⠲⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⡝⣦⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⣴⣯⠟⠁⠀⠀⠀⠀⠀⡀⠄⠀⠀⠀⠀⠢⠤⣤⡀⠘⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⠹⣠⡀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⣰⣻⠏⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠓⢾⡦⠐⠂⠀⠀⠀⠀⠀⠀⠐⠂⠀⠆⢻⣛⠦⡀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⢀⣰⢿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡤⠤⠄⠀⠐⠲⠀⠹⢦⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⢼⠷⣄⠀⠀
-⠀⠀⠀⢠⣴⣿⢧⡞⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⡴⢞⡯⠕⠒⠂⠉⠁⠀⠀⠒⠒⠢⢿⣷⣶⡮⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⢾⠳⡄
-⠀⠀⢰⣟⠞⠁⠘⠁⠀⠀⠀⠀⠀⢀⣀⠚⠋⠁⠚⠋⢁⣀⣠⣤⣤⣤⣤⣤⣤⣀⣀⠀⠈⠙⠀⠀⢀⣠⣤⣤⡤⠤⠤⠤⣤⠀⠤⢬⣦⢳
-⠀⣴⠿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣆⠰⢀⣤⠶⠛⠋⠉⠉⣠⣤⣤⣼⣷⣤⣬⣽⠷⠂⠀⠛⠛⠛⠓⠒⠒⠲⠒⠒⠚⠛⠛⢣⡀⠈⣿
-⣼⣷⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⡃⠀⠠⠐⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⢠⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡽⣳⣿
-⠋⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢳⡶⣤⣀⠀⠀⠀⠀⠀⠀⢀⣀⣤⡴⠛⠉⠀⠀⠀⠀⠀⠀⢀⠠⠄⠂⠀⣰⢾⣿⠙⠒
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢆⡀⠀⠀⠀⠀⠾⠛⠁⣾⡟⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣮⣿⡛⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⠴⠞⠉⠐⠋⠁⠀⠀⠀⠉⠙⠯⢲⠖⠂⠉⠉⠉⠙⣮⢿⣿⣧⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣠⣤⣾⠤⠤⠤⠤⡶⠶⣶⣶⣶⣖⣒⣒⣛⠛⡛⣛⣲⣶⣶⣦⣬⠿⣼⣻⣦⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⠀⠀⣾⠛⣩⣵⠿⣶⠶⠿⢾⠛⠛⢻⡟⠛⠻⣏⠙⠻⣿⡟⠛⡻⣿⠉⠙⣿⢿⠀⠀⣿⢾⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣆⠀⣿⡀⢻⡄⠀⢸⡆⠀⠸⡆⣤⣘⣷⣆⣀⣿⣀⣀⣁⣿⣒⣁⣸⡄⠀⣿⠞⠀⣠⣿⡾⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣆⡙⢷⣄⡙⢦⣼⣿⠃⠀⣿⡟⠁⢿⡍⠉⠉⡏⠉⠉⣾⠁⠉⢹⢇⣴⠃⠀⣤⣯⡿⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⣦⠉⠻⣦⡉⠙⣦⣤⡟⠀⠀⢸⠀⠀⣼⠃⠀⢀⣟⣀⣴⣿⠟⢁⣠⣾⣷⠟⠁⠀⠀⠀
-⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢳⣄⠀⠀⠀⠀⠀⠈⠙⠆⠀⠉⠻⠷⢯⣭⣭⣭⣼⣿⣯⣽⣶⣿⣿⣿⣿⣿⠿⢛⣿⢿⡿⠋⠀⠀⠀⠀⠀
-⣻⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣟⡿⠋⠀⠀⠀⠀⠀⠀⠀
-⠋⠙⠿⣯⣟⣶⣤⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣠⣶⣯⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⡇⠀⠀⠀⠙⠻⠷⢦⣌⣉⣉⠙⠓⠒⠶⠦⠤⠤⠤⠀⠀⠀⠀⠀⢀⢀⣀⣀⣀⣀⢠⣤⣤⣞⣻⣿⡿⠏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⡇⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠛⠿⠷⠶⠶⠶⠤⠤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⠶⠟⠛⠉⠛⢷⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⡇⠀⠀⠀⢀⣀⣀⠀⠀⠀⠀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⢀⡀⠀⠀⣀⠀⠀⠀⠀⠙⠳⣼⠳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-        */
-
-
-        var __salted_key = "Snip ;)";
-        var __salted_input = "Snip ;)";
-
-        var _AES = CryptoJS.AES.decrypt(__salted_key, __salted_input);
-        var _normalize = CryptoJS.enc.Utf8;
-
-        let key;
-        /*
-        Snip ;P
-        */
-
-        return key;
+            uVar2 ^ 0xff1d296,
+            xorKeyPairOne ^ ((uVar2 ^ 0xff1d296) / 0x2) ^ 0x1a4, // 0x1a4 = 420, Nice :V.
+            xorKeyPairTwo ^ ((uVar2 ^ 0xff1d296) / 0x4) ^ 0x45 // 0x45 = 69, Nice :V.
+        ]).buffer;
     }
 
     onClose() {
-        clearInterval(this.pingInterval);
-
-        clearTimeout(this.spawnInterval);
-
-        this.agent = grab_proxy();
-
-        if (this.serverUrl && this.startedBots) this.connect(this.serverUrl);
+        this.handleReconnection();
     }
 
-    onError() { }
+    onError(error) {
+        // No error handling for now.
+        // console.error(error);
+        this.handleReconnection();
+    }
 
     disconnect() {
+        this.startedBots = false;
+        this.clearIntervals();
+
         if (this.ws) {
-            delete this.startedBots;
             this.ws.terminate();
-            delete this.ws;
+            this.ws = null;
         }
+    }
 
+    reconnect() {
+        this.clearIntervals();
+        this.agent = grab_proxy();
+
+        if (this.serverUrl && this.startedBots) {
+            this.connect(this.serverUrl);
+        }
+    }
+
+    clearIntervals() {
         clearInterval(this.pingInterval);
-
         clearTimeout(this.spawnInterval);
     }
 
-    spawn() {
-        /*
-        Snip
-        */
+    handleReconnection() {
+        if (!this.isReconnecting) {
+            this.isReconnecting = true;
+            this.reconnect();
+        }
     }
 
-    split() {
-        this.sendUint8(17);
-    }
+    spawn() { }
 
-    eject() {
-        this.sendUint8(21);
-    }
+    split() { }
+
+    eject() { }
 
     sendUint8(offset) {
-        let onebyte = this.Buffer(1);
-        onebyte.setUint8(0, offset)
+        const onebyte = this.Buffer(1);
+        onebyte.setUint8(0, offset);
         this.send(onebyte);
     }
 
@@ -387,11 +370,16 @@ export class Minion {
         this.send(spawnBuffer.Buffer);
     }
 
-    sendChat(message) {
-        /*
-        Snip
-        */
+    sendDecodedOutput(key) {
+        var packet = new Writer(13);
+        packet.writeUint8(0x10);
+        packet.writeInt32(key);
+        packet.writeInt32((100000000 * Math.random() + 20000000));
+        packet.writeUint32(0x0);
+        this.send(packet.Buffer);
     }
+
+    sendChat(message) { }
 
     get wsOPEN() {
         return this.ws && this.ws.readyState === WebSocket.OPEN;
