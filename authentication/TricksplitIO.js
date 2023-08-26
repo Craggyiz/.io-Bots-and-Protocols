@@ -16,7 +16,7 @@
  * 
  * That same encryption key is used for the solve function. Decrypt the onmessage's AES.
  * Then do the solve, basically the same as senpa's, extract the token and functions, then send back the token to the server to spawn. 
- * 
+ * See senpa.io solve code at: SenpaIO.js it is directly related to Trickplit.s
  **/
 
 class TricksplitWasmInstance {
