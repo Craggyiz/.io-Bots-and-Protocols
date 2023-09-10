@@ -1,8 +1,18 @@
 /**
- * @author (Bot) systemrobot on Discord
+ * @author (Tatsuya) secureserver on Discord
  * @license MIT
  * 
  * @summary Tricksplit.io's Bot Protection - Precisely translated in JS from WASM.
+ * 
+ * ### Use at Your Own Risk Warning
+ * 
+ * **Disclaimer:** This code is provided "as-is" without any warranty, either express or implied. 
+ * The authors and maintainers are not responsible for any damage, data loss, or any other issues 
+ * that may arise from using this code. Use at your own risk.
+ * 
+ * By using this code, you acknowledge that you have read this disclaimer and agree to its terms.
+ * 
+ * ---
  * 
  * - Initial Authentication:
  *    - Auto-generates a 3-element Uint32Array packet on socket open.
@@ -25,7 +35,7 @@
  *    - This step is named 'final' in the game's embind.
  */
 
-class TricksplitioWasmInstance {
+export class TricksplitWasmInstance {
   constructor() {
     this.encryptionKey = NaN;
     this.CanvasCaptureMediaStreamTrack = {
@@ -71,33 +81,286 @@ class TricksplitioWasmInstance {
   }
 
   processVMBytecode(byteCode) {
-    // No skids! (Muzza)
-    /**
-     * ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡴⢶⡖⠒⠂⠒⠒⠶⢦⣀⠀⠀⠀⠀⠀⠀⣠⣤⠴⠤⠶⢤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⡿⠙⠋⠉⠀⠀⠀⠀⠀⠈⠀⠪⣵⣤⣤⠖⡺⠿⠋⠀⠀⠀⠀⠀⠺⣝⠲⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⡝⣦⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⣴⣯⠟⠁⠀⠀⠀⠀⠀⡀⠄⠀⠀⠀⠀⠢⠤⣤⡀⠘⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⠹⣠⡀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⣰⣻⠏⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠓⢾⡦⠐⠂⠀⠀⠀⠀⠀⠀⠐⠂⠀⠆⢻⣛⠦⡀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⢀⣰⢿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡤⠤⠄⠀⠐⠲⠀⠹⢦⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⢼⠷⣄⠀⠀
-⠀⠀⠀⢠⣴⣿⢧⡞⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⡴⢞⡯⠕⠒⠂⠉⠁⠀⠀⠒⠒⠢⢿⣷⣶⡮⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⢾⠳⡄
-⠀⠀⢰⣟⠞⠁⠘⠁⠀⠀⠀⠀⠀⢀⣀⠚⠋⠁⠚⠋⢁⣀⣠⣤⣤⣤⣤⣤⣤⣀⣀⠀⠈⠙⠀⠀⢀⣠⣤⣤⡤⠤⠤⠤⣤⠀⠤⢬⣦⢳
-⠀⣴⠿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣆⠰⢀⣤⠶⠛⠋⠉⠉⣠⣤⣤⣼⣷⣤⣬⣽⠷⠂⠀⠛⠛⠛⠓⠒⠒⠲⠒⠒⠚⠛⠛⢣⡀⠈⣿
-⣼⣷⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⡃⠀⠠⠐⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⢠⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡽⣳⣿
-⠋⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢳⡶⣤⣀⠀⠀⠀⠀⠀⠀⢀⣀⣤⡴⠛⠉⠀⠀⠀⠀⠀⠀⢀⠠⠄⠂⠀⣰⢾⣿⠙⠒
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢆⡀⠀⠀⠀⠀⠾⠛⠁⣾⡟⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣮⣿⡛⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⠴⠞⠉⠐⠋⠁⠀⠀⠀⠉⠙⠯⢲⠖⠂⠉⠉⠉⠙⣮⢿⣿⣧⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣠⣤⣾⠤⠤⠤⠤⡶⠶⣶⣶⣶⣖⣒⣒⣛⠛⡛⣛⣲⣶⣶⣦⣬⠿⣼⣻⣦⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⠀⠀⣾⠛⣩⣵⠿⣶⠶⠿⢾⠛⠛⢻⡟⠛⠻⣏⠙⠻⣿⡟⠛⡻⣿⠉⠙⣿⢿⠀⠀⣿⢾⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣆⠀⣿⡀⢻⡄⠀⢸⡆⠀⠸⡆⣤⣘⣷⣆⣀⣿⣀⣀⣁⣿⣒⣁⣸⡄⠀⣿⠞⠀⣠⣿⡾⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣆⡙⢷⣄⡙⢦⣼⣿⠃⠀⣿⡟⠁⢿⡍⠉⠉⡏⠉⠉⣾⠁⠉⢹⢇⣴⠃⠀⣤⣯⡿⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⣦⠉⠻⣦⡉⠙⣦⣤⡟⠀⠀⢸⠀⠀⣼⠃⠀⢀⣟⣀⣴⣿⠟⢁⣠⣾⣷⠟⠁⠀⠀⠀
-⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢳⣄⠀⠀⠀⠀⠀⠈⠙⠆⠀⠉⠻⠷⢯⣭⣭⣭⣼⣿⣯⣽⣶⣿⣿⣿⣿⣿⠿⢛⣿⢿⡿⠋⠀⠀⠀⠀⠀
-⣻⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣟⡿⠋⠀⠀⠀⠀⠀⠀⠀
-⠋⠙⠿⣯⣟⣶⣤⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣠⣶⣯⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⡇⠀⠀⠀⠙⠻⠷⢦⣌⣉⣉⠙⠓⠒⠶⠦⠤⠤⠤⠀⠀⠀⠀⠀⢀⢀⣀⣀⣀⣀⢠⣤⣤⣞⣻⣿⡿⠏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⡇⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠛⠿⠷⠶⠶⠶⠤⠤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⠶⠟⠛⠉⠛⢷⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⡇⠀⠀⠀⢀⣀⣀⠀⠀⠀⠀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⢀⡀⠀⠀⣀⠀⠀⠀⠀⠙⠳⣼⠳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-     */
+    // Fixed for NodeJS.
+
+    var processedBytes = Array.from(byteCode);
+
+    var mainStack = [];
+    var backupStack = [];
+
+    for (var index = 0; index < processedBytes.length;) {
+      var instructionSet = processedBytes[index++];
+
+      switch (instructionSet) {
+        case 0: {
+          break;
+        }
+        case 2: {
+          var popOne = mainStack.pop();
+          var result = backupStack[popOne];
+          mainStack.push(result);
+          break;
+        }
+        case 3: {
+          var popOne = mainStack.pop();
+          var popTwo = mainStack.pop();
+          backupStack[popOne] = popTwo;
+          break;
+        }
+        case 4: {
+          var lastElementIndex = mainStack.length - 1;
+          var result = mainStack[lastElementIndex];
+          mainStack.push(result);
+          break;
+        }
+        case 5: {
+          var popOne = mainStack.pop();
+          var popTwo = mainStack.pop();
+          mainStack.push(popOne);
+          mainStack.push(popTwo);
+          break;
+        }
+        case 16: {
+          var popOne = mainStack.pop();
+          var popTwo = mainStack.pop();
+          if (popOne == 0) {
+            mainStack.push(popTwo + popOne);
+          } else {
+            mainStack.push(0);
+          }
+          break;
+        }
+        case 17: {
+          var popOne = mainStack.pop();
+          var popTwo = mainStack.pop();
+          if (popOne == 0) {
+            mainStack.push(popTwo - popOne);
+          } else {
+            mainStack.push(0);
+          }
+          break;
+        }
+        case 18: {
+          var popOne = mainStack.pop();
+          var popTwo = mainStack.pop();
+          var result = Math.imul(popTwo, popOne);
+          mainStack.push(result);
+          break;
+        }
+        case 19: {
+          var popOne = mainStack.pop();
+          var popTwo = mainStack.pop();
+          if (popOne == 0) {
+            mainStack.push(popTwo / popOne);
+          } else {
+            mainStack.push(0);
+          }
+          break;
+        }
+        case 20: {
+          var popOne = mainStack.pop();
+          var popTwo = mainStack.pop();
+          mainStack.push(popTwo ^ popOne);
+          break;
+        }
+        case 21: {
+          var popOne = mainStack.pop();
+          var popTwo = mainStack.pop();
+          mainStack.push(popTwo << (popOne & 0x1f));
+          break;
+        }
+        case 22: {
+          var popOne = mainStack.pop();
+          var popTwo = mainStack.pop();
+          mainStack.push(popTwo >> (popOne & 0x1f));
+          break;
+        }
+        case 23: {
+          var popOne = mainStack.pop();
+          var popTwo = mainStack.pop();
+          mainStack.push(popTwo & popOne);
+          break;
+        }
+        case 32: {
+          var popOne = mainStack.pop();
+          mainStack.push(popOne ^ 0xffffffff);
+          break;
+        }
+        case 64: {
+          var stringTostringToProcess = mainStack.pop();
+          if (stringTostringToProcess.length < 1) {
+            stringTostringToProcess = "";
+          }
+
+          var processedArray = [];
+
+          for (var i = stringTostringToProcess.length - 1; i >= 0; i--) {
+            var charCode = stringTostringToProcess.charCodeAt(i);
+            var processedChar = charCode ^ 0xb2;
+            processedArray.push(processedChar);
+          }
+
+          mainStack.push(processedArray);
+          mainStack.push(stringTostringToProcess.length);
+          break;
+        }
+        case 65: {
+          var loopCount = mainStack.pop();
+          if (loopCount < 1) {
+            loopCount = 0;
+          }
+
+          var processedArray = [];
+
+          for (var i = 0; i < loopCount; i++) {
+            var nextInstruction = mainStack.pop();
+            nextInstruction = nextInstruction ^ 0xb2;
+            var newChar = String.fromCharCode(nextInstruction);
+            processedArray.push(newChar);
+          }
+
+          var newString = processedArray.join('');
+
+          mainStack.push(newString);
+          break;
+        }
+        case 66: {
+          var loopCount = processedBytes[index++];
+          if (loopCount < 1) {
+            loopCount = 0;
+          }
+
+          var processedArray = [];
+
+          for (var i = 0; i < loopCount; i++) {
+            var nextInstruction = processedBytes[index++];
+            nextInstruction = nextInstruction ^ 0xb2;
+            var newChar = String.fromCharCode(nextInstruction);
+            processedArray.push(newChar);
+          }
+
+          var newString = processedArray.join('');
+
+          mainStack.push(newString);
+          break;
+        }
+        case 67: {
+          var popOne = mainStack.pop();
+          var popTwo = mainStack.pop();
+
+          switch (popOne) {
+            case 'eval':
+              mainStack.push(eval);
+              break;
+            case 'toString':
+              mainStack.push(toString);
+              break;
+            case 'indexOf':
+              mainStack.push(Array.prototype.indexOf);
+              break;
+            case 'getAttribute':
+              mainStack.push('getAttribute');
+              break;
+            case 'CanvasCaptureMediaStreamTrack':
+              mainStack.push(this.CanvasCaptureMediaStreamTrack);
+              break;
+            default:
+              mainStack.push(0);
+              break;
+          }
+          break;
+        }
+        case 68: {
+          var popOne = mainStack.pop();
+          var popTwo = mainStack.pop();
+          var popThree = mainStack.pop();
+          popTwo[popOne] = popThree;
+          break;
+        }
+        case 48: {
+          index = mainStack.pop();
+          break;
+        }
+        case 49: {
+          var popOne = mainStack.pop();
+          var popTwo = mainStack.pop();
+          if (0 !== popTwo) {
+            index = popOne;
+          }
+          break;
+        }
+        case 132: {
+          var index1 = processedBytes[index++];
+          var index2 = processedBytes[index++];
+          var index3 = processedBytes[index++];
+          var index4 = processedBytes[index++];
+
+          mainStack.push(index1 | index2 << 8 | index3 << 0x10 | index4 << 0x18);
+          break;
+        }
+        case 133: {
+          var loopCount = mainStack.pop();
+
+          var processedArray = [];
+
+          for (var i = loopCount - 1; i >= 0; i--) {
+            processedArray[i] = mainStack.pop();
+          }
+
+          var _function = mainStack.pop();
+          var _args = mainStack.pop();
+
+          switch (_function) {
+            case eval:
+              function transformString(inputStr) {
+                const regex = /([a-zA-Z0-9_.]+)=function\(([^)]*)\)/;
+                const match = inputStr.match(regex);
+
+                if (match) {
+                  const funcName = match[1].split('.').pop();
+                  const params = match[2];
+                  const funcBody = inputStr.substring(match[0].length);
+
+                  const transformedStr = `(function ${funcName}(${params})${funcBody})`;
+
+                  return transformedStr;
+                } else {
+                  return "Pattern not found";
+                }
+              }
+
+              var transformed = [transformString(processedArray[0])];
+
+              var res = eval.apply(null, transformed);
+
+              mainStack.push(res);
+              break;
+            case 'getAttribute':
+              mainStack.push(null)
+              break;
+            case toString:
+            case Array.prototype.indexOf:
+              var res = _function.apply(_args, processedArray);
+
+              mainStack.push(res)
+              break;
+            default:
+              var res = _function.apply(_args, processedArray);
+
+              mainStack.push(res);
+              break;
+          }
+          break;
+        }
+        case 96: {
+          mainStack.push(0);
+          break;
+        }
+        case 80: {
+          return mainStack.pop();
+        }
+      }
+    }
   }
 
   first() {
@@ -121,10 +384,10 @@ class TricksplitioWasmInstance {
     var vmByteCode = [];
 
     var decrypt = CryptoJS.AES.decrypt(encryptedData, this.encryptionKey + "");
-    var str = decrypt.toString(CryptoJS.enc.Utf8);
+    var string = decrypt.toString(CryptoJS.enc.Utf8);
 
-    for (let i = 0; i < str.length; i++) {
-      vmByteCode.push(str.charCodeAt(i));
+    for (let i = 0; i < string.length; i++) {
+      vmByteCode.push(string.charCodeAt(i));
     }
 
     return vmByteCode;
