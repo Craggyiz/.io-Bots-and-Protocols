@@ -1,357 +1,425 @@
-import WebSocket from "ws";
-import { grabConfig } from "../index.js";
-import { getAgent } from "../utils/proxys.js";
-import { SmartBuffer } from "smart-buffer";
-import { generateHeaders } from '../utils/headers.js';
-import request from "request";
-import qs from "qs";
-
-class _0xbf382a {
-    constructor(_0x49b3c8) {
-        this.buffer = new DataView(new ArrayBuffer(_0x49b3c8)), this.position = 0, this.littleEndian = true;
+class _0x55c9cc {
+  constructor(_0x3a2a3c) {
+    this.buffer = new DataView(new ArrayBuffer(_0x3a2a3c));
+    this.position = 0;
+    this.littleEndian = true;
+  }
+  setString(_0x5d3a3a) {
+    for (let _0x4783fe = 0; _0x4783fe < _0x5d3a3a.length; _0x4783fe++) {
+      this.setUint16(_0x5d3a3a.charCodeAt(_0x4783fe));
     }
-    setUint16(_0x3e649f) {
-        for (let _0x39f7f4 = 0; _0x39f7f4 < _0x3e649f.length; _0x39f7f4++) this.setUint16(_0x3e649f.charCodeAt(_0x39f7f4));
-        return this;
+    return this;
+  }
+  setInt8(_0x7b4553) {
+    this.buffer.setInt8(this.position++, _0x7b4553);
+    return this;
+  }
+  setUint8(_0x336b7d) {
+    this.buffer.setUint8(this.position++, _0x336b7d);
+    return this;
+  }
+  setInt16(_0x3c4555) {
+    this.buffer.setInt16((this.position += 2) - 2, _0x3c4555, this.littleEndian);
+    return this;
+  }
+  setUint16(_0xe442d6) {
+    this.buffer.setUint16((this.position += 2) - 2, _0xe442d6, this.littleEndian);
+    return this;
+  }
+  setInt32(_0x22b848) {
+    this.buffer.setInt32((this.position += 4) - 4, _0x22b848, this.littleEndian);
+    return this;
+  }
+  setUint32(_0x436cf5) {
+    if (_0x436cf5 % 1 != 0 && _0x436cf5.toString().slice(-2) == 88) {
+      _0x436cf5 += 4;
     }
-    setInt8(_0x528300) {
-        return this.buffer.setInt8(this.position++, _0x528300), this;
-    }
-    setUint8(_0x5e955a) {
-        return this.buffer.setUint8(this.position++, _0x5e955a), this;
-    }
-    setInt16(_0xd78b84) {
-        return this.buffer.setInt16((this.position += 2) - 2, _0xd78b84, this.littleEndian), this;
-    }
-    setUint16(_0x55b25e) {
-        return this.buffer.setUint16((this.position += 2) - 2, _0x55b25e, this.littleEndian), this;
-    }
-    setInt32(_0x47023d) {
-        return this.buffer.setInt32((this.position += 4) - 4, _0x47023d, this.littleEndian), this;
-    }
-    setUint32(t) {
-        return t % 1 != 0 && 88 == t.toString().slice(-2) && (t += 10), this.buffer.setUint32((this.position += 4) - 4, t, this.littleEndian), this;
-    }
-    setFloat32(_0x35d010) {
-        return this.buffer.setFloat32((this.position += 4) - 4, _0x35d010, this.littleEndian), this;
-    }
-    setFloat64(_0x2fc9a7) {
-        return this.buffer.setFloat64((this.position += 8) - 8, _0x2fc9a7, this.littleEndian), this;
-    }
-}
-class Reader {
-    constructor(t, i) {
-        this.buffer = new DataView(t), this.position = i || 0, this.littleEndian = !0
-    }
-    getString() {
-        let t = "";
-        for (; ;) {
-            var i = this.getUint16();
-            if (!i) break;
-            t += String.fromCharCode(i)
-        }
-        return t
-    }
-    getInt8() {
-        return this.buffer.getInt8(this.position++)
-    }
-    getUint8() {
-        return this.buffer.getUint8(this.position++)
-    }
-    getInt16() {
-        return this.buffer.getInt16((this.position += 2) - 2, this.littleEndian)
-    }
-    getUint16() {
-        return this.buffer.getUint16((this.position += 2) - 2, this.littleEndian)
-    }
-    getInt32() {
-        return this.buffer.getInt32((this.position += 4) - 4, this.littleEndian)
-    }
-    getUint32() {
-        return this.buffer.getUint32((this.position += 4) - 4, this.littleEndian)
-    }
-    getFloat32() {
-        return this.buffer.getFloat32((this.position += 4) - 4, this.littleEndian)
-    }
-    getFloat64() {
-        return this.buffer.getFloat64((this.position += 8) - 8, this.littleEndian)
-    }
+    this.buffer.setUint32((this.position += 4) - 4, _0x436cf5, this.littleEndian);
+    return this;
+  }
+  setFloat32(_0x579e92) {
+    this.buffer.setFloat32((this.position += 4) - 4, _0x579e92, this.littleEndian);
+    return this;
+  }
+  setFloat64(_0x39141b) {
+    this.buffer.setFloat64((this.position += 8) - 8, _0x39141b, this.littleEndian);
+    return this;
+  }
 }
 
+class _0x24031a {
+  constructor(_0x44da73, _0x4075be) {
+    this.buffer = new DataView(_0x44da73.data);
+    this.position = _0x4075be || 0;
+    this.littleEndian = true;
+  }
+  getColorTags() {
+    var _0x4c0e06 = this.getUint8();
+    var _0x39bdd3 = this.getUint8();
+    var _0x3e83e8 = this.getUint8();
+    //
+  }
+  getWearables() {
+    var _0xb4bb2b = this.getUint8();
+    if (_0xb4bb2b === 0) {
+      return null;
+    }
+    const _0x18dead = [];
+    for (let _0x459d36 = 0; _0x459d36 < _0xb4bb2b; _0x459d36++) {
+      _0x18dead.push({
+        wearId: this.getUint16(),
+        N: this.getUint8()
+      });
+    }
+    return _0x18dead;
+  }
+  getString() {
+    let _0x269add = "";
+    while (true) {
+      var _0x420055 = this.getUint16();
+      if (!_0x420055) {
+        break;
+      }
+      _0x269add += String.fromCharCode(_0x420055);
+    }
+    return _0x269add;
+  }
+  getInt8() {
+    return this.buffer.getInt8(this.position++);
+  }
+  getUint8() {
+    return this.buffer.getUint8(this.position++);
+  }
+  getInt16() {
+    return this.buffer.getInt16((this.position += 2) - 2, this.littleEndian);
+  }
+  getUint16() {
+    return this.buffer.getUint16((this.position += 2) - 2, this.littleEndian);
+  }
+  getInt32() {
+    return this.buffer.getInt32((this.position += 4) - 4, this.littleEndian);
+  }
+  getUint32() {
+    return this.buffer.getUint32((this.position += 4) - 4, this.littleEndian);
+  }
+  getFloat32() {
+    return this.buffer.getFloat32((this.position += 4) - 4, this.littleEndian);
+  }
+  getFloat64() {
+    return this.buffer.getFloat64((this.position += 8) - 8, this.littleEndian);
+  }
+}
 
-export class Minion {
-    constructor() {
-        this.agent = getAgent();
-        this.startedBots = false;
-        this.readyToSpawn = false;
+class Bot {
+  constructor(ip) {
+    this.init(ip);
+  }
+
+  reset() {
+    if (this.socket) {
+      this.socket.close();
+      this.socket.onopen = null;  // Remove event handlers
+      this.socket.onmessage = null;
+      this.socket.onclose = null;
+      this.socket.onerror = null;
+    }
+    this.socket = null;
+    this.socketIP = null;
+  }
+
+  init(ip) {
+    this.reset();
+
+    this.initialize();
+
+    this.socketIP = ip;
+    this.socket = new WebSocket(this.socketIP);
+
+    this.socket.binaryType = 'arraybuffer';
+
+    this.socket.onopen = this.handleOpen.bind(this);
+    this.socket.onmessage = this.handleMessage.bind(this);
+    this.socket.onclose = this.handleClose.bind(this);
+    this.socket.onerror = this.handleError.bind(this);
+  }
+
+  initialize() {
+    this.maxLimitl = 1;
+
+    this.ag219_2 = "";
+
+    if (localStorage.getItem("crcx2").length > 5) {
+      this.ag219_2 = window.localStorage.getItem("crcx2") || "";
     }
 
-    async connect(url) {
-        this.serverUrl = url;
-
-        const cookie = await this.requestCookie().catch(() => null);
-        if (!cookie) return this.onClose();
-
-        this.ws = new WebSocket(url, {
-            agent: this.agent,
-            rejectUnauthorized: false,
-            headers: {
-                'Accept-Encoding': 'gzip, deflate',
-                'Accept-Language': 'en-CA,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
-                'Cache-Control': 'no-cache',
-                Pragma: 'no-cache',
-                Origin: 'https://agma.io',
-                Cookie: cookie,
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36 Edg/88.0.705.74',
+    let rc3 = null;
+    if (typeof Storage != "undefined") {
+      rc3 = localStorage.getItem("ag218");
+    }
+    if (!rc3) {
+      grecaptcha.execute("6LfOcVMhAAAAAIzR2aCZX5fTjD8HUYYnntFzKqcA", {
+        action: "homepage"
+      }).then(function (_) {
+        $.post("ag218.php", {
+          cvcb: JSON.stringify({
+            cvcb: _
+          })
+        }, function (_) {
+          if (_) {
+            if (typeof Storage != "undefined") {
+              localStorage.setItem("ag218", _);
             }
-        });
-
-        this.ws.binaryType = 'arraybuffer';
-
-        this.ws.on('message', this.onMessage.bind(this));
-        this.ws.on('open', this.onOpen.bind(this));
-        this.ws.on('close', this.onClose.bind(this));
-        this.ws.on('error', this.onError.bind(this));
-
-        this.id = Math.floor(Math.pow(2, 14) * Math.random()).toString(36);
-        this.name = grabConfig().getName() + ' | ' + this.id;
-    }
-
-    requestCookie() {
-        return new Promise(async (resolve, reject) => {
-            let jar = request.jar();
-            request.get(
-                'https://agma.io/',
-                {
-                    jar,
-                    gzip: true,
-                    //agent: proxy,
-                    headers: {
-                        authority: 'agma.io',
-                        'cache-control': 'max-age=0',
-                        'upgrade-insecure-requests': '1',
-                        'user-agent':
-                            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36 Edg/88.0.705.74',
-                        accept:
-                            'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-                        'sec-fetch-site': 'none',
-                        'sec-fetch-mode': 'navigate',
-                        'sec-fetch-user': '?1',
-                        'sec-fetch-dest': 'document',
-                        'accept-language': 'en-US,en;q=0.9',
-                    },
-                },
-                (err, req, res) => {
-                    if (err) return reject();
-                    let form = qs.stringify({ cv: 4 * 51341, ch: 50, ccv: (51341 - 2), vv: 136 });
-
-                    request.post(
-                        'https://agma.io/client.php',
-                        {
-                            jar,
-                            gzip: true,
-                            //agent: proxy,
-                            headers: {
-                                accept: 'text/plain, */*; q=0.01',
-                                'accept-encoding': 'gzip, deflate',
-                                'accept-language': 'en-US,en;q=0.9',
-                                'content-type':
-                                    'application/x-www-form-urlencoded; charset=UTF-8',
-                                origin: 'https://agma.io',
-                                referer: 'https://agma.io/',
-                                'sec-fetch-dest': 'empty',
-                                'sec-fetch-mode': 'cors',
-                                'sec-fetch-site': 'same-origin',
-                                'user-agent':
-                                    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36 Edg/88.0.705.74',
-                                'x-requested-with': 'XMLHttpRequest',
-                            },
-                            form,
-                        },
-                        (err, req, body) => {
-                            if (err) return reject();
-                            let cookie = req.request.headers.cookie;
-                            console.log(cookie);
-                            console.log(body);
-                            resolve(cookie);
-                        }
-                    );
-                }
-            );
-        });
-    }
-
-    onMessage(message) {
-        const msg = new Reader(message, 0);
-
-        switch (240 === msg.buffer.getUint8(0) && (msg.position += 5), msg.getUint8()) {
-            case 64:
-                var yn;
-
-                yn = 33 < 34 ? (
-
-                    msg.getUint32(),
-
-                    msg.getUint32(),
-
-                    msg.getUint32(),
-
-                    msg.getUint32()) : (console.log('???')),
-
-                    msg.getInt16();
-
-                var x = msg.getUint32();
-
-                var y = msg.getUint32();
-                console.log(x, y);
-
-                if (x === y) {
-                    if (70 > 50) {
-                        this.Fn = x;
-                        this.Fn -= 10;
-                        this.Generate64Key();
-                    }
-                } else {
-                    this.ws.terminate();
-                    console.log("Error in packet 64.")
-                }
-                break;
-            case 0x20:
-                this.sendUint8(13);
-                break;
-            case 244:
-                this.readyToSpawn = true;
-
-                var isManualMouseBR = true;
-                var tooltip = true;
-                var isCMBkR = false;
-
-                this.sendState(7, ~~isManualMouseBR);
-                this.sendState(8, ~~isCMBkR);
-                this.sendState(3, ~~tooltip);
-                break;
+            window.AG.gcvbb = _;
+            if (typeof t == "function") {
+              t(_);
+            }
+          }
+        }, "text");
+      });
+    } else {
+      $.post("ag218.php", {
+        cvc: JSON.stringify({
+          cvc: rc3
+        })
+      }, function (_) {
+        if (_) {
+          if (((_ = JSON.parse(_)).needRefresh || _.error) && (typeof Storage != "undefined" && localStorage.removeItem("ag218"), window.AG.gcvbb = "", this.maxLimitl < 4)) {
+            this.maxLimitl++;
+            console.log("Re fetch?!??!!?");
+            return;
+          }
+          if (typeof Storage != "undefined") {
+            localStorage.setItem("ag218", _);
+          }
+          window.AG.gcvbb = _;
+          if (typeof t == "function") {
+            t(_);
+          }
         }
+      }, "text");
     }
+  }
 
-    Generate64Key() {
-        const _0x483f7a = new _0xbf382a(13);
-        _0x483f7a.setUint8(2 * (_0x36bcdf + 30) - (_0x150d35 - 5) % 10 - 5), _0x3debb6(_0x483f7a, _0x1a882e, _0x459b43), _0x483f7a.setUint32(_0x2c883d(2) + function () {
-            for (var _0x270b65 = 0, _0x77410 = 1; _0x77410 < _0x473720.length; _0x77410++) _0x270b65 += ~~(_0x150d35 / _0x473720[_0x77410] - _0x473720[_0x77410] % _0x28083f);
-            return _0x270b65;
-        }() + _0x28083f), (_0x1a882e = _0x483f7a).setUint32(_0x3a91f2(_0x1a882e.buffer, 0, 9, 255) + 1), _0x483f7a.send(true);
+  handleMessage(_0x457bef) {
+    console.log('Message received:', _0x457bef);
+
+    const _0x4ed0fb = new _0x24031a(_0x457bef, 0);
+    if (_0x4ed0fb.buffer.getUint8(0) === 240) {
+      _0x4ed0fb.position += 5;
     }
-
-    offsetkey() {
-        for (var _0xc4a40 = 0, _0x42b88d = 0; _0x42b88d < this._0x30c7cd.length; _0x42b88d++) {
-            _0xc4a40 += ~~(this.Fn / this._0x30c7cd[_0x42b88d] - this._0x30c7cd[_0x42b88d] % 173);
-        }
-        return _0xc4a40;
-    }
-
-    get _0x30c7cd() {
-        return [126, 57, 139, 92, 346, 36];
-    }
-
-    sendState(id, data) {
-        if (this.readyToSpawn) this.send([4, id, data]);
-    }
-
-    onOpen() {
-
-        const _0x5c94d3 = new _0xbf382a(14);
-        _0x5c94d3.setUint8(245).setUint16(41).setUint16(136).setUint32(51341).setUint32(this._0x3a91f2(_0x5c94d3.buffer, 0, 9, 245));
-        this.send(_0x5c94d3);
-
-        this.pingInterval = setInterval(() => {
-            if (this.readyToSpawn) this.sendUint8(95);
-        }, 18e3);
-
-        this.spawnTimeout = setInterval(this.spawn.bind(this), 1000);
-    }
-
-    _0x3a91f2(_0x39bde1, _0x162c7a, _0x1e83f0, _0x386229) {
-        _0x162c7a + _0x1e83f0 > _0x39bde1.byteLength && (_0x1e83f0 = 0);
-        for (var _0x50e93f = 12345678 + _0x386229, _0x172e74 = 1; _0x172e74 < _0x1e83f0; _0x172e74++) _0x50e93f += _0x39bde1.getUint8(_0x162c7a + _0x172e74) * (_0x172e74 + 1);
-        return _0x50e93f;
-    }
-
-    onClose() {
-        clearInterval(this.pingInterval);
-
-        clearTimeout(this.spawnTimeout);
-
-        if (this.serverUrl) this.connect(this.serverUrl);
-    }
-
-    onError() { }
-
-    disconnect() {
-        if (this.ws) {
-            this.ws.terminate();
-            delete this.ws;
+    switch (_0x4ed0fb.getUint8()) {
+      case 112:
+        console.log("CRX");
+        var _0x158c81;
+        var _0x44e567 = _0x4ed0fb.getUint8();
+        this.ag219_2 = _0x44e567 == 2 ? (_0x158c81 = _0x4ed0fb.getString(), typeof Storage != "undefined" && localStorage.setItem("crcx2", _0x158c81), _0x158c81) : _0x4ed0fb.getString();
+        break
+      case 64:
+        if (this._0x201178 > 33) {
+          _0x4ed0fb.getUint32();
+          _0x4ed0fb.getUint32();
+          _0x4ed0fb.getUint32();
+          _0x4ed0fb.getUint32();
         }
 
-        clearInterval(this.pingInterval);
+        _0x4ed0fb.getInt16();
 
-        clearTimeout(this.spawnTimeout);
-    }
+        var _0x13079f = _0x4ed0fb.getUint32();
+        var _0x4b30e0 = _0x4ed0fb.getUint32();
 
-    spawn() {
-        if (!this.readyToSpawn) return;
-        let spawnBuffer = Buffer.alloc(4 + Buffer.byteLength(this.name, 'ucs2'));
-        spawnBuffer[0] = 0x01;
-        spawnBuffer.write(this.name, 4, 'ucs2');
-        this.sendUint8(29);
-        this.sendUint8(13);
-        this.send(spawnBuffer);
-    }
+        var _0x2dbff5 = _0x4ed0fb.getUint8();
 
-    split() {
-        if (!this.readyToSpawn) return;
-        this.sendUint8([0x11]);
-    }
+        _0x4ed0fb.getUint32() * 2;
+        _0x4ed0fb.getUint32() * 2;
 
-    eject() {
-        if (!this.readyToSpawn) return;
-        this.sendUint8([0x15]);
-        this.sendUint8([0x24]);
-    }
+        _0x4ed0fb.getUint16();
+        _0x4ed0fb.getUint16();
 
-    sendUint8(offset) {
-        if (!this.readyToSpawn) return;
-        let onebyte = this.Buffer(1);
-        onebyte.setUint8(0, offset)
-        this.send(onebyte);
-    }
-
-    sendMove(x, y) {
-        if (!this.readyToSpawn) return;
-        let buffer = Buffer.alloc(9);
-        buffer.writeInt32LE(x, 1);
-        buffer.writeInt32LE(y, 5);
-        this.send(buffer);
-    }
-
-    sendChat(message) {
-        if (!this.readyToSpawn) return;
-        let chatBuffer = Buffer.alloc(2 + Buffer.byteLength(message, 'ucs2'));
-        chatBuffer.writeUInt8(0x62, 0);
-        chatBuffer[1] = 0x01;
-        chatBuffer.write(message, 2, 'ucs2');
-        this.send(chatBuffer);
-    }
-
-    get wsOPEN() {
-        return this.ws && this.ws.readyState === WebSocket.OPEN;
-    }
-
-    Buffer(buf) {
-        return new DataView(new ArrayBuffer(!buf ? 1 : buf))
-    }
-
-    send(data) {
-        if (this.wsOPEN) {
-            this.ws.send(data.buffer);
+        if (_0x13079f === _0x4b30e0) { // _0x437f19 = 60, at this point
+          //
+          this._0x437f19 = 60;
+          //
+          if (this._0x437f19 < 70) {
+            this._0x437f19 += 40;
+            this._0x40887a = _0x13079f;
+            this._0x40887a += 1;
+            this._0x3eab37(0);
+          }
+        } else {
+          console.log("you did something wrong");
         }
+        break;
+
+
+      case 104:
+
+        console.log("request to 219");
+
+        //this._0x4b96cd(1);
+        break;
+
+      case 244:
+        if (_0x4ed0fb.buffer.byteLength === 1) {
+          if (this.ag219_2.length > 0) {
+            if (/*_0xea2544(true) && */this.ag219_2.length > 0) {
+              var g = new _0x55c9cc(3 + this.ag219_2.length * 2).setUint8(102).setUint16(this.ag219_2.length).setString(this.ag219_2);
+
+              console.log(g.buffer);
+            }
+          } else {
+            //_0x297529();
+
+            console.log("request to 219.php")
+          }
+
+          // rest...
+        }
+        break;
     }
-};
+  }
+
+  _0x297529() {
+    if (_0xea2544(true)) {
+      if (ag219.length > 0) {
+        new _0x55c9cc(3 + ag219.length * 2).setUint8(101).setUint16(ag219.length).setString(ag219).send();
+        rq219done = false;
+        sentFirstTime = true;
+      } else if (!rq219done) {
+        setTimeout(function () {
+          _0x297529();
+        }, 3000);
+      }
+    }
+  }
+
+  _0x3eab37(_0x503b61) {
+    if (this._0x40887a != -1 && !_0x503b61) {
+      let _0x3cda3b = "";
+      var _0x2b55ef = localStorage.getItem("ag218");
+      if (_0x2b55ef) {
+        _0x3cda3b = _0x2b55ef;
+      }
+      if (!_0x2b55ef) {
+        if (window.AG && window.AG.gccvb !== "Co+kQI2/U7Fto3imGgDcp9qAhFyQqE047lMrIoJkj4yKGzNjC+R4ZX" && window.AG.gccvb !== "" && window.AG.gccvb !== undefined) {
+          _0x3cda3b = window.AG.gccvb;
+        }
+      }
+      _0x3cda3b;
+      window.iesg ||= ""; // window.iesg = serve dynamic, key from GET body
+      let _0xd0ce50 = new _0x55c9cc(1 + _0x3cda3b.length * 2 + window.iesg.length * 2 + 2);
+      _0xd0ce50.setUint8(244);
+      _0xd0ce50.setString(_0x3cda3b);
+      _0xd0ce50.setUint16(0);
+      _0xd0ce50.setString(window.iesg);
+      console.log(_0xd0ce50.buffer);
+      if ((_0x2b55ef = 0) < this.ag219_2.length) {
+        _0x2b55ef = this.ag219_2.length * 2;
+      }
+      const _0x2cfd16 = new _0x55c9cc(14 + _0x2b55ef);
+      _0x2cfd16.setUint8((_0x437f19 + 30) * 2 - (_0x40887a - 5) % 10 - 5);
+      var _0x73e3f8; // client.php key
+      this._0x25446f(_0x2cfd16, _0x503b61, _0x73e3f8);
+      var _0x42f3c2 = [126, 57, 139, 92, 346, 36];
+      var _0x2b0a12 = 162;
+      /**
+       * _0xd587c2(2)
+4.88
+       */
+      _0x2cfd16.setUint32(/*_0xd587c2(2)*/ 4.88 + function () {
+        var _0x19549a = 0;
+        for (var _0x2d00e7 = 2; _0x2d00e7 < _0x42f3c2.length; _0x2d00e7++) {
+          _0x19549a += ~~(this._0x40887a / _0x42f3c2[_0x2d00e7] - _0x42f3c2[_0x2d00e7] % _0x2b0a12);
+        }
+        return _0x19549a;
+      }() + _0x2b0a12);
+      this._0x5ec562(_0x2cfd16);
+      if (this.ag219_2.length > 0) {
+        _0x2cfd16.setString(this.ag219_2);
+      }
+      console.log(_0x2cfd16.buffer);
+    }
+  }
+
+  _0x4b96cd(_0x409415) {
+    $.post("ag219.php", {
+      data: JSON.stringify({
+        cv: _0x274bf6 * 2,
+        ch: _0x437f19,
+        ccv2: _0x37924b - 2,
+        abl: encodeURIComponent(_0x5ec562).length,
+        cp: _0x201178,
+        vv: _0x34ee54
+      })
+    }, function (_0x51121d) {
+      if (_0x51121d) {
+        rq219done = true;
+        ag219 = _0x51121d;
+        if (!sentFirstTime || !!_0x409415) {
+          //_0x297529();
+        }
+      } else {
+        _0xa29ac1("Unable to connect. Please refresh your browser and try again. If this persists, please send an email to hello@agma.io to inform", false, true, 0, 0);
+      }
+    }, "text");
+  }
+
+  _0x5ec562(_0x175aad) {
+    _0x175aad.setUint32(this._0x2e5b54(_0x175aad.buffer, 0, 9, 255));
+  }
+
+  _0x25446f(_0x2e6ca3, _0x55e4c5, _0x337b7f) {
+    //_0xd587c2(2);
+    _0x2e6ca3.setUint32(1 + ~~(this._0x40887a / 1.41 + this._0x437f19 / 2 - (_0x55e4c5 ? 0.5 : 1) * 2) + ~~(~~((~~(this._0x40887a + this._0x274bf6 * 4.81 - 559) % --_0x337b7f - 36360) * 22.29) / 4.2 + 0.4));
+  }
+
+  handleOpen() {
+    console.log('WebSocket connection opened');
+
+    this._0x201178 = 58;
+    this._0x34ee54 = 155;
+    this._0x5ba5e7 = 12;
+
+    this._0x437f19 = 50;
+
+    this._0x40887a = -1;
+
+    this._0x274bf6 = 1 + ~~(53550 + Math.random() * 600000);
+
+    const _0x2dc5c2 = new _0x55c9cc(14);
+    _0x2dc5c2.setUint8(245).setUint16(this._0x201178).setUint16(this._0x34ee54).setUint32(this._0x274bf6).setUint32(this._0x2e5b54(_0x2dc5c2.buffer, 0, 9, 245));
+
+    console.log(_0x2dc5c2.buffer);
+  }
+
+  _0x2e5b54(_0x45dc53, _0x52e53c, _0x3695ef, _0x59a586) { // checksum
+    if (_0x45dc53.byteLength < _0x52e53c + _0x3695ef) {
+      _0x3695ef = 0;
+    }
+    var _0xeeb418 = 12354678 + _0x59a586;
+    var _0x21f283 = window.altDynamicModule || undefined;
+    for (var _0x531fea = 0; _0x531fea < _0x3695ef; _0x531fea++) {
+      _0xeeb418 += _0x45dc53.getUint8(_0x52e53c + _0x531fea) * (_0x531fea + 4);
+    }
+    for (_0x21f283 = 1; _0x21f283 < 1; _0x21f283++) {
+      _0x21f283++;
+    }
+    return _0xeeb418 + (Math.floor(Math.random() * 10), _0x59a586 = Math.floor(Math.random() * 10), 3);
+  }
+
+  handleClose(event) {
+    console.log('WebSocket connection closed:', event.code, event.reason);
+  }
+
+  handleError(error) {
+    console.error('WebSocket error:', error);
+  }
+
+  send(data) {
+    if (this.socket && this.socket.readyState === WebSocket.OPEN) {
+      this.socket.send(data);
+      console.log("Message sent:", data);
+    } else {
+      console.log("WebSocket is not open. Cannot send message:", data);
+    }
+  }
+}
