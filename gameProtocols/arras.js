@@ -216,11 +216,32 @@ class Connection {
                 return;
             }
             if (this.state === "ready") {
-                const surfaceRaw = this.decrypt(bytes);
+                const plaintext = this.decrypt(bytes);
+                const byte = plaintext[0];
 
-                console.log("Decrypted packet:", surfaceRaw);
+                const char = (byte >= 0x20 && byte < 0x7f) ? String.fromCharCode(byte) : null;
 
-                // Not doing the rest of the protocl cases, don't care for them besides handshake.
+                console.log("Decrypted packet:", plaintext);
+
+                switch (char) {
+                    case 'u':
+                        // Stub.
+                        break;
+                    case 'J':
+                        // Stub.
+                        break;
+                    case 'K':
+                        // Stub.
+                        break;
+                    case 'P':
+                        // Stub.
+                        break;
+                    default:
+                        console.log("Received packet with command:", char);
+                        break;
+                }
+
+                // Not doing the rest of the protocol cases, don't care for them besides handshake.
                 return;
             }
         } catch (err) {
@@ -309,6 +330,28 @@ class Connection {
         return packet;
     }
 
+    // 'p' — ping / heartbeat. Just the bare command byte. The real client sends
+    // this on a steady interval; call it yourself or on a timer.
+    sendPing() {
+        this.sendPacket(new Uint8Array([0x70]));
+    }
+
+    // 's' — spawn. Fields: [name, party/room, flag]. name/party are strings
+    // (empty = anonymous / public), flag is a small int (observed 1).
+    sendSpawn(name = "", party = "", flag = 1) {
+        this.sendPacket(encodeCommand("s", [name, party, flag]));
+    }
+
+    // 'U' — upgrade a stat by its index (e.g. 1,3,5…).
+    sendUpgrade(statIndex) {
+        this.sendPacket(encodeCommand("U", [statIndex & 0xff]));
+    }
+
+    // 't' — a boolean toggle (autofire/autospin-style): 74 00 / 74 01.
+    sendToggle(on) {
+        this.sendPacket(encodeCommand("t", [on ? 1 : 0]));
+    }
+
     initProtectionState() {
         this.outboundCounter = 0;
         this.inboundCounter = 0;
@@ -333,12 +376,13 @@ class Connection {
         console.error("WebSocket error:", error);
     }
 
-    counterNonce(counter) {
+    counterNonce(counter, inbound = false) {
         const n = new Uint8Array(8);
         let v = BigInt(counter);
         for (let i = 0; i < 8; i++) {
             n[i] = Number(v & 0xffn); v >>= 8n;
         }
+        if (inbound) n[7] |= 0x80;
         return n;
     }
 
@@ -352,7 +396,8 @@ class Connection {
         if (wire.length < 6) throw new Error("truncated frame");
         const ciphertext = wire.subarray(0, wire.length - 6);
         const receivedTag = wire.subarray(wire.length - 6);
-        const nonce8 = this.counterNonce(this.inboundCounter);
+        // Inbound (server->client) sets bit 63 of the nonce as the direction flag.
+        const nonce8 = this.counterNonce(this.inboundCounter, true);
         const expected = this.crypto.sha256(ciphertext, this.key, nonce8).subarray(0, 6);
         let diff = 0; for (let i = 0; i < 6; i++) diff |= expected[i] ^ receivedTag[i];
         if (diff !== 0) throw new Error("bad inbound tag (key or nonce desync)");
