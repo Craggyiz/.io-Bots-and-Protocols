@@ -1,6 +1,8 @@
 import crypto from "node:crypto";
 import WebSocket from "ws";
 
+// Fully connects, you can make bots if you desire.
+
 // This is a simple mockup node.js client for the Arras.io handshake protocol.
 // Works as normal when sent with non-stubbed packets.
 // But, will disconnect if the server does not receive a valid "self" and "fingerprint" packet after the handshake, or if you do not send the ping packet after handshake (not included).
@@ -145,12 +147,104 @@ function encodeCommand(commandChar, fields) {
     return concatBytes(parts);
 }
 
+class Fingerprint {
+    static CAPTURED = {
+        // Hardcoded values generated in case canvas or unicode cannot be generated normally.
+        ua: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+        hc: 24,
+        rtc: "good", wt: true, sw: true, gpu: true, credentialless: true,
+        renderer: "WebKit WebGL\nWebKit\nANGLE (NVIDIA, NVIDIA GeForce RTX 5090 (0x00002B85) Direct3D11 vs_5_0 ps_5_0, D3D11)\nGoogle Inc. (AMD)",
+        canvas: "v0:wP4jk0qKgbokGbFmMdPWwurUW+6kNPmMMCfOWbjN4/M=",
+        unicode: "v0:UmVElDEuBHKmqHEiZPEkdMU6Gfj2grq241pseekLrPQ=",
+        innerWidth: 1280, innerHeight: 720
+    };
+
+    report(canvasEl) {
+        const g = (typeof window !== "undefined") ? window : globalThis;
+        const canvas = canvasEl || (typeof document !== "undefined" ? document.createElement("canvas") : { addEventListener() { } });
+        const lines = [
+            ["window.addEventListener", g.addEventListener],
+            ["canvas.addEventListener", canvas.addEventListener],
+            ["WebAssembly.instantiate", typeof WebAssembly !== "undefined" ? WebAssembly.instantiate : undefined],
+            ["WebAssembly.instantiateStreaming", typeof WebAssembly !== "undefined" ? WebAssembly.instantiateStreaming : undefined],
+            ["requestAnimationFrame", g.requestAnimationFrame],
+            ["Function", g.Function || Function]
+        ].map(([label, fn]) => `${label} = ${fn ? Function.prototype.toString.call(fn) : "undefined"}`);
+        lines.push(`stack = ${new Error().stack}`);
+        return lines.join("\n");
+    }
+
+    wasmFeatures() {
+        return ["base", "bigInt", "bulkMemory", "exceptions", "exceptionsFinal", "extendedConst", "gc", "jsStringBuiltins", "jspi", "memory64", "multiMemory", "multiValue", "mutableGlobals", "referenceTypes", "relaxedSimd", "saturatedFloatToInt", "signExtensions", "simd", "streaming", "tailCall", "threads", "typedFunctionReferences"];
+    }
+
+    renderer() {
+        if (typeof document === "undefined") return "";
+        try {
+            const gl = document.createElement("canvas").getContext("webgl") || document.createElement("canvas").getContext("experimental-webgl");
+            if (!gl) return "";
+            const ext = gl.getExtension("WEBGL_debug_renderer_info");
+            const parts = ["WebKit WebGL", "WebKit",
+                ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER),
+                ext ? gl.getParameter(ext.UNMASKED_VENDOR_WEBGL) : gl.getParameter(gl.VENDOR)];
+            return parts.join("\n");
+        } catch { return ""; }
+    }
+
+    collect(overrides = {}) {
+        const g = (typeof window !== "undefined") ? window : {};
+        const nav = (typeof navigator !== "undefined") ? navigator : {};
+        const inBrowser = typeof window !== "undefined";
+        const has = (o, k) => { try { return !!o[k]; } catch { return false; } };
+        const C = Fingerprint.CAPTURED;
+        const pick = (ovKey, live, cap) => overrides[ovKey] ?? (inBrowser ? live() : cap);
+        const ua = overrides.ua ?? (inBrowser ? (nav.userAgent || "") : C.ua);
+        return {
+            adblock: overrides.adblock ?? (inBrowser ? !g.arrasAdDone : false),
+            mobile: overrides.mobile ?? /Mobi|Android|iPhone|iPad/i.test(ua),
+            storage: overrides.storage ?? {},
+            overseer: {
+                features: {
+                    wasm: overrides.wasm || this.wasmFeatures(),
+                    rtc: pick("rtc", () => has(g, "RTCPeerConnection") ? "good" : "none", C.rtc),
+                    wt: pick("wt", () => has(g, "WebTransport"), C.wt),
+                    sw: pick("sw", () => has(nav, "serviceWorker"), C.sw),
+                    gpu: pick("gpu", () => has(nav, "gpu"), C.gpu),
+                    credentialless: pick("credentialless", () => typeof g.credentialless === "boolean", C.credentialless),
+                    ua,
+                    hc: pick("hc", () => nav.hardwareConcurrency || -1, C.hc),
+                    renderer: overrides.renderer ?? (this.renderer() || C.renderer),
+                    webgl: overrides.webgl ?? "good",
+                    "experimental-webgl": overrides["experimental-webgl"] ?? "good",
+                    webgl2: overrides.webgl2 ?? "good"
+                },
+                window: {
+                    innerWidth: pick("innerWidth", () => g.innerWidth || 1280, C.innerWidth),
+                    innerHeight: pick("innerHeight", () => g.innerHeight || 720, C.innerHeight)
+                },
+                fingerprints: {
+                    //   canvas  = "v0:" + base64(SHA256(<96x32 canvas>.toDataURL()
+                    //             PNG bytes))
+                    //   unicode = "v0:" + base64(SHA256(text)) text is
+                    //             a font-glyph metrics table: 6 fonts x 43 probe
+                    //             glyphs of "<measureText advanceWidth> <fontMetric>"
+                    //             lines.
+                    canvas: overrides.canvas ?? C.canvas,
+                    unicode: overrides.unicode ?? C.unicode
+                },
+                report: overrides.report ?? this.report()
+            }
+        };
+    }
+}
+
 class Connection {
     constructor(socketUrl) {
         this.socketUrl = socketUrl;
 
         this.state = "idle";
 
+        this.fingerprint = new Fingerprint();
         this.crypto = new Crypto();
         this.verifySignature = true;
         this.serverIdentityKeyHex = '98dcbf48d0d78d81d339a2d80bbe85c5d32d7a79eb7223ee9b7c4a54e101d57c';
@@ -273,57 +367,23 @@ class Connection {
 
         this.initProtectionState();
 
-        // It will disconnect when sent because fingerprint is stubbed, you need to send real data.
-        // Messages will continue for a short time when the server verifies the handshake (they're queued), but will disconnect after a few seconds if the fingerprint with 'self' is not sent.
-        //this.sendPacket(this.buildSelfPacket());
-        //this.sendPacket(this.buildFingerprintPacket());
+        // Change fingerprint to your liking, it is currently hardcoded.
+        this.sendPacket(this.buildSelfPacket());
+        this.sendPacket(this.buildFingerprintPacket());
     }
 
-    // STUB — the "self" packet: talk('k', '', '', '') = bytes 6b c0 c0 c0.
+    // The "self" packet: talk('k', '', '', '') = bytes 6b c0 c0 c0.
     // Command 'k' + three empty-string fields (clientkey/name/party, all blank
-    // for a default connection). Builds the packet; does NOT send it yet.
+    // for a default connection).
     buildSelfPacket(fields) {
         const packet = encodeCommand("k", fields || ["", "", ""]);
         return packet;
     }
 
-    // STUB — the anti-tamper / fingerprint packet: [0x54,0xfe,len_LE16] + JSON.
-    // JSON = { adblock, mobile, storage, overseer:{ features:{ wasm[], rtc, wt,
-    // sw, gpu, credentialless, ua, hc, renderer, webgl* }, window:{innerWidth,
-    // innerHeight}, fingerprints:{ canvas, unicode }, report } }.
-    //   • report  = toString() dump of core globals + Error().stack — the real
-    //     tamper check (must read "[native code]" for each; any patch shows up).
-    //   • canvas/unicode = computed v0:base64 render-hashes (need a real render).
-    //   • ua/renderer/hc/window = environment values (must look like a browser).
-    // Builds the packet; does NOT send it yet. Pass a full object/JSON to override.
-    buildFingerprintPacket(fingerprint) {
-        const DEFAULT = {
-            adblock: false, mobile: false, storage: {},
-            overseer: {
-                features: {
-                    wasm: [],
-                    rtc: "good",
-                    wt: true,
-                    sw: true,
-                    gpu: true,
-                    credentialless: true,
-                    ua: "",
-                    hc: 8,
-                    renderer: "",
-                    webgl: "good",
-                    "experimental-webgl": "good",
-                    webgl2: "good"
-                },
-                window: {
-                    innerWidth: 1280, innerHeight: 720
-                },
-                fingerprints: {
-                    canvas: "", unicode: ""
-                },
-                report: ""
-            }
-        };
-        const jsonStr = typeof fingerprint === "string" ? fingerprint : JSON.stringify(fingerprint || DEFAULT);
+    // The anti-tamper / fingerprint packet: [0x54,0xfe,len_LE16] + JSON.
+    buildFingerprintPacket(fingerprint, overrides) {
+        const value = fingerprint != null ? fingerprint : this.fingerprint.collect(overrides || {});
+        const jsonStr = typeof value === "string" ? value : JSON.stringify(value);
         const body = new TextEncoder().encode(jsonStr);
         const header = new Uint8Array([0x54, 0xfe, body.length & 0xff, (body.length >> 8) & 0xff]);
         const packet = concatBytes([header, body]);
