@@ -199,7 +199,6 @@ class Fingerprint {
 class Connection {
     constructor(socketUrl, options = {}) {
         this.socketUrl = socketUrl;
-        this.token = this.newSessionToken();
         this.nick = options.nick ?? "";
 
         this.state = "idle";
@@ -207,12 +206,12 @@ class Connection {
         this.fingerprint = new Fingerprint();
         this.crypto = new Crypto();
 
+        this.token = this.newSessionToken();
         this.visitorId = this.fingerprint.visitorId(
             options.visitorId ?? options.fingerprint,
         );
         this.clientNonce = this.crypto.randomBytes(16);
-        this.counter =
-            options.counter ?? (Math.floor(Math.random() * 0x10000) & 0xffff);
+        this.counter = this.deriveCounter(this.token);
 
         this.serverNonce = null;
         this.inKey = null;
@@ -269,6 +268,10 @@ class Connection {
         return String(Math.floor(Math.random() * TOKEN_SPAN) + TOKEN_MIN);
     }
 
+    deriveCounter(token) {
+        return ((Number(token) % 1024000) % 132177) % 65536;
+    }
+
     connect() {
         this.state = "opening";
 
@@ -322,6 +325,7 @@ class Connection {
         const bytes = toBytes(
             event && event.data !== undefined ? event.data : event,
         );
+
         try {
             if (this.state === "awaiting-hello" && bytes[0] === this.opcodes.serverHello) {
                 this.completeHandshake(bytes);
